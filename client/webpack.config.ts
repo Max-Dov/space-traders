@@ -24,6 +24,7 @@ const config: webpack.Configuration = {
             '@services': path.resolve(__dirname, 'src', 'services'),
             '@features': path.resolve(__dirname, 'src', 'features'),
             '@utils': path.resolve(__dirname, 'src', 'utils'),
+            '@zustand': path.resolve(__dirname, 'src', 'zustand'),
         },
     },
     module: {
