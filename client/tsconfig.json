@@ -10,13 +10,23 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
+      // duplicating entries as otherwise root index.ts files won't be recognised
       "@commonStyles/*": ["src/commonStyles/*"],
+      "@commonStyles": ["src/commonStyles"],
       "@features/*": ["src/features/*"],
+      "@features": ["src/features"],
       "@shared/*": ["src/shared/*"],
+      "@shared": ["src/shared"],
       "@types/*": ["src/models/*"],
+      "@types": ["src/models"],
       "@constants/*": ["src/constants/*"],
+      "@constants": ["src/constants"],
       "@services/*": ["src/services/*"],
+      "@services": ["src/services"],
       "@utils/*": ["src/utils/*"],
+      "@utils": ["src/utils"],
+      "@zustand/*": ["src/zustand/*"],
+      "@zustand": ["src/zustand"],
     }
   },
   "include": [
