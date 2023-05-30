@@ -4,6 +4,7 @@ import { useServerStatusStore } from '@zustand';
 import { useIsServerUp } from '@utils';
 import classNames from 'classnames';
 import { formatDate } from '@utils/format-date.util';
+import { Window } from '@shared';
 
 export const ServerStatus = () => {
   const { serverStatus, refreshServerStatus } = useServerStatusStore();
@@ -15,7 +16,7 @@ export const ServerStatus = () => {
     refreshServerStatus();
   }, []);
 
-  return <section className="server-status">
+  return <Window className="server-status">
     <h2 className="header-font">
       Server Status
       <button className="refresh-button" onClick={refreshServerStatus}>Refresh</button>
@@ -58,6 +59,6 @@ export const ServerStatus = () => {
                 <span className="stat">{resetOld} - {resetNext}</span>
             </p>
         </>}
-  </section>;
+  </Window>;
 
 };

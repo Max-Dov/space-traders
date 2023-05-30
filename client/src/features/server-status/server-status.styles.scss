@@ -1,21 +1,6 @@
 @import "commonStyles/constants";
 
-section.server-status {
-  width: fit-content;
-  padding: 0 1em;
-
-  border: 1px solid $color-ash-gray;
-  box-shadow: 0.25em 0.25em rgba($color-ash-gray, 0.5);
-  background-color: rgba($color-ash-gray, 0.1);
-  transition: box-shadow $transition-normal ease-in-out, border-color $transition-normal ease-in-out;
-
-  &:hover {
-    border: 1px solid $color-atomic-tangerine;
-    box-shadow: 0.25em 0.25em rgba($color-atomic-tangerine, 0.5);
-    background-color: rgba($color-atomic-tangerine, 0.1);
-
-  }
-
+.server-status {
   h2 {
     display: flex;
     justify-content: space-between;
