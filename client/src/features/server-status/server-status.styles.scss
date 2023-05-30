@@ -1,5 +1,7 @@
+@import "commonStyles/colors.scss";
+
 section.server-status {
-  border: 1px solid white;
+  border: 1px solid $color-ash-gray;
   width: fit-content;
   padding: 1em;
 }

@@ -11,8 +11,8 @@
     "baseUrl": ".",
     "paths": {
       // duplicating entries as otherwise root index.ts files won't be recognised
-      "@commonStyles/*": ["src/commonStyles/*"],
-      "@commonStyles": ["src/commonStyles"],
+      "commonStyles/*": ["src/commonStyles/*"],
+      "commonStyles": ["src/commonStyles"],
       "@features/*": ["src/features/*"],
       "@features": ["src/features"],
       "@shared/*": ["src/shared/*"],

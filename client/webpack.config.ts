@@ -17,7 +17,7 @@ const config: webpack.Configuration = {
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
         alias: {
-            '@commonStyles': path.resolve(__dirname, 'src', 'commonStyles'),
+            'commonStyles': path.resolve(__dirname, 'src', 'commonStyles'),
             '@types': path.resolve(__dirname, 'src', 'types'),
             '@constants': path.resolve(__dirname, 'src', 'constants'),
             '@shared': path.resolve(__dirname, 'src', 'shared'),
