@@ -1,0 +1,24 @@
+// https://coolors.co/afd0bf-ffa686-984447-221b22-476c9b-32533d
+
+/**
+ * Dark colors, should have white text over them.
+ */
+$color-cordovan: #984447;
+$color-true-blue: #476C9B; // action color
+$color-raisin-black: #221B22; // app surface color
+
+/**
+ * Bright colors, work well with black text over them.
+ */
+$color-ash-gray: #AFD0BF; // idle/layout color
+$color-atomic-tangerine: #FFA686; // accent color
+$color-screaming-green: #97FF87; // accent color
+$color-bittersweet: #FA6363; // accent color
+$color-brunswick-green: #32533D;
+
+$font-color: white;
+$font-normal: 300;
+$font-semi-bold: 500;
+$font-bold: 700;
+
+$transition-normal: 100ms;

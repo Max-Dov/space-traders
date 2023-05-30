@@ -1,1 +1,1 @@
-export * from './useServerStatus.store';
+export * from './use-server-status.store';

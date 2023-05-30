@@ -1,8 +1,57 @@
-@import "colors";
+@import "constants";
 @import "fonts";
 
 body {
   background-color: $color-raisin-black;
   font-family: $font-roboto;
-  color: white;
+  color: $font-color;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 1rem 0;
+}
+
+p {
+  margin: 1em 0;
+}
+
+.display-font {
+  font-family: $font-grenze-gotisch;
+}
+
+.header-font {
+  font-family: $font-roboto-slab;
+}
+
+.flex-row {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+button {
+  margin: 0;
+  font-size: 1em;
+  padding: 0.2em 0.5em;
+  color: $font-color;
+  font-family: inherit;
+  line-height: 100%;
+
+  background-color: rgba($color-true-blue, 0.5);
+  border: 1px solid $color-true-blue;
+  box-shadow: 0.25em 0.25em rgba($color-true-blue, 0.25);
+
+  transition: background-color $transition-normal ease-in-out, border $transition-normal ease-in-out, box-shadow $transition-normal ease-in-out;
+
+  &:hover {
+    background-color: rgba($color-atomic-tangerine, 0.75);
+    border: 1px solid $color-atomic-tangerine;
+    box-shadow: 0.25em 0.25em rgba($color-atomic-tangerine, 0.5);
+  }
+
+  &:active {
+    background-color: $color-atomic-tangerine;
+    border: 1px solid $color-atomic-tangerine;
+    box-shadow: 0.25em 0.25em rgba($color-atomic-tangerine, 0.75);
+  }
 }
