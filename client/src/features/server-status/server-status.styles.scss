@@ -1,8 +1,10 @@
 @import "commonStyles/constants";
 
-.server-status {
+section.server-status {
+
   h2 {
     display: flex;
+    gap: 1em;
     justify-content: space-between;
   }
 
@@ -10,14 +12,24 @@
     font-size: 1rem;
   }
 
-  span.stat {
-    font-weight: $font-normal;
+  span {
+    font-weight: $font-semi-bold;
+    .stat {
+      font-weight: $font-normal;
+      white-space: nowrap;
 
-    &.server-up {
-      color: $color-screaming-green;
+      &.server-up {
+        color: $color-screaming-green;
+      }
+
+      &.server-down {
+        color: $color-bittersweet;
+      }
     }
-    &.server-down {
-      color: $color-bittersweet;
-    }
+  }
+
+  .reset-timeframe-section {
+    display: flex;
+    gap: 0.3em;
   }
 }

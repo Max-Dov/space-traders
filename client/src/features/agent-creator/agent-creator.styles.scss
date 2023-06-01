@@ -1,0 +1,48 @@
+@import "commonStyles/fonts";
+@import "commonStyles/constants";
+
+$void-color: #F61713;
+$galactic-color: #258EA6;
+$cosmic-color: #EF6BCA;
+$dominion-color: #E09600;
+$quantum-color: #62C370;
+
+@mixin buttonStyle($className, $base-color) {
+  #{$className} {
+    background-color: rgba($base-color, 0.5);
+    width: 7em;
+    &:active {
+      background-color: rgba($base-color, 1);
+    }
+  }
+}
+
+@mixin selectedFactionStyle($className, $base-color) {
+  .selected-faction#{$className} {
+    color: $base-color;
+    font-weight: $font-bold;
+    font-family: $font-roboto-slab;
+  }
+}
+
+section.agent-identity {
+  padding-bottom: 1em;
+  @include selectedFactionStyle('.void', $void-color);
+  @include selectedFactionStyle('.galactic', $galactic-color);
+  @include selectedFactionStyle('.cosmic', $cosmic-color);
+  @include selectedFactionStyle('.dominion', $dominion-color);
+  @include selectedFactionStyle('.quantum', $quantum-color);
+
+  .factions-buttons {
+    display: flex;
+    gap: 1em;
+    font-family: $font-roboto-slab;
+    flex-wrap: wrap;
+
+    @include buttonStyle('.void', $void-color);
+    @include buttonStyle('.galactic', $galactic-color);
+    @include buttonStyle('.cosmic', $cosmic-color);
+    @include buttonStyle('.dominion', $dominion-color);
+    @include buttonStyle('.quantum', $quantum-color);
+  }
+}
