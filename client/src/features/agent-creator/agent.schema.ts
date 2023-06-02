@@ -1,8 +1,8 @@
 import Joi from 'joi';
 import { Factions } from '@constants';
-import { Agent } from '@types';
+import { CreateAgent } from '@types';
 
-export const agentSchema = Joi.object<Agent>({
+export const agentSchema = Joi.object<CreateAgent>({
   faction: Joi.options([
     Factions.DOMINION,
     Factions.COSMIC,

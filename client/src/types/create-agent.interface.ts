@@ -1,6 +1,9 @@
 import { Factions } from '@constants';
 
-export interface Agent {
+/**
+ * Object used for creating an Agent identity.
+ */
+export interface CreateAgent {
   symbol: string;
   faction: Factions;
   email?: string;

@@ -26,6 +26,16 @@ $quantum-color: #62C370;
 }
 
 section.agent-identity {
+  width: 40em;
+
+  .identity-variant-bar {
+    display: flex;
+    justify-content: flex-start;
+    gap: 2em;
+
+
+  }
+
   padding-bottom: 1em;
   @include selectedFactionStyle('.void', $void-color);
   @include selectedFactionStyle('.galactic', $galactic-color);
@@ -44,5 +54,9 @@ section.agent-identity {
     @include buttonStyle('.cosmic', $cosmic-color);
     @include buttonStyle('.dominion', $dominion-color);
     @include buttonStyle('.quantum', $quantum-color);
+  }
+
+  .agent-symbol-input {
+    width: 16em;
   }
 }

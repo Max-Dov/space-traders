@@ -1,0 +1,76 @@
+@use 'sass:color';
+@use 'sass:math';
+@import 'constants';
+
+/**
+ * Basic styling for common components.
+ * All styles can be overridden by more specific selector (e.g. "button.className")
+ */
+
+button, input {
+  margin: 0;
+  font-size: 1em;
+  padding: 0.4em 0.5em;
+  color: $font-color;
+  font-family: inherit;
+  line-height: 100%;
+
+  background-color: rgba($color-true-blue, 0.5);
+  border: 1px solid $color-true-blue;
+  box-shadow: 0.25em 0.25em rgba($color-true-blue, 0.25);
+
+  transition: background-color $transition-normal ease-in-out, border $transition-normal ease-in-out, box-shadow $transition-normal ease-in-out;
+
+  &:hover, &:focus {
+    background-color: rgba($color-atomic-tangerine, 0.75);
+    border: 1px solid $color-atomic-tangerine;
+    box-shadow: 0.25em 0.25em rgba($color-atomic-tangerine, 0.5);
+  }
+
+  &:active {
+    background-color: $color-atomic-tangerine;
+    border: 1px solid $color-atomic-tangerine;
+    box-shadow: 0.25em 0.25em rgba($color-atomic-tangerine, 0.75);
+  }
+}
+
+input {
+  width: 100%;
+  box-sizing: border-box;
+
+  &::placeholder {
+    font-weight: $font-normal;
+    color: rgba($font-color, 0.5);
+  }
+}
+
+/**
+ * Radio button styling.
+ */
+input[type="radio"] {
+  padding: 0;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  box-shadow: none;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &::before {
+    position: absolute;
+    content: '';
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border-radius: 50%;
+    background-color: $color-atomic-tangerine;
+    opacity: 0;
+  }
+
+  &:checked::before {
+    opacity: 1;
+  }
+}

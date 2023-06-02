@@ -1,27 +1,70 @@
 import React, { useState } from 'react';
-import { Window } from '@shared';
-import { Agent } from '@types';
+import classNames from 'classnames';
+import { Input, Window } from '@shared';
+import { CreateAgent } from '@types';
 import { Factions } from '@constants';
 import './agent-creator.styles.scss';
-import classNames from 'classnames';
 
 export const AgentCreator = () => {
-  const [newAgent, setNewAgent] = useState<Partial<Agent> | null>();
+  const [newAgent, setNewAgent] = useState<Partial<CreateAgent> | null>();
+  const [identityVariant, setIdentityVariant] = useState<'existing' | 'new' | 'random'>('new');
 
   return <Window className="agent-identity">
-    <h2>Agent Identity</h2>
+    <h2 className="header-font">Agent Identity</h2>
     <p className="helper-text">
-      Create new Agent identity by submitting the form below.
+      <strong>Create new</strong> Agent identity or <strong>Enter existing</strong> Agent token or <strong>Generate
+      random</strong> identity (would not be saved on page reload).
     </p>
+    <div className="identity-variant-bar">
+      <Input
+        name="identity"
+        id="new-identity"
+        type="radio"
+        onClick={() => setIdentityVariant('new')}
+        value={identityVariant}
+        label="New Identity"
+        checked={identityVariant === 'new'}
+      />
+      <Input
+        name="identity"
+        id="random-identity"
+        type="radio"
+        onClick={() => setIdentityVariant('random')}
+        value={identityVariant}
+        label="Random Identity"
+      />
+      <Input
+        name="identity"
+        id="existing-identity"
+        type="radio"
+        onClick={() => setIdentityVariant('existing')}
+        value={identityVariant}
+        label="Existing Identity"
+      />
+    </div>
+    <h3 className="header-font">Symbol</h3>
+    <p>
+      Come up with your agent symbol - that is how others would see you.
+    </p>
+    <Input
+      id="agent-symbol"
+      className="agent-symbol-input"
+      onChange={(agentSymbol) => setNewAgent({ ...newAgent, symbol: agentSymbol.toUpperCase() })}
+      value={newAgent?.symbol || ''}
+      placeholder="Enter agent symbol.."
+    />
+    <h3 className="header-font">Faction</h3>
     <p>
       {newAgent?.faction
-        ? <div>
-          <span>Selected faction: </span><span
-          className={classNames('selected-faction', newAgent.faction.toLowerCase())}>{newAgent.faction}</span>
-        </div>
-        : <div>
+        ? <span>
+          <span>Selected faction: </span>
+          <span
+            className={classNames('selected-faction', newAgent.faction.toLowerCase())}>{newAgent.faction}
+          </span>
+        </span>
+        : <span>
           Select faction to join. Starter faction provides 1st contract to start making money from.
-        </div>}
+        </span>}
     </p>
     <div className="factions-buttons">
       <button className="void" onClick={() => setNewAgent({ ...newAgent, faction: Factions.VOID })}>
