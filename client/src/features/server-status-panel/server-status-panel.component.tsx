@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { useServerStatusStore } from '@zustand';
 import { useIsServerUp, formatDate } from '@utils';
 import { Window } from '@shared';
-import './server-status.styles.scss';
+import './server-status-panel.styles.scss';
 import { TimelineProgressBar } from './timeline-progress-bar';
 
 export const ServerStatus = () => {
@@ -57,13 +57,13 @@ export const ServerStatus = () => {
                     <span className="stat">{serverStatus.stats.waypoints}</span>
                 </span>
             </p>
-            <p className="reset-timeframe-section">
+            <section className="reset-timeframe-section">
                 Reset timeframes:{' '}
                 <div>
                     <span className="stat">{resetOld} - {resetNext}</span>
                     <TimelineProgressBar oldReset={new Date(serverStatus.resetDate)} newReset={new Date(serverStatus.serverResets.next)}/>
                 </div>
-            </p>
+            </section>
         </>}
   </Window>;
 };

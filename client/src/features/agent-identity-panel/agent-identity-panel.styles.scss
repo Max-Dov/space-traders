@@ -32,8 +32,6 @@ section.agent-identity {
     display: flex;
     justify-content: flex-start;
     gap: 2em;
-
-
   }
 
   padding-bottom: 1em;
@@ -58,5 +56,12 @@ section.agent-identity {
 
   .agent-symbol-input {
     width: 16em;
+  }
+
+  button.create-identity {
+    font-size: 1.2em;
+    margin-top: 1em;
+    font-family: $font-roboto-slab;
+    font-weight: $font-semi-bold;
   }
 }

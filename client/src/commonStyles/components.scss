@@ -32,6 +32,13 @@ button, input {
     border: 1px solid $color-atomic-tangerine;
     box-shadow: 0.25em 0.25em rgba($color-atomic-tangerine, 0.75);
   }
+
+  &:disabled {
+    background-color: rgba($color-true-blue, 0.2);
+    color: rgba($font-color, 0.2);
+    border: 1px solid $color-true-blue;
+    box-shadow: 0.25em 0.25em rgba($color-true-blue, 0.25);
+  }
 }
 
 input {
