@@ -1,0 +1,48 @@
+@import "commonStyles/constants";
+@import "commonStyles/animations";
+
+.network-panel {
+  width: 20em;
+  padding: 0.5em 1em;
+  height: 20em;
+  overflow-y: scroll;
+
+  .request {
+    display: block;
+    line-height: 1.4em;
+    font-family: $font-family-monospace;
+
+    .method {
+      color: $action-color;
+    }
+
+    .no-response-placeholder {
+      animation: 300ms infinite blink;
+    }
+
+    .response {
+      &.good-response {
+        color: $accent-color-good-stuff;
+      }
+
+      &.bad-response {
+        color: $accent-color-danger;
+      }
+      animation: 300ms 3 blink;
+    }
+
+    button {
+      height: 1rem;
+      padding: 0 0.5em;
+      font-size: 0.8rem;
+      font-family: inherit;
+      background-color: $background-color-1;
+    }
+  }
+
+  .error-message {
+    line-height: 1.4em;
+    font-style: italic;
+    color: rgba($accent-color-danger, 0.8);
+  }
+}

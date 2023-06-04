@@ -49,3 +49,24 @@ strong {
   color: $accent-color-important;
   font-weight: $font-semi-bold;
 }
+
+::selection {
+  background-color: rgba($accent-color-important, 0.8);
+  color: $font-color;
+}
+
+* {
+  &::-webkit-scrollbar {
+    background-color: rgba($background-color-1, 0.1);
+    width: 1rem;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba($action-color, 0.4);
+    &:hover {
+      background-color: rgba($action-color, 0.8);
+    }
+  }
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
+}

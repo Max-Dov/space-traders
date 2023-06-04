@@ -2,17 +2,32 @@
 
 .window {
   width: fit-content;
-  padding: 0 1em;
   margin: 1em;
+  height: fit-content;
 
   border: 1px solid $background-color-1;
   box-shadow: 0.25em 0.25em rgba($background-color-1, 0.5);
   background-color: rgba($background-color-1, 0.1);
-  transition: box-shadow $transition-normal ease-in-out, border-color $transition-normal ease-in-out;
+  transition: box-shadow $transition-normal ease-in-out, border-color $transition-normal ease-in-out, background-color $transition-normal ease-in-out;
+
+  .header {
+    transition: background-color $transition-normal ease-in-out;
+    background-color: $background-color-1;
+    padding: 0.2em 1em;
+    font-family: $font-family-display-1;
+  }
 
   &:hover {
     border: 1px solid $accent-color-important;
     box-shadow: 0.25em 0.25em rgba($accent-color-important, 0.5);
     background-color: rgba($accent-color-important, 0.1);
+
+    .header {
+      background-color: $accent-color-important;
+    }
   }
+}
+
+.content {
+  padding: 0 1em;
 }

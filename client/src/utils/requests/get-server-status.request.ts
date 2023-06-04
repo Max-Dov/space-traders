@@ -1,7 +1,9 @@
-import { ApiUrls } from '@constants/api-urls.constant';
-import axios from 'axios';
+import { ApiUrls } from '@constants';
 import { ServerStatus } from '@types';
+import { makeApiRequest } from '@utils';
 
-export const getServerStatus = (): Promise<ServerStatus> =>
-  axios.get<ServerStatus>(ApiUrls.BASE_API_URL).then(response => response.data);
-
+export const getServerStatus = (): Promise<ServerStatus | null> =>
+  makeApiRequest({
+    method: 'GET',
+    url: ApiUrls.BASE_API_URL,
+  });

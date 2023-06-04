@@ -1,16 +1,23 @@
-import React from 'react';
-import { HTMLAttributes } from 'react';
+import React, { ReactNode, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import './window.styles.scss';
 
-interface WindowProps extends HTMLAttributes<HTMLDivElement> {}
+interface WindowProps extends HTMLAttributes<HTMLDivElement> {
+  header?: ReactNode;
+}
 
 /**
  * Simple wrapper component representing window on screen.
  */
-export const Window = ({ children, className, ...wrapperProps }: WindowProps) => {
+export const Window = ({ children, className, header, ...wrapperProps }: WindowProps) => {
 
-  return <section className={classNames(className, 'window')} {...wrapperProps}>
-    {children}
-  </section>;
+  return <div
+    className="window"
+    {...wrapperProps}
+  >
+    {header && <div className='header'>{header}</div>}
+    <section className={classNames(className, 'content')}>
+      {children}
+    </section>
+  </div>;
 };

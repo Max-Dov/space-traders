@@ -3,5 +3,7 @@ import { useServerStatusStore } from '@zustand';
 
 export const refreshServerStatus = async () => {
   const serverStatus = await getServerStatus();
-  useServerStatusStore.setState({serverStatus: serverStatus});
+  if (serverStatus !== null) {
+    useServerStatusStore.setState({ serverStatus: serverStatus });
+  }
 };
