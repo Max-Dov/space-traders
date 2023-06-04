@@ -1,15 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Input, Window } from '@shared';
-import { useAgentIdentityStore } from '@zustand';
+import { useAgentTokenStore, useMyAgentDetailsStore, getMyAgentDetails } from '@zustand';
+import { NewAgentIdentity } from './new-agent-identity.component';
 import './agent-identity-panel.styles.scss';
-import { NewAgentIdentity } from '@features/agent-identity-panel/new-agent-identity.component';
 
 export const AgentCreator = () => {
   const [identityVariant, setIdentityVariant] = useState<'existing' | 'new' | 'random'>('new');
-  const { agentSymbol, agentToken } = useAgentIdentityStore();
+  const { agentToken } = useAgentTokenStore();
+  const { agentDetails } = useMyAgentDetailsStore();
+
+  useEffect(() => {
+    getMyAgentDetails();
+  }, [agentToken])
 
   return <Window className="agent-identity">
-    <h2 className="header-font">Agent Identity {agentSymbol && <span>- {agentSymbol}</span>}</h2>
+    <h2 className="header-font">Agent Identity {agentDetails?.symbol && <span>- {agentDetails.symbol}</span>}</h2>
     {agentToken &&
         <>
             <h3>Token</h3>

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { Input } from '@shared';
 import { Factions } from '@constants';
 import { CreateAgent } from '@types';
-import { useAgentIdentityStore } from '@zustand';
+import { createAgentIdentity } from '@zustand';
 import { useValidateModel } from '@utils';
 import { agentSchema } from '@features/agent-identity-panel/agent.schema';
 
@@ -11,12 +11,11 @@ import { agentSchema } from '@features/agent-identity-panel/agent.schema';
  * Form for creating new agent identity
  */
 export const NewAgentIdentity = () => {
-  const { postAgentIdentity } = useAgentIdentityStore();
   const [newAgent, setNewAgent] = useState<Partial<CreateAgent> | null>();
   const { isModelValid } = useValidateModel({ model: newAgent, modelSchema: agentSchema });
 
   const submitIdentity = () => {
-    postAgentIdentity(newAgent as CreateAgent);
+    createAgentIdentity(newAgent as CreateAgent);
   };
 
   return (

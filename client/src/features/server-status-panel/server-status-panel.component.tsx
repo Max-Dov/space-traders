@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import classNames from 'classnames';
-import { useServerStatusStore } from '@zustand';
+import { useServerStatusStore, refreshServerStatus } from '@zustand';
 import { useIsServerUp, formatDate } from '@utils';
 import { Window } from '@shared';
 import './server-status-panel.styles.scss';
 import { TimelineProgressBar } from './timeline-progress-bar';
 
-export const ServerStatus = () => {
-  const { serverStatus, refreshServerStatus } = useServerStatusStore();
+export const ServerStatusPanel = () => {
+  const { serverStatus } = useServerStatusStore();
   const isServerUp = useIsServerUp();
   const resetOld = serverStatus && formatDate(serverStatus.resetDate, 'DOW, DD MMM');
   const resetNext = serverStatus && formatDate(serverStatus.serverResets.next, 'DOW, DD MMM (HH:mm)');

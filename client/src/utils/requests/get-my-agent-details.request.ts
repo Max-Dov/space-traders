@@ -3,5 +3,9 @@ import axios from 'axios';
 import { ApiUrls } from '@constants';
 import { getAuthHeader } from '@utils';
 
+interface Response {
+  data: Agent;
+}
+
 export const getMyAgentDetails = (): Promise<Agent> =>
-  axios.get(ApiUrls.MY_AGENT_DETAILS, { headers: { ...getAuthHeader() } });
+  axios.get<Response>(ApiUrls.MY_AGENT_DETAILS, { headers: { ...getAuthHeader() } }).then(response => response.data.data);
