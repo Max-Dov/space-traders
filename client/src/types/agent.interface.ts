@@ -1,7 +1,7 @@
-import { Factions } from '@constants';
-
 export interface Agent {
+  accountId: string;
   symbol: string;
-  faction: Factions;
-  email?: string;
+  headquarters: string;
+  credits: number;
+  startingFaction: string;
 }
