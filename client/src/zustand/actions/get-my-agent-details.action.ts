@@ -8,6 +8,8 @@ export const getMyAgentDetails = async () => {
   const token = useAgentTokenStore.getState().agentToken;
   if (token !== null) {
     const agentDetails = await getMyAgentDetailsRequest();
-    useMyAgentDetailsStore.setState({ agentDetails });
+    if (agentDetails !== null) {
+      useMyAgentDetailsStore.setState({ agentDetails });
+    }
   }
 };

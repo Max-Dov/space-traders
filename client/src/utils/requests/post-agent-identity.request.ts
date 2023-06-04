@@ -1,6 +1,6 @@
-import { ApiUrls } from '@constants/api-urls.constant';
-import axios from 'axios';
+import { ApiUrls } from '@constants';
 import { Agent, Contract, CreateAgent, Faction, Ship } from '@types';
+import { makeApiRequest } from '@utils';
 
 interface Response {
   data: {
@@ -15,6 +15,12 @@ interface Response {
   };
 }
 
-export const postAgentIdentityRequest = (agentIdentity: CreateAgent): Promise<Response['data']> =>
-  axios.post<Response>(ApiUrls.REGISTER_AGENT, agentIdentity).then(response => response.data.data);
+export const postAgentIdentityRequest = async (agentIdentity: CreateAgent): Promise<Response['data'] | null> => {
+  const response = await makeApiRequest<Response>({
+    method: 'POST',
+    url: ApiUrls.REGISTER_AGENT,
+    data: agentIdentity,
+  });
+  return response === null ? null : response.data;
+};
 

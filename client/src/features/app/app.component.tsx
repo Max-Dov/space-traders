@@ -1,10 +1,13 @@
 import React from 'react';
-import { ServerStatusPanel, AgentCreator } from '@features';
+import { ServerStatusPanel, AgentCreator, NetworkPanel } from '@features';
 
 export const App = () => {
 
   return <div className="app">
     <ServerStatusPanel/>
-    <AgentCreator/>
+    <div style={{ display: 'flex' }}>
+      <AgentCreator/>
+      <NetworkPanel/>
+    </div>
   </div>;
 };

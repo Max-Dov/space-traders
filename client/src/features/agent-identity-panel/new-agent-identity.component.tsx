@@ -11,7 +11,7 @@ import { agentSchema } from '@features/agent-identity-panel/agent.schema';
  * Form for creating new agent identity
  */
 export const NewAgentIdentity = () => {
-  const [newAgent, setNewAgent] = useState<Partial<CreateAgent> | null>();
+  const [newAgent, setNewAgent] = useState<Partial<CreateAgent> | null>(null);
   const { isModelValid } = useValidateModel({ model: newAgent, modelSchema: agentSchema });
 
   const submitIdentity = () => {
