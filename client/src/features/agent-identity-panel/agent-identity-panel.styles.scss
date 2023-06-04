@@ -34,6 +34,19 @@ section.agent-identity {
     gap: 2em;
   }
 
+  .token-action-items {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .token-data {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
   padding-bottom: 1em;
   @include selectedFactionStyle('.void', $void-color);
   @include selectedFactionStyle('.galactic', $galactic-color);
