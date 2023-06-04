@@ -1,3 +1,20 @@
-$font-roboto: 'Roboto', sans-serif;
-$font-roboto-slab: 'Roboto Slab', serif;
-$font-grenze-gotisch: 'Grenze Gotisch', cursive;
+/**
+ * Easily readable but not fancy font.
+ */
+$font-family-paragraph: 'Noto Sans', sans-serif;
+/**
+ * Fancy font for highlights.
+ */
+$font-family-header: 'Roboto Slab', serif;
+/**
+ * Console-like font for specific cases.
+ */
+$font-family-monospace: 'Ubuntu Mono', monospace;
+/**
+ * Display font that makes boring stuff (e.g. system name) look interesting.
+ */
+$font-family-display-1: 'Righteous', cursive;
+
+$font-normal: 300;
+$font-semi-bold: 500;
+$font-bold: 700;

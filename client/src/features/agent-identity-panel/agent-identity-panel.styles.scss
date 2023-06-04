@@ -1,12 +1,6 @@
 @import "commonStyles/fonts";
 @import "commonStyles/constants";
 
-$void-color: #F61713;
-$galactic-color: #258EA6;
-$cosmic-color: #EF6BCA;
-$dominion-color: #E09600;
-$quantum-color: #62C370;
-
 @mixin buttonStyle($className, $base-color) {
   #{$className} {
     background-color: rgba($base-color, 0.5);
@@ -21,12 +15,16 @@ $quantum-color: #62C370;
   .selected-faction#{$className} {
     color: $base-color;
     font-weight: $font-bold;
-    font-family: $font-roboto-slab;
+    font-family: $font-family-header;
   }
 }
 
 section.agent-identity {
   width: 40em;
+
+  .agent-name {
+    font-family: $font-family-display-1;
+  }
 
   .identity-variant-bar {
     display: flex;
@@ -57,7 +55,7 @@ section.agent-identity {
   .factions-buttons {
     display: flex;
     gap: 1em;
-    font-family: $font-roboto-slab;
+    font-family: $font-family-header;
     flex-wrap: wrap;
 
     @include buttonStyle('.void', $void-color);
@@ -74,7 +72,7 @@ section.agent-identity {
   button.create-identity {
     font-size: 1.2em;
     margin-top: 1em;
-    font-family: $font-roboto-slab;
+    font-family: $font-family-header;
     font-weight: $font-semi-bold;
   }
 }
