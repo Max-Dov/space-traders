@@ -19,11 +19,11 @@ section.server-status {
       white-space: nowrap;
 
       &.server-up {
-        color: $color-screaming-green;
+        color: $accent-color-good-stuff;
       }
 
       &.server-down {
-        color: $color-bittersweet;
+        color: $accent-color-danger;
       }
     }
   }

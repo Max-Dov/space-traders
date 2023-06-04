@@ -5,11 +5,11 @@ div.timeline-container {
   padding-bottom: 1em;
   .progress-bar-container {
     width: 100%;
-    border: 1px solid $color-bittersweet;
+    border: 1px solid $accent-color-danger;
     padding: 1px;
 
     .progress-bar {
-      background-color: $color-bittersweet;
+      background-color: $accent-color-danger;
       height: 5px;
       position: relative;
 
@@ -28,7 +28,7 @@ div.timeline-container {
         content: '';
         height: 7px;
         width: 7px;
-        background-color: $color-bittersweet;
+        background-color: $accent-color-danger;
         position: absolute;
         top: calc(100% + 3px);
         right: -3px;

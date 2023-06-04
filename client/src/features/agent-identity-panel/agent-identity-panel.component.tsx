@@ -42,7 +42,7 @@ export const AgentCreator = () => {
     <h2 className="header-font">
       Agent Identity
       {agentDetails?.symbol && (
-        <span>: <strong>{agentDetails.symbol}</strong></span>
+        <span>: <strong className="agent-name">{agentDetails.symbol}</strong></span>
       )}
     </h2>
     {agentToken &&
@@ -100,7 +100,7 @@ export const AgentCreator = () => {
           placeholder="Input your token.."
           style={{ marginBottom: '1em' }}
         />
-        <button onClick={applyNewToken}>Apply Token</button>
+        <button onClick={applyNewToken} disabled={!existingToken}>Apply Token</button>
       </>
     )}
     {identityVariant === 'random' && (

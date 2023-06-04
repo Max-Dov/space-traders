@@ -4,7 +4,7 @@
 
 body {
   background-color: $color-raisin-black;
-  font-family: $font-roboto;
+  font-family: $font-family-paragraph;
   color: $font-color;
   margin: 0;
   padding: 0;
@@ -19,12 +19,8 @@ p {
   margin: 1em 0;
 }
 
-.display-font {
-  font-family: $font-grenze-gotisch;
-}
-
 .header-font {
-  font-family: $font-roboto-slab;
+  font-family: $font-family-header;
 }
 
 .flex-row {
@@ -34,22 +30,22 @@ p {
 }
 
 .helper-text {
-  font-family: $font-roboto;
+  font-family: $font-family-paragraph;
   font-weight: $font-normal;
 }
 
-$outline-basic: 2px dashed $color-atomic-tangerine;
+$outline-basic: 2px dashed $accent-color-important;
 $outline-offset-basic: 0.25rem;
 
 a, input, button {
   outline: 2px dashed transparent;
   &:focus {
     outline-offset: 0.25rem;
-    outline-color: $color-atomic-tangerine;
+    outline-color: $accent-color-important;
   }
 }
 
 strong {
-  color: $color-atomic-tangerine;
+  color: $accent-color-important;
   font-weight: $font-semi-bold;
 }
