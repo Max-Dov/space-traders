@@ -32,6 +32,7 @@ const Request = ({ url, method, response, errorMessage }: RequestProps) => {
         'good-response': responseExists && isResponseGood,
       })}>
         {response}
+        {' '}
       </b>
       {isResponseBad &&
           <button onClick={() => setShouldShowError(!shouldShowError)}>
