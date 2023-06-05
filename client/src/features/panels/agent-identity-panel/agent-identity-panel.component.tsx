@@ -38,21 +38,23 @@ export const AgentCreator = () => {
     createAgentIdentity(newAgent);
   };
 
-  return <Window className="agent-identity">
-    <h2 className="header-font">
-      Agent Identity
+  return <Window
+    className="agent-identity"
+    header={<>
+      AGENT ID
       {agentDetails?.symbol && (
         <span>: <strong className="agent-name">{agentDetails.symbol}</strong></span>
       )}
-    </h2>
+    </>}
+  >
     {agentToken &&
         <>
             <h3>Token</h3>
             <p className="token-action-items">
-                <button onClick={copyTokenToClipboard}>Copy To Clipboard</button>
+                <button onClick={copyTokenToClipboard}>Copy Token To Clipboard</button>
                 <span>or</span>
                 <button
-                    onClick={() => setShouldDisplayToken(!shouldDisplayToken)}>{shouldDisplayToken ? 'Hide' : 'Display'}</button>
+                    onClick={() => setShouldDisplayToken(!shouldDisplayToken)}>{shouldDisplayToken ? 'Hide Token' : 'Display Token'}</button>
             </p>
           {shouldDisplayToken && <p className="token-data">
             {agentToken}

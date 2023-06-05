@@ -5,7 +5,7 @@ import { Factions } from '@constants';
 import { CreateAgent } from '@types';
 import { createAgentIdentity } from '@zustand';
 import { useValidateModel } from '@utils';
-import { agentSchema } from '@features/agent-identity-panel/agent.schema';
+import { agentSchema } from '@features/panels/agent-identity-panel/agent.schema';
 
 /**
  * Form for creating new agent identity

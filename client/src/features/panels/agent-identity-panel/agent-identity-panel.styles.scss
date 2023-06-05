@@ -1,5 +1,5 @@
-@import "commonStyles/fonts";
-@import "commonStyles/constants";
+@import "../../../commonStyles/fonts";
+@import "../../../commonStyles/constants";
 
 @mixin buttonStyle($className, $base-color) {
   #{$className} {
@@ -21,11 +21,6 @@
 
 section.agent-identity {
   width: 40em;
-
-  .agent-name {
-    font-family: $font-family-display-1;
-  }
-
   .identity-variant-bar {
     display: flex;
     justify-content: flex-start;
@@ -75,4 +70,8 @@ section.agent-identity {
     font-family: $font-family-header;
     font-weight: $font-semi-bold;
   }
+}
+
+.agent-name {
+  color: $accent-color-good-stuff;
 }

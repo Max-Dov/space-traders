@@ -1,15 +1,15 @@
-@import "commonStyles/constants";
+@import "../../../commonStyles/constants";
 
 div.timeline-container {
   padding-top: 0.3em;
-  padding-bottom: 1em;
+  padding-bottom: 1.5em;
   .progress-bar-container {
     width: 100%;
-    border: 1px solid $accent-color-danger;
+    border: 1px solid $accent-color-important;
     padding: 1px;
 
     .progress-bar {
-      background-color: $accent-color-danger;
+      background-color: $accent-color-important;
       height: 5px;
       position: relative;
 
@@ -28,7 +28,7 @@ div.timeline-container {
         content: '';
         height: 7px;
         width: 7px;
-        background-color: $accent-color-danger;
+        background-color: $accent-color-important;
         position: absolute;
         top: calc(100% + 3px);
         right: -3px;
