@@ -1,5 +1,5 @@
 import React from 'react';
-import { ServerStatusPanel, AgentCreator, NetworkPanel } from '@features';
+import { ServerStatusPanel, AgentCreator, NetworkPanel, FactionsPanel } from '@features';
 
 export const App = () => {
 
@@ -7,6 +7,7 @@ export const App = () => {
     <ServerStatusPanel/>
     <div style={{ display: 'flex' }}>
       <AgentCreator/>
+      <FactionsPanel/>
       <NetworkPanel/>
     </div>
   </div>;

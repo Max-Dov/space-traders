@@ -1,0 +1,37 @@
+@import "commonStyles/constants";
+
+.faction-container {
+  padding: 0.5em;
+  width: 35em;
+
+  .name, .symbol-and-hq, .traits, .description {
+    margin: 1rem 0;
+  }
+
+  .name {
+    font-family: $font-family-display-1;
+    font-size: 2rem;
+  }
+
+  .symbol-and-hq {
+    font-family: $font-family-monospace;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .traits {
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+    font-family: $font-family-header;
+    font-style: italic;
+    font-size: 1rem;
+    font-weight: bolder;
+  }
+
+  .description {
+    font-family: $font-family-paragraph;
+    font-size: 1rem;
+  }
+
+}
