@@ -4,11 +4,13 @@ import { ServerStatusPanel, AgentCreator, NetworkPanel, FactionsPanel } from '@f
 export const App = () => {
 
   return <div className="app">
-    <ServerStatusPanel/>
     <div style={{ display: 'flex' }}>
-      <AgentCreator/>
       <FactionsPanel/>
+      <AgentCreator/>
       <NetworkPanel/>
+    </div>
+    <div style={{ display: 'flex' }}>
+      <ServerStatusPanel/>
     </div>
   </div>;
 };
