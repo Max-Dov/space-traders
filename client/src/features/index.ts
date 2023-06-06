@@ -1,5 +1,7 @@
+export * from './panels/agent-identity-panel/agent-identity-panel.component';
+export * from './panels/server-status-panel/server-status-panel.component';
+export * from './panels/network-panel/network-panel.component';
+export * from './panels/factions-panel/factions-panel.component';
+
 export * from './app/app.component';
-export * from './agent-identity-panel/agent-identity-panel.component';
-export * from './server-status-panel/server-status-panel.component';
-export * from './network-panel/network-panel.component';
-export * from './factions-panel/factions-panel.component';
+export * from './app-bar/app-bar.component';

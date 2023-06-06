@@ -1,0 +1,34 @@
+@import "commonStyles/constants";
+
+.server-status {
+  padding: 0.5em 1em;
+
+  button {
+    margin-bottom: 0.5em;
+  }
+
+  .flex-row {
+    display: flex;
+    gap: 0.5em;
+
+    &.sections {
+      justify-content: space-between;
+      margin-bottom: 0.5em;
+    }
+  }
+
+  .stat {
+    font-weight: bold;
+    white-space: nowrap;
+  }
+}
+
+.server-stat {
+  &.server-up {
+    color: $accent-color-good-stuff;
+  }
+
+  &.server-down {
+    color: $accent-color-danger;
+  }
+}

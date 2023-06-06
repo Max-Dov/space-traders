@@ -1,4 +1,4 @@
-@import "commonStyles/constants";
+@import "../../../commonStyles/constants";
 
 @mixin factionStyling($className, $background-image, $faction-color) {
   &#{$className} {
@@ -20,7 +20,6 @@
 .faction-container {
   scroll-snap-align: end;
   scroll-margin: 1rem;
-  width: 35em;
   margin: 1em 0;
 
   background-position: center;

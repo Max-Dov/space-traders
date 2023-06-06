@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 interface Request {
-  id: number;
+  id: string;
   url: string;
   method: string;
   /**
@@ -28,9 +28,11 @@ export const useNetworkStore = create<NetworkStore>()((set, get) => ({
   updateRequest: (updatedRequest) => {
     const requests = [...get().requests];
     const requestIndex = requests.findIndex(request => request.id === updatedRequest.id);
-    requests[requestIndex] = updatedRequest;
-    set({
-      requests,
-    });
+    if (requestIndex !== -1) {
+      requests[requestIndex] = updatedRequest;
+      set({
+        requests,
+      });
+    }
   },
 }));

@@ -26,9 +26,6 @@ export const makeApiRequest = async <ResponseType = unknown>({
     useNetworkStore.getState().updateRequest({ ...requestLog, response: responseCode });
     return response.data;
   } catch (error) {
-    console.log(JSON.stringify(
-      error
-    ))
     const responseCode = (error as AxiosError).response?.status as number || 'no internet';
     const errorMessage = (
       (error as any).response?.data?.error?.message
@@ -43,8 +40,8 @@ export const makeApiRequest = async <ResponseType = unknown>({
 };
 
 const logToNetworkPanel = (method: string, url: string) => {
-  const id = new Date().getTime();
   const shortenedUrl = url?.length === 30 ? '/server-status' : url?.slice(30);
+  const id = `${shortenedUrl}@${new Date().getTime()}`;
   const newRequestLog = {
     id,
     method: method as string,
