@@ -1,19 +1,14 @@
 import React, { HTMLAttributes, useCallback } from 'react';
 import classNames from 'classnames';
-import { FEATURE_ID_TO_COMPONENT, FeaturePanelsIds, FEATURE_ID_TO_IS_MAIN_SECTION } from '@constants';
+import { PanelComponentsIds } from '@constants';
 import { useOpenedPanelsStore } from '@zustand';
 
-const useFeaturePanelStatus = (featurePanelId: FeaturePanelsIds) => {
+const useFeaturePanelStatus = (panelId: PanelComponentsIds) => {
   const { openedPanels, openPanel, closePanel } = useOpenedPanelsStore();
-  const isFeaturePanelOpen = openedPanels.some(panel => panel.id === featurePanelId);
+  const isFeaturePanelOpen = openedPanels.some(panel => panel.panelId === panelId);
 
-  const openFeaturePanel = useCallback(() => openPanel({
-    isMainSectionPanel: FEATURE_ID_TO_IS_MAIN_SECTION[featurePanelId],
-    featurePanelId,
-    component: FEATURE_ID_TO_COMPONENT[featurePanelId],
-  }), [featurePanelId]);
-
-  const closeFeaturePanel = useCallback(() => closePanel(featurePanelId), [featurePanelId]);
+  const openFeaturePanel = useCallback(() => openPanel(panelId), [panelId]);
+  const closeFeaturePanel = useCallback(() => closePanel(panelId), [panelId]);
 
   return {
     isFeaturePanelOpen,
@@ -23,7 +18,7 @@ const useFeaturePanelStatus = (featurePanelId: FeaturePanelsIds) => {
 };
 
 interface FeatureButtonProps extends Omit<HTMLAttributes<HTMLButtonElement>, 'onClick'> {
-  featureId: FeaturePanelsIds;
+  featureId: PanelComponentsIds;
 }
 
 /**

@@ -7,6 +7,30 @@
  * All styles can be overridden by more specific selector (e.g. "button.className")
  */
 
+@mixin buttonColoring($button-base-color, $button-interaction-color) {
+  background-color: rgba($button-base-color, 0.5);
+  border: 1px solid $button-base-color;
+  box-shadow: 0.25em 0.25em rgba($button-base-color, 0.25);
+
+  &:disabled {
+    background-color: rgba($button-base-color, 0.2);
+    border: 1px solid $button-base-color;
+    box-shadow: 0.25em 0.25em rgba($button-base-color, 0.25);
+  }
+
+  &:hover, &:focus {
+    background-color: rgba($button-interaction-color, 0.75);
+    border: 1px solid $button-interaction-color;
+    box-shadow: 0.25em 0.25em rgba($button-interaction-color, 0.5);
+  }
+
+  &:active {
+    background-color: $button-interaction-color;
+    border: 1px solid $button-interaction-color;
+    box-shadow: 0.25em 0.25em rgba($button-interaction-color, 0.75);
+  }
+}
+
 button, input {
   margin: 0;
   font-size: 1em;
@@ -15,29 +39,12 @@ button, input {
   font-family: inherit;
   line-height: 100%;
 
-  background-color: rgba($action-color, 0.5);
-  border: 1px solid $action-color;
-  box-shadow: 0.25em 0.25em rgba($action-color, 0.25);
-
   transition: background-color $transition-normal ease-in-out, border $transition-normal ease-in-out, box-shadow $transition-normal ease-in-out;
 
-  &:hover, &:focus {
-    background-color: rgba($accent-color-important, 0.75);
-    border: 1px solid $accent-color-important;
-    box-shadow: 0.25em 0.25em rgba($accent-color-important, 0.5);
-  }
-
-  &:active {
-    background-color: $accent-color-important;
-    border: 1px solid $accent-color-important;
-    box-shadow: 0.25em 0.25em rgba($accent-color-important, 0.75);
-  }
+  @include buttonColoring($action-color, $accent-color-important);
 
   &:disabled {
-    background-color: rgba($action-color, 0.2);
     color: rgba($font-color, 0.2);
-    border: 1px solid $action-color;
-    box-shadow: 0.25em 0.25em rgba($action-color, 0.25);
   }
 }
 

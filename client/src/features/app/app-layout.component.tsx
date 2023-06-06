@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { JSX } from 'react';
 import './app-layout.styles.scss';
-import { WindowsBar } from '@features';
+import { AgentIdentityPanel, FactionsPanel, NetworkPanel, ServerStatusPanel, WindowsBar } from '@features';
 import { useOpenedPanelsStore } from '@zustand';
+import { PanelComponentsIds } from '@constants';
 
 /**
  * Displays app grid and panels in proper sections.
@@ -17,15 +18,29 @@ export const AppLayout = () => {
     </div>
     <div className="big-windows-section">
       {mainSectionPanels.map(panel => {
-        const Component = panel.component;
-        return <Component panelId={panel.id} key={panel.id} />;
+        const Component = FEATURE_ID_TO_COMPONENT[panel.componentId] as ComponentWithPanelId;
+        return <Component panelId={panel.panelId} key={panel.panelId} />;
       })}
     </div>
     <div className="small-windows-section">
       {secondarySectionPanels.map(panel => {
-        const Component = panel.component;
-        return <Component panelId={panel.id} key={panel.id} />;
+        const Component = FEATURE_ID_TO_COMPONENT[panel.componentId] as ComponentWithPanelId;
+        return <Component panelId={panel.panelId} key={panel.panelId} />;
       })}
     </div>
   </div>;
+};
+
+type ComponentWithPanelId = ({ panelId }: { panelId: string }) => JSX.Element
+
+/**
+ * Facing weird bugs if placing these constants under @constants.
+ * For some reason it can not import EXACTLY AgentIdentityPanel from that root via @features.
+ * And other panels (like NetworkPanel) need to be imported with precise "@feature/panels/.." import.
+ */
+export const FEATURE_ID_TO_COMPONENT = {
+  [PanelComponentsIds.AGENT_ID]: AgentIdentityPanel,
+  [PanelComponentsIds.NETWORK]: NetworkPanel,
+  [PanelComponentsIds.FACTIONS]: FactionsPanel,
+  [PanelComponentsIds.SERVER_STATUS]: ServerStatusPanel,
 };

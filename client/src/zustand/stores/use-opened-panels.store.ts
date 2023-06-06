@@ -1,43 +1,51 @@
 import { create } from 'zustand';
-import { JSX } from 'react';
-import { FeaturePanelsIds } from '@constants';
+import { PanelComponentsIds } from '@constants';
+import { persist } from 'zustand/middleware';
 
 interface Panel {
-  id: string | FeaturePanelsIds;
+  panelId: string;
   /**
-   * Component with panelId prop. panelId is required in order for component to know how to close itself.
+   * React component representation of a panel.
    */
-  component: ({ panelId }: { panelId: Panel['id'] }) => JSX.Element;
+  componentId: PanelComponentsIds;
   isMainSectionPanel: boolean;
-}
-
-interface OpenPanelProps extends Omit<Panel, 'id'> {
-  /**
-   * ID should be provided for single-instance feature panels.
-   */
-  featurePanelId?: FeaturePanelsIds;
 }
 
 interface OpenedPanelsStore {
   openedPanels: Array<Panel>;
-  openPanel: (args: OpenPanelProps) => void;
-  closePanel: (id: Panel['id']) => void;
+  openPanel: (id: Panel['componentId']) => void;
+  closePanel: (id: Panel['panelId']) => void;
 }
 
-export const useOpenedPanelsStore = create<OpenedPanelsStore>()((set, get) => ({
+export const useOpenedPanelsStore = create<OpenedPanelsStore>()(persist((set, get) => ({
   openedPanels: [],
-  openPanel: ({ component, isMainSectionPanel, featurePanelId }) => {
-    const id = featurePanelId || new Date().getTime();
-    const panels = get().openedPanels;
-    const newPanel: Panel = { id, component, isMainSectionPanel };
-    set({ openedPanels: [...panels, newPanel] });
+  openPanel: (componentId) => {
+    const newPanel: Panel = {
+      panelId: componentId || `${new Date().getTime()}`,
+      componentId,
+      isMainSectionPanel: FEATURE_ID_TO_IS_MAIN_SECTION[componentId],
+    };
+    const newPanels = get().openedPanels.concat(newPanel);
+    set({ openedPanels: newPanels });
   },
   closePanel: (id) => {
     const panels = [...get().openedPanels];
-    const panelIndex = panels.findIndex((panel) => panel.id === id);
+    const panelIndex = panels.findIndex((panel) => panel.panelId === id);
     if (panelIndex !== -1) {
       panels.splice(panelIndex, 1);
       set({ openedPanels: panels });
     }
   },
-}));
+}), { name: 'opened-panels-store', version: 1 }));
+
+/**
+ * Facing weird bugs if placing these constants under @constants.
+ * For some reason it can not import EXACTLY AgentIdentityPanel from that root via @features.
+ * And other panels (like NetworkPanel) need to be imported with precise "@feature/panels/.." import.
+ */
+export const FEATURE_ID_TO_IS_MAIN_SECTION = {
+  [PanelComponentsIds.AGENT_ID]: true,
+  [PanelComponentsIds.FACTIONS]: true,
+  [PanelComponentsIds.NETWORK]: false,
+  [PanelComponentsIds.SERVER_STATUS]: false,
+};

@@ -1,4 +1,4 @@
-export const enum Factions {
+export enum Factions {
   COSMIC = 'COSMIC',
   VOID = 'VOID',
   GALACTIC = 'GALACTIC',
