@@ -6,7 +6,7 @@ import { CreateAgent } from '@types';
 import { NewAgentIdentity } from './new-agent-identity.component';
 import './agent-identity-panel.styles.scss';
 
-export const AgentCreator = () => {
+export const AgentIdentityPanel = () => {
   const [identityVariant, setIdentityVariant] = useState<'existing' | 'new' | 'random'>('new');
   const [shouldDisplayToken, setShouldDisplayToken] = useState(false);
   const [existingToken, setExistingToken] = useState<string | null>(null);

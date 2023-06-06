@@ -1,0 +1,27 @@
+@import 'commonStyles/constants';
+
+.app-bar {
+  margin: 0.5rem 1rem 0 1rem;
+  border: 1px solid $background-color-1;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+
+  .name-background {
+    background-image: url("/visor-logo.webp");
+    background-size: cover;
+    width: fit-content;
+    display: inline-block;
+    .name {
+      padding: 0.5em 1em;
+      font-family: $font-family-header;
+      font-weight: bold;
+      font-size: 1.4rem;
+      line-height: 1.4rem;
+      letter-spacing: 0.1em;
+      display: inline-block;
+      background-color: rgba(black, 0.4);
+    }
+  }
+
+}

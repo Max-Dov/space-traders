@@ -4,4 +4,4 @@ export * from './panels/network-panel/network-panel.component';
 export * from './panels/factions-panel/factions-panel.component';
 
 export * from './app/app.component';
-export * from './windows-bar/windows-bar.component';
+export * from './app-bar/app-bar.component';
