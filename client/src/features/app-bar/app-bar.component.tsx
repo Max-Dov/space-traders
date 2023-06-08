@@ -23,5 +23,8 @@ export const WindowsBar = () => {
     <FeatureButton featureId={PanelComponentsIds.SERVER_STATUS}>
       Server Status
     </FeatureButton>
+    <FeatureButton featureId={PanelComponentsIds.CONTRACTS}>
+      Contracts
+    </FeatureButton>
   </div>;
 };

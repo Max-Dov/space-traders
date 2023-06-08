@@ -1,6 +1,13 @@
 import React, { JSX } from 'react';
 import './app-layout.styles.scss';
-import { AgentIdentityPanel, FactionsPanel, NetworkPanel, ServerStatusPanel, WindowsBar } from '@features';
+import {
+  AgentIdentityPanel,
+  ContractsPanel,
+  FactionsPanel,
+  NetworkPanel,
+  ServerStatusPanel,
+  WindowsBar,
+} from '@features';
 import { useOpenedPanelsStore } from '@zustand';
 import { PanelComponentsIds } from '@constants';
 
@@ -43,4 +50,5 @@ export const FEATURE_ID_TO_COMPONENT = {
   [PanelComponentsIds.NETWORK]: NetworkPanel,
   [PanelComponentsIds.FACTIONS]: FactionsPanel,
   [PanelComponentsIds.SERVER_STATUS]: ServerStatusPanel,
+  [PanelComponentsIds.CONTRACTS]: ContractsPanel,
 };

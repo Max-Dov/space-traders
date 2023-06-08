@@ -1,18 +1,18 @@
 import { makeApiRequest } from '@utils';
 import { ApiUrls } from '@constants';
-import { Faction } from '@types';
-
-interface Response {
-  data: Array<Faction>;
-}
+import { ApiListResponse, Faction } from '@types';
 
 export const getFactions = async (): Promise<Array<Faction> | null> => {
-  const response = await makeApiRequest<Response>({
+  const response = await makeApiRequest<ApiListResponse<Faction>>({
     method: 'GET',
     url: ApiUrls.FACTIONS,
+    listParams: {
+      page: 1,
+      limit: 20,
+    },
   });
   if (response === null) {
     return null;
   }
-  return response.data
+  return response.data;
 };

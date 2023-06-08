@@ -10,3 +10,4 @@ export * from './hooks/use-validate-model.hook';
 export * from './format-date.util';
 export * from './add-interceptors-to-axios.util';
 export * from './make-api-request.util';
+export * from './fetch-full-list.util';

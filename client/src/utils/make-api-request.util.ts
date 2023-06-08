@@ -1,11 +1,6 @@
-import axios, { AxiosError, Method } from 'axios';
+import axios, { AxiosError } from 'axios';
 import { useNetworkStore } from '@zustand';
-
-interface RequestParams {
-  method: Method;
-  url: string;
-  data?: any;
-}
+import { ApiRequestParams } from '@types';
 
 /**
  * Axios wrapper for making api requests with additional logging into network panel.
@@ -14,13 +9,15 @@ export const makeApiRequest = async <ResponseType = unknown>({
   method,
   url,
   data,
-}: RequestParams): Promise<ResponseType | null> => {
+  listParams,
+}: ApiRequestParams): Promise<ResponseType | null> => {
   const requestLog = logToNetworkPanel(method, url);
   try {
     const response = await axios.request<ResponseType>({
       method,
       url,
       data,
+      params: listParams
     });
     const responseCode = response.status;
     useNetworkStore.getState().updateRequest({ ...requestLog, response: responseCode });
