@@ -5,7 +5,7 @@ import './network-panel.styles.scss';
 import classNames from 'classnames';
 
 interface RequestProps {
-  id: number;
+  id: string;
   url: string;
   method: string;
   response: number | 'no internet' | null;
@@ -18,8 +18,8 @@ const Request = ({ url, method, response, errorMessage }: RequestProps) => {
   let isResponseGood;
   let isResponseBad;
   if (response !== null) {
-    isResponseGood = response >= 200 && response < 300;
-    isResponseBad = response >= 400 || response === 'no internet';
+    isResponseGood = response !== 'no internet' && (response >= 200 && response < 300);
+    isResponseBad = response === 'no internet' || response >= 400;
   }
 
   return <>

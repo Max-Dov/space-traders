@@ -29,15 +29,15 @@ const ContractInfo = ({ contract }: ContractInfoProps) => {
   const { onAccepted, onFulfilled } = contract.terms.payment;
   const profit = onAccepted + onFulfilled;
   return <section className={classNames('contract-container',
-    classNames({
+    {
       'is-accepted': contract.accepted,
       'is-pending': !contract.accepted,
-    }))}>
+    })}>
     <div className="main-details">
       <span className="type">{contract.type}</span>
       <span className={classNames('faction', contract.factionSymbol.toLowerCase())}>[{contract.factionSymbol}]</span>
       <span className="profit">
-        <Currency amount={profit}/>
+        <Currency amount={profit} />
       </span>
     </div>
     <div className="secondary-details">

@@ -2,10 +2,9 @@ import React, { useEffect } from 'react';
 import classNames from 'classnames';
 import { useServerStatusStore, refreshServerStatus } from '@zustand';
 import { useIsServerUp, formatDate } from '@utils';
-import { Window } from '@shared';
+import { Window, Icon } from '@shared';
 import './server-status-panel.styles.scss';
 import { TimelineProgressBar } from './timeline-progress-bar';
-import { Icon } from '@shared/icon/icon.component';
 
 export const ServerStatusPanel = () => {
   const { serverStatus } = useServerStatusStore();

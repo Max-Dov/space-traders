@@ -5,6 +5,6 @@ interface ContractsStore {
   contracts: Array<Contract>;
 }
 
-export const useContractsStore = create<ContractsStore>()(() => ({
+export const useContractsStore = create<ContractsStore>(() => ({
   contracts: [],
 }));
