@@ -14,7 +14,9 @@ export const AgentIdentityPanel = () => {
   const { agentDetails } = useMyAgentDetailsStore();
 
   useEffect(() => {
-    getMyAgentDetails();
+    if (agentDetails === null) {
+      getMyAgentDetails();
+    }
   }, [agentToken]);
 
   const copyTokenToClipboard = () => {
