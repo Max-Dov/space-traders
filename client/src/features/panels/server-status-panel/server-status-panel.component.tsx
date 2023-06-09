@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import classNames from 'classnames';
 import { useServerStatusStore, refreshServerStatus } from '@zustand';
 import { useIsServerUp, formatDate } from '@utils';
-import { Window, UsersSvg, SpaceshipSvg } from '@shared';
+import { Window } from '@shared';
 import './server-status-panel.styles.scss';
 import { TimelineProgressBar } from './timeline-progress-bar';
+import { Icon } from '@shared/icon/icon.component';
 
 export const ServerStatusPanel = () => {
   const { serverStatus } = useServerStatusStore();
@@ -35,11 +36,11 @@ export const ServerStatusPanel = () => {
             <div className="flex-row sections">
                 <div>
                     <div className="flex-row">
-                        <UsersSvg/>{' '}
+                        <Icon name="Users" />
                         <span className="stat">{serverStatus.stats.agents}</span>
                     </div>
                     <div className="flex-row">
-                        <SpaceshipSvg/>
+                        <Icon name="Spaceship" />
                         <span className="stat">{serverStatus.stats.ships}</span>
                     </div>
                 </div>
@@ -57,7 +58,7 @@ export const ServerStatusPanel = () => {
             <section className="reset-timeframe-section">
                 <span className="stat">{resetOld} - {resetNext}</span>
                 <TimelineProgressBar oldReset={new Date(serverStatus.resetDate)}
-                                     newReset={new Date(serverStatus.serverResets.next)}/>
+                                     newReset={new Date(serverStatus.serverResets.next)} />
             </section>
         </>}
   </Window>;

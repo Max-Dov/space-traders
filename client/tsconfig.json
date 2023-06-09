@@ -9,6 +9,7 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
+    "files": ["./types.d.ts"],
     "paths": {
       // duplicating entries as otherwise root index.ts files won't be recognised
       "commonStyles/*": ["src/commonStyles/*"],
@@ -27,10 +28,13 @@
       "@utils": ["src/utils"],
       "@zustand/*": ["src/zustand/*"],
       "@zustand": ["src/zustand"],
+      "@svgs/*": ["public/assets/svg/*"]
     }
   },
   "include": [
-    "src"
+    "src",
+    "public",
+    "./types.d.ts",
   ],
   "exclude": [
     "node_modules"

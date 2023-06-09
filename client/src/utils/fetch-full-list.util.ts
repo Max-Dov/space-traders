@@ -3,7 +3,6 @@ import { ApiListResponse } from '@types';
 
 /**
  * Fetches total amount records from given list endpoint.
- * TODO fix order
  */
 export const fetchFullList = async <RecordType = unknown>(url: string): Promise<Array<RecordType> | null> => {
   const limit = 20; // api defined value
@@ -34,7 +33,6 @@ export const fetchFullList = async <RecordType = unknown>(url: string): Promise<
     }))
     responses.forEach(response => {
       if (response !== null) {
-        // TODO order is not guaranteed
         records.concat(response.data);
       }
     })

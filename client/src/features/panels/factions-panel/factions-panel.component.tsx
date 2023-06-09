@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Window } from '@shared';
-import { getFactions, useFactionsStore } from '@zustand';
+import { getAllFactions, useFactionsStore } from '@zustand';
 import { Faction } from '@types';
 import './factions-panel.styles.scss';
 import classNames from 'classnames';
@@ -9,7 +9,7 @@ export const FactionsPanel = () => {
   const { factions } = useFactionsStore();
 
   useEffect(() => {
-    getFactions();
+    getAllFactions();
   }, []);
 
   return <Window header="FACTIONS" className="factions-container">
