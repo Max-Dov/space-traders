@@ -9,7 +9,6 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
-    "files": ["./types.d.ts"],
     "paths": {
       // duplicating entries as otherwise root index.ts files won't be recognised
       "commonStyles/*": ["src/commonStyles/*"],
