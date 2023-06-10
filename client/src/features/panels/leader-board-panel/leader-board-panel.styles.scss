@@ -1,0 +1,40 @@
+@import "commonStyles/constants";
+
+.leaderboards {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 0.5em 1em;
+}
+
+.data-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.2em 0.5em;
+  &:nth-child(odd) {
+    background-color: rgba(white, 0.1);
+  }
+  .name {
+    font-family: $font-family-display-1;
+    span {
+      color: $accent-color-important;
+    }
+  }
+  .amount {
+    font-weight: $font-bold;
+  }
+}
+
+.board-container {
+  .title {
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
+    font-family: $font-family-header;
+    font-weight: bold;
+  }
+  .board {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
+  }
+}

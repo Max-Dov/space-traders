@@ -7,6 +7,7 @@ import {
   NetworkPanel,
   ServerStatusPanel,
   WindowsBar,
+  LeaderBoardPanel,
 } from '@features';
 import { useOpenedPanelsStore } from '@zustand';
 import { PanelComponentsIds } from '@constants';
@@ -26,13 +27,17 @@ export const AppLayout = () => {
     <div className="big-windows-section">
       {mainSectionPanels.map(panel => {
         const Component = FEATURE_ID_TO_COMPONENT[panel.componentId] as ComponentWithPanelId;
-        return <Component panelId={panel.panelId} key={panel.panelId} />;
+        if (Component) {
+          return <Component panelId={panel.panelId} key={panel.panelId} />;
+        } else return <></>;
       })}
     </div>
     <div className="small-windows-section">
       {secondarySectionPanels.map(panel => {
         const Component = FEATURE_ID_TO_COMPONENT[panel.componentId] as ComponentWithPanelId;
-        return <Component panelId={panel.panelId} key={panel.panelId} />;
+        if (Component) {
+          return <Component panelId={panel.panelId} key={panel.panelId} />;
+        } else return <></>;
       })}
     </div>
   </div>;
@@ -51,4 +56,5 @@ export const FEATURE_ID_TO_COMPONENT = {
   [PanelComponentsIds.FACTIONS]: FactionsPanel,
   [PanelComponentsIds.SERVER_STATUS]: ServerStatusPanel,
   [PanelComponentsIds.CONTRACTS]: ContractsPanel,
+  [PanelComponentsIds.LEADERBOARDS]: LeaderBoardPanel,
 };

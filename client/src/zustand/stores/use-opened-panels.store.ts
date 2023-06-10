@@ -50,4 +50,5 @@ export const FEATURE_ID_TO_IS_MAIN_SECTION = {
   [PanelComponentsIds.NETWORK]: false,
   [PanelComponentsIds.SERVER_STATUS]: false,
   [PanelComponentsIds.CONTRACTS]: false,
+  [PanelComponentsIds.LEADERBOARDS]: false,
 };
