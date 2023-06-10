@@ -1,0 +1,17 @@
+@import "commonStyles/constants";
+
+.currency-container {
+  display: inline-block;
+  vertical-align: bottom;
+  .currency-label {
+    display: flex;
+    gap: 0.2em;
+    align-items: center;
+    font-family: $font-family-header;
+    font-weight: lighter;
+
+    svg {
+      color: $accent-color-important;
+    }
+  }
+}

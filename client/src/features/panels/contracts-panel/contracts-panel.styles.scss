@@ -1,0 +1,81 @@
+@import "commonStyles/constants";
+
+.contracts-amount {
+  color: rgba($font-color, 0.6);
+}
+
+.contract-container {
+  margin: 0.5em 0;
+  padding: 0.5em;
+
+  &.is-pending {
+    border: 2px dashed rgba($background-color-1, 0.5);
+  }
+
+  &.is-accepted {
+    border: 1px solid rgba($accent-color-important, 0.5);
+  }
+
+  .header-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+    gap: 0.2em;
+
+    .type {
+      color: $accent-color-important;
+      font-family: $font-family-header;
+      font-weight: bolder;
+    }
+
+    .faction {
+      @each $faction-symbol, $faction-color in $faction-symbol-to-map {
+        &.#{$faction-symbol} {
+          color: $faction-color;
+          font-family: $font-family-monospace;
+        }
+      }
+      line-height: 1.3em;
+    }
+  }
+
+  .todo-info {
+    margin-top: 1em;
+  }
+
+  .timing-details {
+    margin-top: 1em;
+    .label {
+      font-weight: bolder;
+      font-family: $font-family-header;
+    }
+  }
+
+  .delivery-item {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    margin: 1em 0;
+    white-space: nowrap;
+
+    .destination {
+      font-family: $font-family-monospace;
+      font-size: 1.1em;
+    }
+
+    .amount {
+      font-family: $font-family-header;
+      font-weight: bolder;
+    }
+  }
+
+  .payment-details {
+    margin-top: 1em;
+  }
+
+  .accept-button {
+    margin-top: 1em;
+    width: 100%;
+  }
+}

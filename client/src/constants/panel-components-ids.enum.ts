@@ -7,4 +7,5 @@ export enum PanelComponentsIds {
   SERVER_STATUS = 'SERVER_STATUS',
   FACTIONS = 'FACTIONS',
   AGENT_ID = 'AGENT_ID',
+  CONTRACTS = 'CONTRACTS',
 }

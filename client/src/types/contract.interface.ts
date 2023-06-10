@@ -6,11 +6,19 @@ export enum ContractTypes {
 
 export interface Contract {
   id: string;
+  /**
+   * The symbol of the faction that this contract is for.
+   */
   factionSymbol: string;
   type: ContractTypes;
+  /**
+   * Whether the contract has been accepted by the agent.
+   */
   accepted: boolean;
   fulfilled: boolean;
-  expiration: string; // Date
+  /**
+   * The time at which the contract is no longer available to be accepted.
+   */
   deadlineToAccept: string; // Date
   terms: {
     deadline: string; // Date

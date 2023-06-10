@@ -25,7 +25,7 @@ export const useOpenedPanelsStore = create<OpenedPanelsStore>()(persist((set, ge
       componentId,
       isMainSectionPanel: FEATURE_ID_TO_IS_MAIN_SECTION[componentId],
     };
-    const newPanels = get().openedPanels.concat(newPanel);
+    const newPanels = [newPanel, ...get().openedPanels];
     set({ openedPanels: newPanels });
   },
   closePanel: (id) => {
@@ -46,6 +46,8 @@ export const useOpenedPanelsStore = create<OpenedPanelsStore>()(persist((set, ge
 export const FEATURE_ID_TO_IS_MAIN_SECTION = {
   [PanelComponentsIds.AGENT_ID]: true,
   [PanelComponentsIds.FACTIONS]: true,
+  // Side panels below
   [PanelComponentsIds.NETWORK]: false,
   [PanelComponentsIds.SERVER_STATUS]: false,
+  [PanelComponentsIds.CONTRACTS]: false,
 };

@@ -1,45 +1,49 @@
 @import "../../../commonStyles/constants";
 
-@mixin factionStyling($className, $background-image, $faction-color) {
-  &#{$className} {
-    background-image: url(#{$background-image});
-    border: 1px solid rgba($faction-color, 0.5);
-
-    &:hover {
-      border: 1px solid $faction-color;
-    }
-  }
-}
-
 .factions-container {
   height: 42em;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
+
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+
+  @media (max-width: 80rem) {
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 80rem) {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .faction-container {
   scroll-snap-align: end;
   scroll-margin: 1rem;
-  margin: 1em 0;
-
   background-position: center;
   background-size: cover;
 
-  @include factionStyling('.cosmic', '/cosmic-banner.webp', $cosmic-color);
-  @include factionStyling('.void', '/void-banner.webp', $void-color);
-  @include factionStyling('.galactic', '/galactic-banner.webp', $galactic-color);
-  @include factionStyling('.dominion', '/dominion-banner.webp', $dominion-color);
-  @include factionStyling('.quantum', '/quantum-banner.webp', $quantum-color);
-  @include factionStyling('.astro', '/astro-banner.webp', $astro-color);
-  @include factionStyling('.corsairs', '/corsairs-banner.webp', $corsairs-color);
-  @include factionStyling('.obsidian', '/obsidian-banner.webp', $obsidian-color);
-  @include factionStyling('.aegis', '/aegis-banner.webp', $aegis-color);
-  @include factionStyling('.united', '/united-banner.webp', $united-color);
+  @each $faction-symbol, $faction-color in $faction-symbol-to-map {
+    &.#{$faction-symbol} {
+      .name, .symbol-and-hq {
+        color: $faction-color;
+      }
+      background-image: url('/#{$faction-symbol}-banner.webp');
+      border: 1px solid rgba($faction-color, 0.5);
+
+      &:hover {
+        border: 1px solid $faction-color;
+      }
+    }
+  }
 
   .content-wrapper {
     padding: 1em;
-    background-color: rgba(black, 0.5);
+    background-color: rgba(black, 0.6);
     transition: background-color $transition-normal ease-in-out;
+    height: 100%;
+    box-sizing: border-box;
 
     &:hover {
       background-color: rgba(black, 0.3);

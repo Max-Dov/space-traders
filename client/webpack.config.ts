@@ -16,7 +16,7 @@ const config: webpack.Configuration = {
   target: 'web',
   devtool: 'inline-source-map',
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.svg'],
     alias: {
       'commonStyles': path.resolve(__dirname, 'src', 'commonStyles'),
       '@types': path.resolve(__dirname, 'src', 'types'),
@@ -26,6 +26,7 @@ const config: webpack.Configuration = {
       '@features': path.resolve(__dirname, 'src', 'features'),
       '@utils': path.resolve(__dirname, 'src', 'utils'),
       '@zustand': path.resolve(__dirname, 'src', 'zustand'),
+      '@svgs': path.resolve(__dirname, 'public', 'assets', 'svg'),
     },
   },
   module: {
@@ -67,6 +68,11 @@ const config: webpack.Configuration = {
         test: /\.woff2?$/,
         type: 'asset/resource',
       },
+      { // svgs
+        test: /\.svg$/i,
+        issuer: /\.[jt]sx?$/,
+        use: ['@svgr/webpack'],
+      },
     ],
   },
   plugins: [
@@ -76,7 +82,8 @@ const config: webpack.Configuration = {
     new CopyPlugin({
       patterns: [
         { from: path.join('public', 'favicon.ico') },
-        { from: path.join('public', 'assets') },
+        { from: path.join('public', 'assets', 'images') },
+        { from: path.join('public', 'assets', 'svg') },
       ],
     }),
   ],

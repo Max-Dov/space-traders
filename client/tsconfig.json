@@ -27,10 +27,13 @@
       "@utils": ["src/utils"],
       "@zustand/*": ["src/zustand/*"],
       "@zustand": ["src/zustand"],
+      "@svgs/*": ["public/assets/svg/*"]
     }
   },
   "include": [
-    "src"
+    "src",
+    "public",
+    "./types.d.ts",
   ],
   "exclude": [
     "node_modules"
