@@ -8,4 +8,5 @@ export enum PanelComponentsIds {
   FACTIONS = 'FACTIONS',
   AGENT_ID = 'AGENT_ID',
   CONTRACTS = 'CONTRACTS',
+  LEADER_BOARD = 'LEADER_BOARD',
 }

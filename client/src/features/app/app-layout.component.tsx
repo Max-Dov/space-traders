@@ -7,6 +7,7 @@ import {
   NetworkPanel,
   ServerStatusPanel,
   WindowsBar,
+  LeaderBoardPanel
 } from '@features';
 import { useOpenedPanelsStore } from '@zustand';
 import { PanelComponentsIds } from '@constants';
@@ -51,4 +52,5 @@ export const FEATURE_ID_TO_COMPONENT = {
   [PanelComponentsIds.FACTIONS]: FactionsPanel,
   [PanelComponentsIds.SERVER_STATUS]: ServerStatusPanel,
   [PanelComponentsIds.CONTRACTS]: ContractsPanel,
+  [PanelComponentsIds.LEADER_BOARD]: LeaderBoardPanel,
 };
