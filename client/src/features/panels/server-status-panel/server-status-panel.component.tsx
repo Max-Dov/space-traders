@@ -17,7 +17,9 @@ export const ServerStatusPanel = () => {
    * First render initialization.
    */
   useEffect(() => {
-    refreshServerStatus();
+    if (serverStatus === null) {
+      refreshServerStatus();
+    }
   }, []);
 
   return <Window

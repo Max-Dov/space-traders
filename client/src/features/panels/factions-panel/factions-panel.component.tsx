@@ -9,7 +9,9 @@ export const FactionsPanel = () => {
   const { factions } = useFactionsStore();
 
   useEffect(() => {
-    getAllFactions();
+    if (factions.length === 0) {
+      getAllFactions();
+    }
   }, []);
 
   return <Window header="FACTIONS" className="factions-container">
