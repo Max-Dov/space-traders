@@ -29,7 +29,6 @@ interface ContractInfoProps {
 }
 
 const ContractInfo = ({ contract }: ContractInfoProps) => {
-  console.log({ contract });
   const { deadlineToAccept, terms, accepted, id } = contract;
   const { deadline, payment, deliver } = terms;
   const { onAccepted, onFulfilled } = payment;

@@ -1,30 +1,32 @@
 import React from 'react';
-import { useServerStatusStore } from '@zustand/index';
 import { Currency, Window } from '@shared';
+import { useServerStatusStore } from '@zustand';
+import { Agent } from '@types';
 import "./leader-board-panel.styles.scss";
+import { formatNumber } from '@utils';
 
 export const LeaderBoardPanel = () => {
   const { serverStatus } = useServerStatusStore();
 
   return (
-    <Window header="LEADER BOARD" className="leader-board">
+    <Window header="LEADERBOARDS" className="leaderboards">
       <BoardContainer title="Most Credits">
-        {serverStatus?.leaderboards.mostCredits.map((el, i) => (
+        {serverStatus?.leaderboards.mostCredits.map((agent, i) => (
           <LeaderData
-            key={i}
-            id={i + 1}
-            agentSymbol={el.agentSymbol}
-            amount={<Currency amount={el.credits} />}
+            key={agent.agentSymbol}
+            rank={i + 1}
+            agentSymbol={agent.agentSymbol}
+            amount={<Currency amount={agent.credits} />}
           />
         ))}
       </BoardContainer>
       <BoardContainer title="Most Submitted Charts">
-        {serverStatus?.leaderboards.mostSubmittedCharts.map((el, i) => (
+        {serverStatus?.leaderboards.mostSubmittedCharts.map((agent, i) => (
           <LeaderData
-            key={i}
-            id={i + 1}
-            agentSymbol={el.agentSymbol}
-            amount={el.chartCount}
+            key={agent.agentSymbol}
+            rank={i + 1}
+            agentSymbol={agent.agentSymbol}
+            amount={formatNumber(agent.chartCount)}
           />
         ))}
       </BoardContainer>
@@ -33,16 +35,16 @@ export const LeaderBoardPanel = () => {
 };
 
 interface LeaderBoardProps {
-  id: number;
-  agentSymbol: string;
+  rank: number;
+  agentSymbol: Agent['symbol'];
   amount: React.ReactNode;
 }
 
-const LeaderData = ({ id, agentSymbol, amount }: LeaderBoardProps) => {
+const LeaderData = ({ rank, agentSymbol, amount }: LeaderBoardProps) => {
   return (
     <div className="data-container">
       <div className="name">
-        {id}. <span>{agentSymbol}</span>
+        {rank}. <span>{agentSymbol}</span>
       </div>
       <div className="amount">{amount}</div>
     </div>
