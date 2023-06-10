@@ -1,5 +1,5 @@
 export * from './stores/use-server-status.store';
-export * from './stores/use-agent-token.store';
+export * from './stores/use-agents-tokens.store';
 export * from './stores/use-my-agent-details.store';
 export * from './stores/use-network.store';
 export * from './stores/use-factions.store';

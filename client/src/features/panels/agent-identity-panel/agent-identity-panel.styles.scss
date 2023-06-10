@@ -11,15 +11,7 @@
   }
 }
 
-@mixin selectedFactionStyle($className, $base-color) {
-  .selected-faction#{$className} {
-    color: $base-color;
-    font-weight: $font-bold;
-    font-family: $font-family-header;
-  }
-}
-
-section.agent-identity {
+.agent-identity {
   width: 40em;
   .identity-variant-bar {
     display: flex;
@@ -40,24 +32,29 @@ section.agent-identity {
     white-space: nowrap;
   }
 
-  padding-bottom: 1em;
-  @include selectedFactionStyle('.void', $void-color);
-  @include selectedFactionStyle('.galactic', $galactic-color);
-  @include selectedFactionStyle('.cosmic', $cosmic-color);
-  @include selectedFactionStyle('.dominion', $dominion-color);
-  @include selectedFactionStyle('.quantum', $quantum-color);
+  @each $faction-symbol, $faction-color in $faction-symbol-to-map {
+    .selected-faction.#{$faction-symbol} {
+      color: $faction-color;
+      font-weight: $font-bold;
+      font-family: $font-family-header;
+    }
+
+    .factions-buttons {
+      .#{$faction-symbol} {
+        background-color: rgba($faction-color, 0.5);
+        width: 7em;
+        &:active {
+          background-color: rgba($faction-color, 1);
+        }
+      }
+    }
+  }
 
   .factions-buttons {
     display: flex;
     gap: 1em;
     font-family: $font-family-header;
     flex-wrap: wrap;
-
-    @include buttonStyle('.void', $void-color);
-    @include buttonStyle('.galactic', $galactic-color);
-    @include buttonStyle('.cosmic', $cosmic-color);
-    @include buttonStyle('.dominion', $dominion-color);
-    @include buttonStyle('.quantum', $quantum-color);
   }
 
   .agent-symbol-input {
@@ -73,5 +70,5 @@ section.agent-identity {
 }
 
 .agent-name {
-  color: $accent-color-good-stuff;
+  color: $accent-color-important;
 }

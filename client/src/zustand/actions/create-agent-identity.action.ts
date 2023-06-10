@@ -1,6 +1,6 @@
 import { postAgentIdentityRequest } from '@utils';
 import { CreateAgent } from '@types';
-import { useAgentTokenStore } from '@zustand/stores/use-agent-token.store';
+import { useAgentTokenStore } from '@zustand/stores/use-agents-tokens.store';
 import { useMyAgentDetailsStore } from '@zustand/stores/use-my-agent-details.store';
 import { useContractsStore } from '@zustand/stores/use-contracts.store';
 
