@@ -3,6 +3,7 @@ import './icon.styles.scss';
 import Money from '@svgs/money.icon.svg';
 import Spaceship from '@svgs/spaceship.icon.svg';
 import Users from '@svgs/users.icon.svg';
+import ArrowRight from '@svgs/arrow-right.icon.svg';
 
 interface IconProps extends HTMLAttributes<HTMLDivElement> {
   name: keyof typeof ICONS;
@@ -25,4 +26,5 @@ const ICONS = {
   Money: <Money />,
   Spaceship: <Spaceship />,
   Users: <Users />,
+  ArrowRight: <ArrowRight />,
 } as const;

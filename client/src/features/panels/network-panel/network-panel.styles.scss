@@ -20,6 +20,7 @@
     }
 
     .response {
+      white-space: nowrap;
       &.good-response {
         color: $accent-color-good-stuff;
       }

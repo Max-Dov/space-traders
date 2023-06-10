@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Input, Window } from '@shared';
 import { createAgentIdentity, getMyAgentDetails, useAgentTokenStore, useMyAgentDetailsStore } from '@zustand';
 import { Factions } from '@constants';
 import { CreateAgent } from '@types';
+import { useAuthorizedEffect } from '@utils';
 import { NewAgentIdentity } from './new-agent-identity.component';
 import './agent-identity-panel.styles.scss';
 
@@ -13,11 +14,11 @@ export const AgentIdentityPanel = () => {
   const { agentToken } = useAgentTokenStore();
   const { agentDetails } = useMyAgentDetailsStore();
 
-  useEffect(() => {
+  useAuthorizedEffect(() => {
     if (agentDetails === null) {
       getMyAgentDetails();
     }
-  }, [agentToken]);
+  }, [agentDetails]);
 
   const copyTokenToClipboard = () => {
     if (agentToken) {
@@ -93,7 +94,7 @@ export const AgentIdentityPanel = () => {
         label="Existing Identity"
       />
     </div>
-    {identityVariant === 'new' && (<NewAgentIdentity/>)}
+    {identityVariant === 'new' && (<NewAgentIdentity />)}
     {identityVariant === 'existing' && (
       <>
         <h3 className="header-font">Existing Token Import</h3>

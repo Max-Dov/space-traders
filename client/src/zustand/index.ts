@@ -11,3 +11,5 @@ export * from './actions/create-agent-identity.action';
 export * from './actions/get-my-agent-details.action';
 export * from './actions/get-all-factions.action';
 export * from './actions/get-all-contracts.action';
+export * from './actions/get-contract.action';
+export * from './actions/accept-contract.action';

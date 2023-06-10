@@ -10,5 +10,8 @@ export interface ApiRequestParams {
   listParams?: {
     limit: number;
     page: number;
-  }
+  };
+  urlParams?: {
+    [key in string]: string | number;
+  };
 }

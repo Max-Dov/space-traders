@@ -12,7 +12,7 @@ export const FactionsPanel = () => {
     if (factions.length === 0) {
       getAllFactions();
     }
-  }, []);
+  }, [factions]);
 
   return <Window header="FACTIONS" className="factions-container">
     {factions.map(faction => <FactionSection key={faction.symbol} faction={faction}/>)}

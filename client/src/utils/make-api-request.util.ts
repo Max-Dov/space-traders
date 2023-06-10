@@ -10,6 +10,7 @@ export const makeApiRequest = async <ResponseType = unknown>({
   url,
   data,
   listParams,
+  urlParams,
 }: ApiRequestParams): Promise<ResponseType | null> => {
   const requestLog = logToNetworkPanel(method, url);
   try {
@@ -17,7 +18,7 @@ export const makeApiRequest = async <ResponseType = unknown>({
       method,
       url,
       data,
-      params: listParams
+      params: { ...listParams, ...urlParams },
     });
     const responseCode = response.status;
     useNetworkStore.getState().updateRequest({ ...requestLog, response: responseCode });
