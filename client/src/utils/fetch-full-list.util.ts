@@ -5,7 +5,7 @@ import { ApiListResponse } from '@types';
  * Fetches total amount records from given list endpoint.
  */
 export const fetchFullList = async <RecordType = unknown>(url: string): Promise<Array<RecordType> | null> => {
-  const limit = 20; // api defined value
+  const limit = 20; // api defined value, max limit on endpoints is that
   const response = await makeApiRequest<ApiListResponse<RecordType>>({
     url,
     method: 'GET',

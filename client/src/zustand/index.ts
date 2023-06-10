@@ -13,3 +13,4 @@ export * from './actions/get-all-factions.action';
 export * from './actions/get-all-contracts.action';
 export * from './actions/get-contract.action';
 export * from './actions/accept-contract.action';
+export * from './actions/clean-stores-on-server-restart.action';

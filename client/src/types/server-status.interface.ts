@@ -1,3 +1,5 @@
+import { Agent } from '@types';
+
 export interface ServerStatus {
   /**
    * The current status of the game server.
@@ -23,11 +25,11 @@ export interface ServerStatus {
   };
   leaderboards: {
     mostCredits: Array<{
-      agentSymbol: string;
+      agentSymbol: Agent['symbol'];
       credits: number;
     }>
     mostSubmittedCharts: Array<{
-      agentSymbol: string;
+      agentSymbol: Agent['symbol'];
       chartCount: number;
     }>
   };

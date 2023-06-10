@@ -11,7 +11,7 @@ const authorizeRequest = (config: InternalAxiosRequestConfig) => {
   }
 };
 
-const urlParamsRegexp = /(?<paramPlaceholder>:(?<paramName>[a-zA-Z]+))/g;
+const urlParamsRegexp = /(?<paramPlaceholder>:(?<paramName>[a-zA-Z]+))/g; // catches following example: ":agentSymbol"
 
 /**
  * Adds url params to request URL.

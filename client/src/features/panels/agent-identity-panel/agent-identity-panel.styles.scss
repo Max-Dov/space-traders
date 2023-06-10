@@ -1,5 +1,5 @@
-@import "../../../commonStyles/fonts";
-@import "../../../commonStyles/constants";
+@import "commonStyles/fonts";
+@import "commonStyles/constants";
 
 @mixin buttonStyle($className, $base-color) {
   #{$className} {
