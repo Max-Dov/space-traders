@@ -3,7 +3,9 @@ import { Input, Window } from '@shared';
 import {
   applyAgentToken,
   createAgentIdentity,
-  getMyAgentDetails, removeAgentToken, switchAgentToken,
+  getMyAgentDetails,
+  removeAgentToken,
+  switchAgentToken,
   useAgentsTokensStore,
   useMyAgentDetailsStore,
 } from '@zustand';
@@ -114,7 +116,9 @@ const TokenSelector = () => {
   const { savedAgentTokens, agentToken: currentAgentToken } = useAgentsTokensStore();
 
   return <section className="token-selector">
-    <h3>Saved IDs</h3>
+    <h3>
+      Saved IDs
+    </h3>
     <table>
       <thead>
       <tr>

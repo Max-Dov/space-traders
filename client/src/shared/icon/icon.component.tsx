@@ -4,6 +4,8 @@ import Money from '@svgs/money.icon.svg';
 import Spaceship from '@svgs/spaceship.icon.svg';
 import Users from '@svgs/users.icon.svg';
 import ArrowRight from '@svgs/arrow-right.icon.svg';
+import CircledQuestion from '@svgs/circled-question.icon.svg';
+import CircledExclamation from '@svgs/circled-exclamation.icon.svg';
 
 interface IconProps extends HTMLAttributes<HTMLDivElement> {
   name: keyof typeof ICONS;
@@ -27,4 +29,6 @@ const ICONS = {
   Spaceship: <Spaceship />,
   Users: <Users />,
   ArrowRight: <ArrowRight />,
+  CircledQuestion: <CircledQuestion />,
+  CircledExclamation: <CircledExclamation />,
 } as const;
