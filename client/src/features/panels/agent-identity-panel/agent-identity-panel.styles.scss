@@ -5,6 +5,7 @@
   #{$className} {
     background-color: rgba($base-color, 0.5);
     width: 7em;
+
     &:active {
       background-color: rgba($base-color, 1);
     }
@@ -12,24 +13,12 @@
 }
 
 .agent-identity {
-  width: 40em;
+  padding-top: 0;
+
   .identity-variant-bar {
     display: flex;
     justify-content: flex-start;
     gap: 2em;
-  }
-
-  .token-action-items {
-    display: flex;
-    gap: 1em;
-    align-items: center;
-    justify-content: flex-start;
-  }
-
-  .token-data {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
   }
 
   @each $faction-symbol, $faction-color in $faction-symbol-to-map {
@@ -43,6 +32,7 @@
       .#{$faction-symbol} {
         background-color: rgba($faction-color, 0.5);
         width: 7em;
+
         &:active {
           background-color: rgba($faction-color, 1);
         }
@@ -71,4 +61,66 @@
 
 .agent-name {
   color: $accent-color-important;
+}
+
+section.token-selector {
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba($action-color, 0.1);
+  }
+
+  th {
+    text-align: left;
+    font-family: $font-family-header;
+    font-size: 1.1rem;
+    font-weight: bolder;
+    padding: 0.25em 0.5em;
+    background-color: rgba($action-color, 0.3);
+  }
+
+  tbody {
+    td {
+      padding: 0.25rem 0.5rem;
+    }
+
+    tr:nth-child(even) {
+      background-color: rgba($action-color, 0.1);
+    }
+
+    tr {
+      td:nth-child(3) {
+        white-space: nowrap;
+      }
+    }
+
+    tr:hover {
+      background-color: rgba($action-color, 0.2);
+    }
+
+    button {
+      margin-right: 0.25em;
+    }
+
+    .current-id-label {
+      margin-right: 0.25em;
+      font-style: italic;
+    }
+  }
+}
+
+div.token-display {
+  width: 20rem;
+  display: flex;
+  align-items: center;
+
+  .displayed-token {
+    width: 12rem;
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-style: italic;
+    font-size: 0.8rem;
+  }
 }
