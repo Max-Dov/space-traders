@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import classNames from 'classnames';
 import { useServerStatusStore, refreshServerStatus } from '@zustand';
 import { useIsServerUp, formatDate } from '@utils';
-import { Window, Icon } from '@shared';
+import { Window, Icon, Tooltip } from '@shared';
 import './server-status-panel.styles.scss';
 import { TimelineProgressBar } from './timeline-progress-bar';
 
@@ -37,11 +37,11 @@ export const ServerStatusPanel = () => {
             <div className="flex-row sections">
                 <div>
                     <div className="flex-row">
-                        <Icon name="Users" />
+                        <Tooltip tooltipText="Agents" isIconTooltip customIcon={<Icon name="Users" />}/>
                         <span className="stat">{serverStatus.stats.agents}</span>
                     </div>
                     <div className="flex-row">
-                        <Icon name="Spaceship" />
+                        <Tooltip tooltipText="Spaceships" isIconTooltip customIcon={<Icon name="Spaceship" />}/>
                         <span className="stat">{serverStatus.stats.ships}</span>
                     </div>
                 </div>
