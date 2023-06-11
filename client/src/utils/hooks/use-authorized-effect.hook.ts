@@ -1,14 +1,15 @@
 import { DependencyList, EffectCallback, useEffect } from 'react';
-import { useIsAuthorized } from '@utils';
+import { useAgentsTokensStore } from '@zustand';
 
 /**
  * Similar to useEffect, but calls callback only if app has auth token.
  */
 export const useAuthorizedEffect = (callback: EffectCallback, deps: DependencyList) => {
-  const isAuthorized = useIsAuthorized()
+  const { agentToken } = useAgentsTokensStore();
+  const isAuthorized = agentToken !== null;
   useEffect(() => {
     if (isAuthorized) {
-      callback()
+      callback();
     }
-  }, [isAuthorized, ...deps])
-}
+  }, [isAuthorized, agentToken, ...deps]);
+};

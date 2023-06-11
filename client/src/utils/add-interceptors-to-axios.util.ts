@@ -1,11 +1,11 @@
 import axios, { InternalAxiosRequestConfig } from 'axios';
-import { useAgentTokenStore } from '@zustand';
+import { useAgentsTokensStore } from '@zustand';
 
 /**
  * Adds API authorization token to request headers if possible.
  */
 const authorizeRequest = (config: InternalAxiosRequestConfig) => {
-  const agentToken = useAgentTokenStore.getState().agentToken;
+  const agentToken = useAgentsTokensStore.getState().agentToken;
   if (agentToken !== null) {
     config.headers.set('Authorization', `Bearer ${agentToken}`);
   }

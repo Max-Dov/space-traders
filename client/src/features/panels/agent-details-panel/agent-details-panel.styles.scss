@@ -1,32 +1,34 @@
 @import "commonStyles/constants";
 
 .agent-details {
-  white-space: nowrap;
-  padding: 0.5em 1em;
   .field {
+    margin-top: 0.4em;
     display: flex;
     align-items: center;
     gap: 0.5em;
-    padding: 0.2em 0;
-    font-family: $font-family-paragraph;
+    white-space: nowrap;
     font-size: 1.1em;
+    font-family: $font-family-paragraph;
+
     .value {
       font-family: $font-family-monospace;
       font-weight: bold;
     }
-    .agent {
-      font-size: 1.2em;
-      .faction {
-        @each $faction-symbol, $faction-color in $faction-symbol-to-map {
-          &.#{$faction-symbol} {
-            color: $faction-color;
-          }
+  }
+
+  .agent {
+    font-size: 1.2em;
+    .symbol {
+      color: $accent-color-important;
+      font-family: $font-family-display-1;
+    }
+    .faction {
+      @each $faction-symbol, $faction-color in $faction-symbol-to-map {
+        &.#{$faction-symbol} {
+          color: $faction-color;
         }
-      }
-      .symbol {
-        color: $accent-color-important;
-        font-family: $font-family-display-1;
       }
     }
   }
+
 }

@@ -18,12 +18,10 @@ export const AgentDetailsPanel = () => {
     <Window header="AGENT DETAILS" className="agent-details">
       {agentDetails && (
         <>
-          <div className="field">
             <div className="agent">
               <span className={classNames('faction',agentDetails.startingFaction.toLowerCase())}>[{agentDetails.startingFaction}]</span>{" "}
               <span className="symbol">{agentDetails.symbol}</span>
             </div>
-          </div>
           <div className="field">
             Headquarters:
             <div className="value">{agentDetails.headquarters}</div>

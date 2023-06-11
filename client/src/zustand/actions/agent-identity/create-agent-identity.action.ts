@@ -1,6 +1,6 @@
 import { postAgentIdentityRequest } from '@utils';
 import { CreateAgent } from '@types';
-import { useAgentTokenStore } from '@zustand/stores/use-agent-token.store';
+import { useAgentsTokensStore } from '@zustand/stores/use-agents-tokens.store';
 import { useMyAgentDetailsStore } from '@zustand/stores/use-my-agent-details.store';
 import { useContractsStore } from '@zustand/stores/use-contracts.store';
 
@@ -10,12 +10,13 @@ export const createAgentIdentity = async (agentIdentity: CreateAgent) => {
   if (data !== null) {
     const agentToken = data.token;
     const agentDetails = data.agent;
-    useAgentTokenStore.setState({ agentToken });
+    useAgentsTokensStore.setState({ agentToken });
+    useAgentsTokensStore.getState().saveAgentToken([agentToken, agentDetails.symbol]);
     useMyAgentDetailsStore.setState({ agentDetails });
   }
 };
 
 const clearAgentSpecificStores = () => {
-  useAgentTokenStore.setState({ agentToken: null });
+  useAgentsTokensStore.setState({ agentToken: null });
   useContractsStore.setState({ contracts: [] });
 };

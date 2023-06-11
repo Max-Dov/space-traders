@@ -1,9 +1,9 @@
-import { useAgentTokenStore } from '@zustand';
+import { useAgentsTokensStore } from '@zustand';
 
 /**
  * Returns true app store has authorization token.
  */
 export const useIsAuthorized = () => {
-  const { agentToken } = useAgentTokenStore();
+  const { agentToken } = useAgentsTokensStore();
   return agentToken !== null;
 };

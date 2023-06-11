@@ -12,21 +12,21 @@
   .header {
     transition: background-color $transition-normal ease-in-out;
     background-color: $background-color-1;
-    padding: 0.2em 1em;
+    padding: 0.25em 0.5em;
     font-family: $font-family-display-1;
   }
 
   &:hover {
-    border: 1px solid $accent-color-important;
-    box-shadow: 0.25em 0.25em rgba($accent-color-important, 0.5);
-    background-color: rgba($accent-color-important, 0.1);
+    border: 1px solid $action-color;
+    box-shadow: 0.25em 0.25em rgba($action-color, 0.5);
+    background-color: rgba($action-color, 0.1);
 
     .header {
-      background-color: $accent-color-important;
+      background-color: $action-color;
     }
   }
 }
 
 .content {
-  padding: 0 1em;
+  padding: 0.5rem;
 }
