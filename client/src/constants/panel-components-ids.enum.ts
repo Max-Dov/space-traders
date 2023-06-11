@@ -9,4 +9,5 @@ export enum PanelComponentsIds {
   AGENT_ID = 'AGENT_ID',
   CONTRACTS = 'CONTRACTS',
   LEADERBOARDS = 'LEADERBOARDS',
+  AGENT_DETAILS = 'AGENT_DETAILS',
 }
