@@ -3,6 +3,7 @@ export * from './requests/post-agent-identity.request';
 export * from './requests/get-my-agent-details.request';
 export * from './requests/accept-contract.request';
 export * from './requests/get-contract.request';
+export * from './requests/get-ships.request';
 
 export * from './hooks/use-is-server-up.hook';
 export * from './hooks/use-validate-model.hook';
