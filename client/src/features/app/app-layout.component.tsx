@@ -1,4 +1,5 @@
 import React, { JSX } from 'react';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import './app-layout.styles.scss';
 import {
   AgentIdentityPanel,
@@ -22,25 +23,39 @@ export const AppLayout = () => {
   const secondarySectionPanels = openedPanels.filter(panel => !panel.isMainSectionPanel);
 
   return <div className="app-grid">
-    <div className="bar-row">
-      <WindowsBar />
-    </div>
-    <div className="big-windows-section">
-      {mainSectionPanels.map(panel => {
-        const Component = FEATURE_ID_TO_COMPONENT[panel.componentId] as ComponentWithPanelId;
-        if (Component) {
-          return <Component panelId={panel.panelId} key={panel.panelId} />;
-        } else return <></>;
-      })}
-    </div>
-    <div className="small-windows-section">
-      {secondarySectionPanels.map(panel => {
-        const Component = FEATURE_ID_TO_COMPONENT[panel.componentId] as ComponentWithPanelId;
-        if (Component) {
-          return <Component panelId={panel.panelId} key={panel.panelId} />;
-        } else return <></>;
-      })}
-    </div>
+    <DragDropContext onDragEnd={() => {
+    }}>
+      <div className="bar-row">
+        <WindowsBar />
+      </div>
+      <div className="big-windows-section">
+        {mainSectionPanels.map(panel => {
+          const Component = FEATURE_ID_TO_COMPONENT[panel.componentId] as ComponentWithPanelId;
+          if (Component) {
+            return <Component panelId={panel.panelId} key={panel.panelId} />;
+          } else return <></>;
+        })}
+      </div>
+      <div className="small-windows-section">
+        <Droppable droppableId="droppable-1" type="PERSON">
+          {(provided, snapshot) => (
+            <div
+              ref={provided.innerRef}
+              style={{ backgroundColor: snapshot.isDraggingOver ? 'blue' : 'grey' }}
+              {...provided.droppableProps}
+            >
+              {provided.placeholder}
+              {secondarySectionPanels.map(panel => {
+                const Component = FEATURE_ID_TO_COMPONENT[panel.componentId] as ComponentWithPanelId;
+                if (Component) {
+                  return <Component panelId={panel.panelId} key={panel.panelId} />;
+                } else return <></>;
+              })}
+            </div>
+          )}
+        </Droppable>;
+      </div>
+    </DragDropContext>
   </div>;
 };
 
