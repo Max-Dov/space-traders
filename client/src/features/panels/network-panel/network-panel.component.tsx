@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Window } from '@shared';
+import { Panel } from '@shared';
 import { useNetworkStore } from '@zustand';
 import './network-panel.styles.scss';
 import classNames from 'classnames';
@@ -51,7 +51,7 @@ const Request = ({ url, method, response, errorMessage }: RequestProps) => {
 export const NetworkPanel = () => {
   const { requests } = useNetworkStore();
 
-  return (<Window header="NETWORK" className="network-panel">
+  return (<Panel header="NETWORK" className="network-panel">
     {requests.map(request => <Request key={request.id} {...request} />)}
-  </Window>);
+  </Panel>);
 };

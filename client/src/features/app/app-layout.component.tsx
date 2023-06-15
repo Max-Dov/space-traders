@@ -1,4 +1,6 @@
 import React, { JSX } from 'react';
+import { DragDropContext } from 'react-beautiful-dnd';
+import { Droppable, Draggable } from '@shared';
 import './app-layout.styles.scss';
 import {
   AgentIdentityPanel,
@@ -10,37 +12,51 @@ import {
   LeaderBoardPanel,
   AgentDetailsPanel,
 } from '@features';
-import { useOpenedPanelsStore } from '@zustand';
+import { Panel, PanelSections, useOpenedPanelsStore } from '@zustand';
 import { PanelComponentsIds } from '@constants';
+
+const displayPanels = (panels: Array<Panel>) =>
+  panels
+  .reduce(reduceToExistingPanels, [])
+  .map(displayPanel);
+
+const reduceToExistingPanels = (existingPanels: Array<Panel>, panel: Panel) => {
+  const Component = FEATURE_ID_TO_COMPONENT[panel.componentId] as ComponentWithPanelId | undefined;
+  if (Component) {
+    existingPanels.push(panel);
+  }
+  return existingPanels;
+};
+
+const displayPanel = (panel: Panel, index: number) => {
+  const Component = FEATURE_ID_TO_COMPONENT[panel.componentId] as ComponentWithPanelId;
+  return <Draggable draggableId={panel.panelId} index={index} key={panel.panelId} className="draggable-panel">
+    <Component panelId={panel.panelId} />
+  </Draggable>;
+};
 
 /**
  * Displays app grid and panels in proper sections.
  */
 export const AppLayout = () => {
-  const { openedPanels } = useOpenedPanelsStore();
-  const mainSectionPanels = openedPanels.filter(panel => panel.isMainSectionPanel);
-  const secondarySectionPanels = openedPanels.filter(panel => !panel.isMainSectionPanel);
+  const { mainSectionPanels, sideSectionPanels } = useOpenedPanelsStore();
 
   return <div className="app-grid">
-    <div className="bar-row">
-      <WindowsBar />
-    </div>
-    <div className="big-windows-section">
-      {mainSectionPanels.map(panel => {
-        const Component = FEATURE_ID_TO_COMPONENT[panel.componentId] as ComponentWithPanelId;
-        if (Component) {
-          return <Component panelId={panel.panelId} key={panel.panelId} />;
-        } else return <></>;
-      })}
-    </div>
-    <div className="small-windows-section">
-      {secondarySectionPanels.map(panel => {
-        const Component = FEATURE_ID_TO_COMPONENT[panel.componentId] as ComponentWithPanelId;
-        if (Component) {
-          return <Component panelId={panel.panelId} key={panel.panelId} />;
-        } else return <></>;
-      })}
-    </div>
+    <DragDropContext onDragEnd={useOpenedPanelsStore.getState().restructurePanels}>
+      <div className="bar-row">
+        <WindowsBar />
+      </div>
+      <div className="main-section">
+        <Droppable droppableId={PanelSections.MAIN_SECTION}>
+          {displayPanels(mainSectionPanels)}
+        </Droppable>
+      </div>
+      <div className="side-section">
+        <Droppable droppableId={PanelSections.SECONDARY_SECTION}>
+          {displayPanels(sideSectionPanels)}
+        </Droppable>
+      </div>
+    </DragDropContext>
   </div>;
 };
 

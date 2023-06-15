@@ -1,0 +1,5 @@
+.draggable {
+  &.is-being-dragged {
+    backdrop-filter: blur(10px);
+  }
+}
