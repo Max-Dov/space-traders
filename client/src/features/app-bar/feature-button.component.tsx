@@ -4,8 +4,10 @@ import { PanelComponentsIds } from '@constants';
 import { useOpenedPanelsStore } from '@zustand';
 
 const useFeaturePanelStatus = (panelId: PanelComponentsIds) => {
-  const { openedPanels, openPanel, closePanel } = useOpenedPanelsStore();
-  const isFeaturePanelOpen = openedPanels.some(panel => panel.panelId === panelId);
+  const { mainSectionPanels, sideSectionPanels, floatingPanels, openPanel, closePanel } = useOpenedPanelsStore();
+  const isFeaturePanelOpen = mainSectionPanels.some(panel => panel.panelId === panelId)
+    || sideSectionPanels.some(panel => panel.panelId === panelId)
+    || floatingPanels.some(panel => panel.panelId === panelId);
 
   const openFeaturePanel = useCallback(() => openPanel(panelId), [panelId]);
   const closeFeaturePanel = useCallback(() => closePanel(panelId), [panelId]);
