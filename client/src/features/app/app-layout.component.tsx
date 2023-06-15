@@ -16,19 +16,24 @@ import { Panel, PanelSections, useOpenedPanelsStore } from '@zustand';
 import { PanelComponentsIds } from '@constants';
 
 const displayPanels = (panels: Array<Panel>) =>
-  panels.reduce((totalPanels, panel) => {
-    const Component = FEATURE_ID_TO_COMPONENT[panel.componentId] as ComponentWithPanelId | undefined;
-    if (Component) {
-      totalPanels.push(panel);
-    }
-    return totalPanels;
-  }, [] as Array<Panel>)
-  .map((panel, index) => {
-    const Component = FEATURE_ID_TO_COMPONENT[panel.componentId as PanelComponentsIds] as ComponentWithPanelId;
-    return <Draggable draggableId={`${panel.panelId}`} index={index} key={index} className="draggable-panel">
-      <Component panelId={panel.panelId} />
-    </Draggable>;
-  });
+  panels
+  .reduce(reduceToExistingPanels, [])
+  .map(displayPanel);
+
+const reduceToExistingPanels = (existingPanels: Array<Panel>, panel: Panel) => {
+  const Component = FEATURE_ID_TO_COMPONENT[panel.componentId] as ComponentWithPanelId | undefined;
+  if (Component) {
+    existingPanels.push(panel);
+  }
+  return existingPanels;
+};
+
+const displayPanel = (panel: Panel, index: number) => {
+  const Component = FEATURE_ID_TO_COMPONENT[panel.componentId] as ComponentWithPanelId;
+  return <Draggable draggableId={`${panel.panelId}`} index={index} key={index} className="draggable-panel">
+    <Component panelId={panel.panelId} />
+  </Draggable>;
+};
 
 /**
  * Displays app grid and panels in proper sections.
