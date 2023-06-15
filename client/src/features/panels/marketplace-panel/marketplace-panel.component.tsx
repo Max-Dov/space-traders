@@ -1,6 +1,6 @@
 import { getShips, getMarket, useMarketStore, useShipsStore } from "@zustand";
 import React from "react";
-import { Currency, Tooltip, Window } from "@shared";
+import { Currency, Tooltip, Panel } from "@shared";
 import { useAuthorizedEffect } from "@utils";
 import { Market } from "@types";
 import "./marketplace-panel.styles.scss";
@@ -22,7 +22,7 @@ export const MarketplacePanel = () => {
   console.log(market);
 
   return (
-    <Window header="MARKETPLACE" className="marketplace-panel">
+    <Panel header="MARKETPLACE" className="marketplace-panel">
       <div className="btns">
         <button>transactions</button>
       </div>
@@ -87,7 +87,7 @@ export const MarketplacePanel = () => {
             ))}
         </table>
       </div>
-    </Window>
+    </Panel>
   );
 };
 
