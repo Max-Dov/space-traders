@@ -84,8 +84,7 @@ export const useOpenedPanelsStore = create<OpenedPanelsStore>()(persist((set, ge
     // update destination section panels (add panel that was dragged in)
     let destinationPanels: Array<Panel> = [];
     if (sourceSection === destinationSection) {
-      const newIndex = destinationIndex > sourceIndex ? (destinationIndex - 1) : destinationIndex;
-      sourcePanels.splice(newIndex, 0, panel);
+      sourcePanels.splice(destinationIndex, 0, panel);
     } else {
       destinationPanels = isDestinationSectionMain
         ? [...get().mainSectionPanels]
@@ -107,7 +106,7 @@ export const useOpenedPanelsStore = create<OpenedPanelsStore>()(persist((set, ge
       }
     }
   },
-}), { name: 'opened-panels-store', version: 3 }));
+}), { name: 'opened-panels-store', version: 4 }));
 
 /**
  * Default placement for feature panels.

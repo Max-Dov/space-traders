@@ -30,7 +30,7 @@ const reduceToExistingPanels = (existingPanels: Array<Panel>, panel: Panel) => {
 
 const displayPanel = (panel: Panel, index: number) => {
   const Component = FEATURE_ID_TO_COMPONENT[panel.componentId] as ComponentWithPanelId;
-  return <Draggable draggableId={`${panel.panelId}`} index={index} key={index} className="draggable-panel">
+  return <Draggable draggableId={panel.panelId} index={index} key={panel.panelId} className="draggable-panel">
     <Component panelId={panel.panelId} />
   </Draggable>;
 };
