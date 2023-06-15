@@ -1,4 +1,4 @@
-export * from './window/window.component';
+export * from './panel/panel.component';
 export * from './input/input.component';
 export * from './currency/currency.component';
 export * from './icon/icon.component';

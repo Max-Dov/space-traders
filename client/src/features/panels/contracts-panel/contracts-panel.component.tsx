@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Currency, Icon, Window } from '@shared';
+import { Currency, Icon, Panel } from '@shared';
 import { acceptContract, getAllContracts, useContractsStore } from '@zustand';
 import { Contract } from '@types';
 import { formatNumber, formatTimeLeft, useAuthorizedEffect } from '@utils';
@@ -15,13 +15,13 @@ export const ContractsPanel = () => {
     }
   }, [contracts]);
 
-  return <Window header={<>
+  return <Panel header={<>
     <span>CONTRACTS</span>
     {' '}
     <span className="contracts-amount">({contracts.length})</span>
   </>} className="contracts-panel">
     {contracts.map(contract => <ContractInfo contract={contract} key={contract.id} />)}
-  </Window>;
+  </Panel>;
 };
 
 interface ContractInfoProps {

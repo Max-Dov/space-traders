@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Input, Window } from '@shared';
+import { Input, Panel } from '@shared';
 import {
   applyAgentToken,
   createAgentIdentity,
@@ -44,7 +44,7 @@ export const AgentIdentityPanel = () => {
     createAgentIdentity(newAgent);
   };
 
-  return <Window
+  return <Panel
     className="agent-identity"
     header={<>
       AGENT ID
@@ -109,7 +109,7 @@ export const AgentIdentityPanel = () => {
         <button onClick={createRandomIdentity}>Randomize Me!</button>
       </>
     )}
-  </Window>;
+  </Panel>;
 };
 
 const TokenSelector = () => {

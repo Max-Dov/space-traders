@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Window } from '@shared';
+import { Panel } from '@shared';
 import { getAllFactions, useFactionsStore } from '@zustand';
 import { Faction } from '@types';
 import './factions-panel.styles.scss';
@@ -14,9 +14,9 @@ export const FactionsPanel = () => {
     }
   }, [factions]);
 
-  return <Window header="FACTIONS" className="factions-container">
+  return <Panel header="FACTIONS" className="factions-container">
     {factions.map(faction => <FactionSection key={faction.symbol} faction={faction}/>)}
-  </Window>;
+  </Panel>;
 };
 
 interface FactionProps {

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import classNames from 'classnames';
 import { useServerStatusStore, refreshServerStatus } from '@zustand';
 import { useIsServerUp, formatDate } from '@utils';
-import { Window, Icon, Tooltip } from '@shared';
+import { Panel, Icon, Tooltip } from '@shared';
 import './server-status-panel.styles.scss';
 import { TimelineProgressBar } from './timeline-progress-bar';
 
@@ -21,7 +21,7 @@ export const ServerStatusPanel = () => {
     }
   }, []);
 
-  return <Window
+  return <Panel
     className="server-status"
     header={<div className="server-status-top-bar">
       <span>SERVER STATUS: </span>
@@ -62,5 +62,5 @@ export const ServerStatusPanel = () => {
                                      newReset={new Date(serverStatus.serverResets.next)} />
             </section>
         </>}
-  </Window>;
+  </Panel>;
 };

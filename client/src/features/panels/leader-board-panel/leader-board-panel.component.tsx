@@ -1,5 +1,5 @@
 import React from 'react';
-import { Currency, Window } from '@shared';
+import { Currency, Panel } from '@shared';
 import { useServerStatusStore } from '@zustand';
 import { Agent } from '@types';
 import "./leader-board-panel.styles.scss";
@@ -9,7 +9,7 @@ export const LeaderBoardPanel = () => {
   const { serverStatus } = useServerStatusStore();
 
   return (
-    <Window header="LEADERBOARDS" className="leaderboards">
+    <Panel header="LEADERBOARDS" className="leaderboards">
       <BoardContainer title="Most Credits">
         {serverStatus?.leaderboards.mostCredits.map((agent, i) => (
           <LeaderData
@@ -30,7 +30,7 @@ export const LeaderBoardPanel = () => {
           />
         ))}
       </BoardContainer>
-    </Window>
+    </Panel>
   );
 };
 

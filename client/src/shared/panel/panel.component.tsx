@@ -1,18 +1,18 @@
 import React, { ReactNode, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import './window.styles.scss';
+import './panel.styles.scss';
 
-interface WindowProps extends HTMLAttributes<HTMLDivElement> {
+interface PanelProps extends HTMLAttributes<HTMLDivElement> {
   header?: ReactNode;
 }
 
 /**
- * Simple wrapper component representing window on screen.
+ * Simple wrapper component representing panel on screen.
  */
-export const Window = ({ children, className, header, ...wrapperProps }: WindowProps) => {
+export const Panel = ({ children, className, header, ...wrapperProps }: PanelProps) => {
 
   return <div
-    className="window"
+    className="panel"
     {...wrapperProps}
   >
     {header && <div className='header'>{header}</div>}

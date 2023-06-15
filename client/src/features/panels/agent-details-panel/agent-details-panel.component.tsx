@@ -1,5 +1,5 @@
 import React from 'react';
-import { Currency, Window } from '@shared';
+import { Currency, Panel } from '@shared';
 import { useMyAgentDetailsStore, getMyAgentDetails } from '@zustand';
 import { useAuthorizedEffect } from '@utils';
 import './agent-details-panel.styles.scss';
@@ -15,7 +15,7 @@ export const AgentDetailsPanel = () => {
   }, []);
 
   return (
-    <Window header="AGENT DETAILS" className="agent-details">
+    <Panel header="AGENT DETAILS" className="agent-details">
       {agentDetails && (
         <>
             <div className="agent">
@@ -32,6 +32,6 @@ export const AgentDetailsPanel = () => {
           </div>
         </>
       )}
-    </Window>
+    </Panel>
   );
 };
