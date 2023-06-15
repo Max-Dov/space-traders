@@ -1,5 +1,7 @@
 import { DroppableProps as DroppablePropsOrig, Droppable as DroppableOrig } from 'react-beautiful-dnd';
 import React, { ReactNode } from 'react';
+import classNames from 'classnames';
+import './droppable.styles.scss';
 
 interface DroppableProps extends Omit<DroppablePropsOrig, 'children'> {
   children: ReactNode;
@@ -13,7 +15,11 @@ export const Droppable = ({ children, ...droppableProps }: DroppableProps) => {
     {(provided, snapshot) => (
       <div
         ref={provided.innerRef}
-        style={{ backgroundColor: snapshot.isDraggingOver ? '#353535' : 'transparent' }}
+        className={
+          classNames('droppable', {
+            'is-dragging-over': snapshot.isDraggingOver,
+          })
+        }
         {...provided.droppableProps}
       >
         {children}

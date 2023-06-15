@@ -25,7 +25,7 @@ const displayPanels = (panels: Array<Panel>) =>
   }, [] as Array<Panel>)
   .map((panel, index) => {
     const Component = FEATURE_ID_TO_COMPONENT[panel.componentId as PanelComponentsIds] as ComponentWithPanelId;
-    return <Draggable draggableId={`${panel.panelId}`} index={index} key={index}>
+    return <Draggable draggableId={`${panel.panelId}`} index={index} key={index} className="draggable-panel">
       <Component panelId={panel.panelId} />
     </Draggable>;
   });
@@ -41,12 +41,12 @@ export const AppLayout = () => {
       <div className="bar-row">
         <WindowsBar />
       </div>
-      <div className="big-windows-section">
+      <div className="main-section">
         <Droppable droppableId={PanelSections.MAIN_SECTION}>
           {displayPanels(mainSectionPanels)}
         </Droppable>
       </div>
-      <div className="small-windows-section">
+      <div className="side-section">
         <Droppable droppableId={PanelSections.SECONDARY_SECTION}>
           {displayPanels(sideSectionPanels)}
         </Droppable>

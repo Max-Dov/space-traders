@@ -1,0 +1,11 @@
+@import 'commonStyles/constants';
+
+.droppable {
+  outline-offset: 0.5rem;
+  outline: transparent dashed 2px;
+  transition: outline-color $transition-normal ease-in-out;
+
+  &.is-dragging-over {
+    outline-color: rgba($accent-color-important, 0.5)
+  }
+}
