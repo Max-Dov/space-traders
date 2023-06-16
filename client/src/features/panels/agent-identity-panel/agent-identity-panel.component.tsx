@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Input, Panel } from '@shared';
+import { Icon, Input, Panel } from '@shared';
 import {
-  applyAgentToken,
+  applyAgentToken, closePanel,
   createAgentIdentity,
   getMyAgentDetails,
   removeAgentToken,
@@ -15,7 +15,11 @@ import { useAuthorizedEffect } from '@utils';
 import { NewAgentIdentity } from './new-agent-identity.component';
 import './agent-identity-panel.styles.scss';
 
-export const AgentIdentityPanel = () => {
+interface AgentIdentityPanelProps {
+  panelId: string;
+}
+
+export const AgentIdentityPanel = ({panelId}: AgentIdentityPanelProps) => {
   const [identityVariant, setIdentityVariant] = useState<'existing' | 'new' | 'random'>('new');
   const [existingToken, setExistingToken] = useState<string | null>(null);
   const { savedAgentTokens } = useAgentsTokensStore();
@@ -46,12 +50,22 @@ export const AgentIdentityPanel = () => {
 
   return <Panel
     className="agent-identity"
-    header={<>
+    panelTitle={<>
       AGENT ID
       {agentDetails?.symbol && (
         <>: <strong className="agent-name">{agentDetails.symbol}</strong></>
       )}
     </>}
+    panelButtons={
+      <div className="flex-row">
+        <button className="inline-button" onClick={getMyAgentDetails}>
+          <Icon name="Reload" />
+        </button>
+        <button className="inline-button" onClick={() => closePanel(panelId)}>
+          <Icon name="Close" />
+        </button>
+      </div>
+    }
   >
     {savedAgentTokens.length > 0 && <TokenSelector />}
     <p className="helper-text">

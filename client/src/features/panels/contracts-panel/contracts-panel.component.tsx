@@ -1,12 +1,16 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Currency, Icon, Panel } from '@shared';
-import { acceptContract, getAllContracts, useContractsStore } from '@zustand';
+import { Currency, Icon, Panel, Placeholder } from '@shared';
+import { acceptContract, closePanel, getAllContracts, useContractsStore } from '@zustand';
 import { Contract } from '@types';
 import { formatNumber, formatTimeLeft, useAuthorizedEffect } from '@utils';
 import './contracts-panel.styles.scss';
 
-export const ContractsPanel = () => {
+interface ContractsPanelProps {
+  panelId: string;
+}
+
+export const ContractsPanel = ({ panelId }: ContractsPanelProps) => {
   const { contracts } = useContractsStore();
 
   useAuthorizedEffect(() => {
@@ -15,12 +19,26 @@ export const ContractsPanel = () => {
     }
   }, [contracts]);
 
-  return <Panel header={<>
-    <span>CONTRACTS</span>
-    {' '}
-    <span className="contracts-amount">({contracts.length})</span>
-  </>} className="contracts-panel">
+  return <Panel
+    panelTitle={<>
+      <span>CONTRACTS</span>
+      {' '}
+      <span className="contracts-amount">({contracts.length})</span>
+    </>}
+    panelButtons={
+      <div className="flex-row">
+        <button className="inline-button" onClick={getAllContracts}>
+          <Icon name="Reload" />
+        </button>
+        <button className="inline-button" onClick={() => closePanel(panelId)}>
+          <Icon name="Close" />
+        </button>
+      </div>
+    }
+    className="contracts-panel"
+  >
     {contracts.map(contract => <ContractInfo contract={contract} key={contract.id} />)}
+    {contracts.length === 0 && <Placeholder>Currently there are no contracts available.</Placeholder>}
   </Panel>;
 };
 

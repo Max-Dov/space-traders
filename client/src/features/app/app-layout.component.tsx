@@ -9,7 +9,7 @@ import {
   NetworkPanel,
   ServerStatusPanel,
   WindowsBar,
-  LeaderBoardPanel,
+  LeaderboardsPanel,
   AgentDetailsPanel,
 } from '@features';
 import { Panel, PanelSections, useOpenedPanelsStore } from '@zustand';
@@ -73,6 +73,6 @@ export const FEATURE_ID_TO_COMPONENT = {
   [PanelComponentsIds.FACTIONS]: FactionsPanel,
   [PanelComponentsIds.SERVER_STATUS]: ServerStatusPanel,
   [PanelComponentsIds.CONTRACTS]: ContractsPanel,
-  [PanelComponentsIds.LEADERBOARDS]: LeaderBoardPanel,
+  [PanelComponentsIds.LEADERBOARDS]: LeaderboardsPanel,
   [PanelComponentsIds.AGENT_DETAILS]: AgentDetailsPanel,
 };

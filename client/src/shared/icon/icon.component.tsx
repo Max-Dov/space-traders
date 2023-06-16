@@ -6,6 +6,11 @@ import Users from '@svgs/users.icon.svg';
 import ArrowRight from '@svgs/arrow-right.icon.svg';
 import CircledQuestion from '@svgs/circled-question.icon.svg';
 import CircledExclamation from '@svgs/circled-exclamation.icon.svg';
+import Advice from '@svgs/advice.icon.svg';
+import Close from '@svgs/close.icon.svg';
+import Move from '@svgs/move.icon.svg';
+import Reload from '@svgs/reload.icon.svg';
+import Settings from '@svgs/settings.icon.svg';
 
 interface IconProps extends HTMLAttributes<HTMLDivElement> {
   name: keyof typeof ICONS;
@@ -31,4 +36,9 @@ const ICONS = {
   ArrowRight: <ArrowRight />,
   CircledQuestion: <CircledQuestion />,
   CircledExclamation: <CircledExclamation />,
+  Advice: <Advice />,
+  Close: <Close />,
+  Move: <Move />,
+  Reload: <Reload />,
+  Settings: <Settings />,
 } as const;

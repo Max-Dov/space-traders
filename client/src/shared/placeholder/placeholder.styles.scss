@@ -1,0 +1,17 @@
+@import "commonStyles/constants";
+
+.placeholder {
+  padding: 1em;
+  color: rgba($font-color, 0.7);
+  font-family: $font-family-paragraph;
+  font-style: italic;
+  background: rgba($layout-color, 0.2);
+
+  p:nth-child(1) {
+    margin-top: 0;
+  }
+
+  p:nth-child(n) {
+    margin-top: 0;
+  }
+}
