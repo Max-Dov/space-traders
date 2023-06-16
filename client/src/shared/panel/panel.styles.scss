@@ -3,25 +3,29 @@
 .panel {
   height: fit-content;
 
-  border: 1px solid $background-color-1;
-  box-shadow: 0.25em 0.25em rgba($background-color-1, 0.5);
-  background-color: rgba($background-color-1, 0.1);
+  border: 1px solid $layout-color;
+  box-shadow: 0.25em 0.25em rgba($layout-color, 0.5);
+  background-color: rgba($layout-color, 0.1);
   transition: box-shadow $transition-normal ease-in-out, border-color $transition-normal ease-in-out, background-color $transition-normal ease-in-out;
 
   .header {
     transition: background-color $transition-normal ease-in-out;
-    background-color: $background-color-1;
+    background-color: $layout-color;
     padding: 0.25em 0.5em;
     font-family: $font-family-display-1;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   &:hover {
-    border: 1px solid $action-color;
-    box-shadow: 0.25em 0.25em rgba($action-color, 0.5);
-    background-color: rgba($action-color, 0.1);
+    border: 1px solid lighten($layout-color, 20%);
+    box-shadow: 0.25em 0.25em lighten($layout-color, 5%);
+    background-color: lighten($layout-color, 1%);
 
     .header {
-      background-color: $action-color;
+      background-color: lighten($layout-color, 20%);
     }
   }
 }

@@ -8,7 +8,7 @@
   padding: 0.5em;
 
   &.is-pending {
-    border: 2px dashed rgba($background-color-1, 0.5);
+    border: 2px dashed rgba($layout-color, 0.5);
   }
 
   &.is-accepted {

@@ -1,11 +1,15 @@
 import React, { useEffect } from 'react';
-import { Panel } from '@shared';
-import { getAllFactions, useFactionsStore } from '@zustand';
+import { Icon, Panel, Placeholder } from '@shared';
+import { closePanel, getAllFactions, useFactionsStore } from '@zustand';
 import { Faction } from '@types';
 import './factions-panel.styles.scss';
 import classNames from 'classnames';
 
-export const FactionsPanel = () => {
+interface FactionsPanelProps {
+  panelId: string;
+}
+
+export const FactionsPanel = ({ panelId }: FactionsPanelProps) => {
   const { factions } = useFactionsStore();
 
   useEffect(() => {
@@ -14,8 +18,22 @@ export const FactionsPanel = () => {
     }
   }, [factions]);
 
-  return <Panel header="FACTIONS" className="factions-container">
-    {factions.map(faction => <FactionSection key={faction.symbol} faction={faction}/>)}
+  return <Panel
+    className="factions-container"
+    panelTitle="FACTIONS"
+    panelButtons={
+      <div className="flex-row">
+        <button className="inline-button" onClick={getAllFactions}>
+          <Icon name="Reload" />
+        </button>
+        <button className="inline-button" onClick={() => closePanel(panelId)}>
+          <Icon name="Close" />
+        </button>
+      </div>
+    }
+  >
+    {factions.map(faction => <FactionSection key={faction.symbol} faction={faction} />)}
+    {factions.length === 0 && <Placeholder>No data available.</Placeholder>}
   </Panel>;
 };
 
@@ -26,7 +44,7 @@ interface FactionProps {
 const FactionSection = ({ faction }: FactionProps) => {
   const { symbol, name, description, headquarters, traits, isRecruiting } = faction;
 
-  return <div className={classNames("faction-container", symbol.toLowerCase())}>
+  return <div className={classNames('faction-container', symbol.toLowerCase())}>
     <div className="content-wrapper">
       <div className="name">{name}</div>
       <div className="traits">{traits.map(trait => <span key={trait.symbol}>{trait.name.toUpperCase()}</span>)}</div>

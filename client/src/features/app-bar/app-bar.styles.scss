@@ -2,7 +2,7 @@
 @import 'commonStyles/components';
 
 .app-bar {
-  border: 1px solid $background-color-1;
+  border: 1px solid $layout-color;
   display: flex;
   align-items: center;
   gap: 0.5em;
@@ -26,6 +26,6 @@
   }
 
   button.is-feature-panel-closed {
-    @include buttonColoring($action-secondary-color, $accent-color-important);
+    @include buttonColoring($action-color-secondary, $accent-color-important);
   }
 }

@@ -1,18 +1,9 @@
 @import "commonStyles/constants";
 
 .server-status {
-  button {
+  .sections {
+    justify-content: space-between;
     margin-bottom: 0.5em;
-  }
-
-  .flex-row {
-    display: flex;
-    gap: 0.5em;
-
-    &.sections {
-      justify-content: space-between;
-      margin-bottom: 0.5em;
-    }
   }
 
   .stat {

@@ -17,3 +17,4 @@ export * from './actions/agent-identity/create-agent-identity.action';
 export * from './actions/agent-identity/apply-agent-token.action';
 export * from './actions/agent-identity/switch-agent-token.action';
 export * from './actions/agent-identity/remove-agent-token.action';
+export * from './actions/close-panel.action';

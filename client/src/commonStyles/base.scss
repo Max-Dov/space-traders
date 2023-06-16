@@ -3,7 +3,7 @@
 @import "components";
 
 body {
-  background-color: $color-raisin-black;
+  background-color: $app-surface;
   font-family: $font-family-paragraph;
   color: $font-color;
   margin: 0;
@@ -34,7 +34,7 @@ p {
 .flex-row {
   display: flex;
   align-items: center;
-  gap: 1em;
+  gap: 0.5em;
 }
 
 .helper-text {
@@ -65,7 +65,7 @@ strong {
 
 * {
   &::-webkit-scrollbar {
-    background-color: rgba($background-color-1, 0.1);
+    background-color: rgba($layout-color, 0.1);
     width: 1rem;
   }
   &::-webkit-scrollbar-thumb {

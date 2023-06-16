@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Panel } from '@shared';
-import { useNetworkStore } from '@zustand';
+import { Icon, Panel } from '@shared';
+import { closePanel, useNetworkStore } from '@zustand';
 import './network-panel.styles.scss';
 import classNames from 'classnames';
 
@@ -48,10 +48,18 @@ const Request = ({ url, method, response, errorMessage }: RequestProps) => {
   </>;
 };
 
-export const NetworkPanel = () => {
+interface NetworkPanelProps {
+  panelId: string;
+}
+
+export const NetworkPanel = ({ panelId }: NetworkPanelProps) => {
   const { requests } = useNetworkStore();
 
-  return (<Panel header="NETWORK" className="network-panel">
+  return (<Panel panelTitle="NETWORK" className="network-panel" panelButtons={
+    <button className="inline-button">
+      <Icon name="Close" onClick={() => closePanel(panelId)} />
+    </button>
+  }>
     {requests.map(request => <Request key={request.id} {...request} />)}
   </Panel>);
 };

@@ -1,11 +1,15 @@
 import React from 'react';
-import { Currency, Panel } from '@shared';
-import { useMyAgentDetailsStore, getMyAgentDetails } from '@zustand';
+import { Currency, Icon, Panel, Placeholder } from '@shared';
+import { useMyAgentDetailsStore, getMyAgentDetails, closePanel } from '@zustand';
 import { useAuthorizedEffect } from '@utils';
 import './agent-details-panel.styles.scss';
 import classNames from 'classnames';
 
-export const AgentDetailsPanel = () => {
+interface AgentDetailsPanelProps {
+  panelId: string;
+}
+
+export const AgentDetailsPanel = ({ panelId }: AgentDetailsPanelProps) => {
   const { agentDetails } = useMyAgentDetailsStore();
 
   useAuthorizedEffect(() => {
@@ -15,13 +19,27 @@ export const AgentDetailsPanel = () => {
   }, []);
 
   return (
-    <Panel header="AGENT DETAILS" className="agent-details">
-      {agentDetails && (
+    <Panel
+      className="agent-details"
+      panelTitle="AGENT DETAILS"
+      panelButtons={
+        <div className="flex-row">
+          <button className="inline-button" onClick={getMyAgentDetails}>
+            <Icon name="Reload" />
+          </button>
+          <button className="inline-button" onClick={() => closePanel(panelId)}>
+            <Icon name="Close" />
+          </button>
+        </div>
+      }
+    >
+      {agentDetails ? (
         <>
-            <div className="agent">
-              <span className={classNames('faction',agentDetails.startingFaction.toLowerCase())}>[{agentDetails.startingFaction}]</span>{" "}
-              <span className="symbol">{agentDetails.symbol}</span>
-            </div>
+          <div className="agent">
+            <span
+              className={classNames('faction', agentDetails.startingFaction.toLowerCase())}>[{agentDetails.startingFaction}]</span>{' '}
+            <span className="symbol">{agentDetails.symbol}</span>
+          </div>
           <div className="field">
             Headquarters:
             <div className="value">{agentDetails.headquarters}</div>
@@ -31,6 +49,10 @@ export const AgentDetailsPanel = () => {
             <Currency amount={agentDetails.credits} />
           </div>
         </>
+      ) : (
+        <Placeholder>
+          No data available.
+        </Placeholder>
       )}
     </Panel>
   );
