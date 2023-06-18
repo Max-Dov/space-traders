@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   gap: 1em;
-  .products-container {
+  .container {
     display: flex;
     //flex-wrap: wrap;
     //justify-content: space-around;
@@ -45,16 +45,19 @@
 }
 
 .goods {
+  width: 100%;
   border-collapse: collapse;
   //border: 2px solid $action-color;
+  
   th {
     padding: 0.5em;
     border: 2px solid rgba($action-color, 0.5);
     //font-size: 1.1em;
   }
   td {
-    padding: 0 0.5em;
+    padding: 0.5em 0.5em;
     border: 2px solid rgba($action-color, 0.5);
+    cursor: pointer;
     div {
       display: flex;
       //padding: 0 0.5em;
@@ -65,5 +68,80 @@
         margin-right: 0.5em;
       }
     }
+  }
+  .active-row {
+    //border: 2px solid rgba(white, 0.5);
+    td {
+      padding: 1em 3em;
+      background-color: rgba(black, 0.2);
+      //box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0);
+      div {
+        display: flex;
+        flex-direction: row;
+        //justify-content: space-around;
+        
+        @media (max-width: 80rem) {
+          gap: 35%;
+        }
+      
+        @media (min-width: 80rem) {
+          //gap: 25%;
+          justify-content: space-around;
+        }
+        .container-input {
+          width: 9em;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.4em;
+        }
+        /*.container-btns {
+          display: flex;
+          flex-direction: row;
+
+          gap: 3em;*/
+          .container-btn {
+            display: flex;
+            
+            //align-items: flex-start;
+            
+            //justify-content: space-between;
+            @media (max-width: 80rem) {
+              flex-direction: column;
+              align-items:flex-start;
+              gap: 1em;
+            }
+          
+            @media (min-width: 80rem) {
+              flex-direction: row;
+              gap: 2em;
+              justify-content: flex-start;
+            }
+            div {
+              display: flex;
+            flex-direction: column;
+            //gap: 1em;
+            @media (max-width: 80rem) {
+              align-items: flex-start;
+              gap: 0.5em;
+            }
+          
+            @media (min-width: 80rem) {
+              gap: 1em;
+              align-items: flex-start;
+              width: 12em;
+            }
+            }
+          }
+        //}
+      }
+    }
+
+    //width: 100%;
+
+    /*.active-cell {
+    background-color: rgba($action-color, 0.1);
+    border: none;
+    }*/
   }
 }
