@@ -1,3 +1,6 @@
+/**
+ * Market model coming from API.
+ */
 export interface Market {
   symbol: string;
   exports: Array<{

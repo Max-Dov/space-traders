@@ -6,7 +6,7 @@ export * from './stores/use-factions.store';
 export * from './stores/use-contracts.store';
 export * from './stores/opened-panels';
 export * from './stores/use-ships.store';
-export * from './stores/use-market.store';
+export * from './stores/use-markets.store';
 
 export * from './actions/refresh-server-status.action';
 export * from './actions/get-my-agent-details.action';

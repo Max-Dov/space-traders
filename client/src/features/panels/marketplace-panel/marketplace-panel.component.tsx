@@ -1,191 +1,69 @@
-import { getShips, getMarket, useMarketStore, useShipsStore } from "@zustand";
-import React, { useState } from "react";
-import { Currency, Tooltip, Panel, Input } from "@shared";
-import { useAuthorizedEffect } from "@utils";
-import { Market } from "@types";
-import "./marketplace-panel.styles.scss";
+import React, { useState } from 'react';
+import { getShips, getMarket, useMarketsStore, useShipsStore, closePanel } from '@zustand';
+import { Tooltip, Panel, Tabs, Placeholder, Icon, Select } from '@shared';
+import { formatDate, useAuthorizedEffect } from '@utils';
+import { CommonFeaturePanelProps } from '@types';
+import './marketplace-panel.styles.scss';
+import { MarketOverview } from './market-overview.component';
 
-enum Sections {
-  Trade = 1,
-  Transactions = 2,
+interface MarketplacePanelProps extends CommonFeaturePanelProps {
 }
 
-export const MarketplacePanel = () => {
+export const MarketplacePanel = ({ panelIndex, panelId }: MarketplacePanelProps) => {
   const { ships } = useShipsStore();
-  const { market } = useMarketStore();
+  const { markets } = useMarketsStore();
+  const [selectedMarket, setSelectedMarket] = useState<string | null>(null); // waypointSymbol
+  const selectableMarkets = Object.keys(markets);
 
   useAuthorizedEffect(() => {
     if (ships.length === 0) {
       getShips();
+    } else {
+      // TODO cleanup
+      const whateverShip = ships[0];
+      const { waypointSymbol, systemSymbol } = whateverShip.nav;
+      getMarket(systemSymbol, waypointSymbol);
     }
-    if (market === null) {
-      ships.length > 0 &&
-        getMarket(ships[0].nav.systemSymbol, ships[0].nav.waypointSymbol);
-    }
-  }, []);
-
-  console.log(market);
-
-  const [sectionOpen, setSectionOpen] = useState(Sections.Trade);
-
-  const trade = () => {
-    return (
-      <>
-        <div className="container">
-          <div className="title">Export</div>
-          <div className="images">
-            {market &&
-              market.exports.map((el) => (
-                <Tooltip
-                  key={el.symbol}
-                  tooltipText={
-                    <ProductCard name={el.name} description={el.description} />
-                  }
-                >
-                  <img src={"assets/images/iron-one.webp"} alt={el.name} />
-                </Tooltip>
-              ))}
-          </div>
-        </div>
-        <div className="container">
-          <div className="title">Import</div>
-          <div className="images">
-            {market &&
-              market.imports.map((el) => (
-                <Tooltip
-                  key={el.symbol}
-                  tooltipText={
-                    <ProductCard name={el.name} description={el.description} />
-                  }
-                >
-                  <img src={"assets/images/iron-one.webp"} alt={el.name} />
-                </Tooltip>
-              ))}
-          </div>
-        </div>
-        <div className="container">
-          <table className="goods">
-            <thead>
-              <tr>
-                <th>Good</th>
-                <th>Volume</th>
-                <th>Supply</th>
-                <th>Purchase price</th>
-                <th>Sell price</th>
-              </tr>
-            </thead>
-            <tbody>
-              {market &&
-                market.tradeGoods.map((el) => (
-                  <TradeTableRow
-                    key={el.symbol}
-                    symbol={el.symbol}
-                    tradeVolume={el.tradeVolume}
-                    supply={el.supply}
-                    purchasePrice={el.purchasePrice}
-                    sellPrice={el.sellPrice}
-                  />
-                ))}
-            </tbody>
-          </table>
-        </div>
-      </>
-    );
-  };
-
-  const transactions = <div>dfjfjfk</div>;
+  }, [ships]);
 
   return (
-    <Panel header="MARKETPLACE" className="marketplace-panel">
-      <div className="btns">
-        <button onClick={() => setSectionOpen(Sections.Trade)}>trade</button>
-        <button onClick={() => setSectionOpen(Sections.Transactions)}>
-          transactions
+    <Panel
+      panelTitle={
+        <div className="panel-header">
+          MARKETPLACE
+          <Icon name="CaretRight" />
+          <Select
+            options={selectableMarkets.map(market => ({ label: market, key: market }))}
+            onOptionSelect={setSelectedMarket} placeholder="Select Market"
+            defaultOptionIndex={0}
+          />
+          {selectedMarket && <Tooltip tooltipText="Updated at timestamp. (day.month, hours:minutes)." omitTextUnderline>
+            <span className="updated-at">
+              {formatDate(markets[selectedMarket].updatedAt, 'DD.MO, HH:mm')}
+            </span>
+          </Tooltip>}
+        </div>
+      }
+      className="marketplace-panel"
+      panelButtons={<>
+        <button className="inline-button" onClick={() => closePanel(panelId)}>
+          <Icon name="Close" />
         </button>
-      </div>
-
-      {sectionOpen === Sections.Trade && trade()}
-      {sectionOpen === Sections.Transactions && transactions}
+      </>}
+      draggableProps={{ draggableIdAndKey: panelId, index: panelIndex }}
+    >
+      {selectedMarket === null
+        ? <Placeholder>
+          Select market from dropdown above. <br />
+          Note: You have access to markets where your ships are stationed (or were previously stationed).
+        </Placeholder>
+        : <Tabs tabs={[{
+          header: 'Overview',
+          content: <MarketOverview market={markets[selectedMarket]} />,
+        }, {
+          header: 'Transactions',
+          content: <Placeholder>Not Implemented Yet.</Placeholder>,
+        }]} omitContentWrap/>}
     </Panel>
-  );
-};
-
-interface ProductCardProps {
-  name: Market["exports"][0]["name"];
-  description: Market["exports"][0]["description"];
-}
-
-const ProductCard = ({ name, description }: ProductCardProps) => {
-  return (
-    <div className="info">
-      <div className="name">{name}</div>
-      <div className="description">{description}</div>
-    </div>
-  );
-};
-
-interface TradeTableRowProps {
-  symbol: Market["tradeGoods"][0]["symbol"];
-  tradeVolume: Market["tradeGoods"][0]["tradeVolume"];
-  supply: Market["tradeGoods"][0]["supply"];
-  purchasePrice: Market["tradeGoods"][0]["purchasePrice"];
-  sellPrice: Market["tradeGoods"][0]["sellPrice"];
-}
-
-const TradeTableRow = ({
-  symbol,
-  tradeVolume,
-  supply,
-  purchasePrice,
-  sellPrice,
-}: TradeTableRowProps) => {
-  const [active, setActive] = useState(false);
-  const [value, setValue] = useState("");
-  return (
-    <>
-      <tr onClick={(e) => setActive(!active)}>
-        <td>
-          <div>
-            <img src={"assets/images/iron-one.webp"} alt={symbol} />
-            {symbol}
-          </div>
-        </td>
-        <td>{tradeVolume}</td>
-        <td>{supply}</td>
-        <td>
-          <Currency amount={purchasePrice} />
-        </td>
-        <td>
-          <Currency amount={sellPrice} />
-        </td>
-      </tr>
-      {active && (
-        <tr className="active-row">
-          <td colSpan={5}>
-            <div>
-              <Input
-                id={symbol}
-                value={value}
-                onChange={setValue}
-                label="Enter the volume"
-                containerClassname="container-input"
-              />
-
-              <div className="container-btn">
-                <div>
-                  <div>Total purchase: {Number(value) * purchasePrice}</div>
-                  <button>Purchase</button>
-                </div>
-                <div>
-                  <div>Total sale: {Number(value) * sellPrice}</div>
-
-                  <button>Sell</button>
-                </div>
-              </div>
-            </div>
-          </td>
-        </tr>
-      )}
-    </>
   );
 };

@@ -25,6 +25,7 @@
   }
 
   .text-to-highlight {
+    display: flex; // todo workaround for weird behavior when tooltipping images
     border-bottom: 2px dashed rgba($font-color, 0.8);
     color: $accent-color-important;
     transition: border-bottom-color $transition-normal ease-in-out;
@@ -45,7 +46,7 @@
 
   .tooltip {
     position: absolute;
-    z-index: 1;
+    z-index: 3;
     top: 0;
     transform: translateY(calc(-100% - 0.2em));
 

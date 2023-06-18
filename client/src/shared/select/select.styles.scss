@@ -1,0 +1,39 @@
+@import "commonStyles/constants";
+
+.select-container {
+  position: relative;
+
+  .select-button {
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+    white-space: nowrap;
+
+    .clean-input {
+      border: none;
+      background: none;
+      &:hover {
+        color: $accent-color-important;
+      }
+    }
+
+    .placeholder {
+      padding: 0;
+      background: none;
+    }
+  }
+
+  .options {
+    position: absolute;
+    top: calc(100% + 0.25rem);
+    z-index: 2; // 1 is taken by tabs.
+    display: flex;
+    gap: 0.25rem;
+    flex-direction: column;
+
+    .option {
+      box-shadow: none;
+      white-space: nowrap;
+    }
+  }
+}

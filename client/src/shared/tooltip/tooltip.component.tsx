@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, ReactNode, useRef, useState } from 'react';
+import React, { HTMLAttributes, ReactNode, RefObject, useRef, useState } from 'react';
 import classNames from 'classnames';
 import './tooltip.styles.scss';
 import { Icon } from '@shared/icon/icon.component';
@@ -56,7 +56,7 @@ export const Tooltip = ({
   tooltipImgName,
 }: TooltipProps) => {
   const tooltipRef = useRef<HTMLDivElement>(null);
-  const childrenRef = useRef<HTMLSpanElement>(null);
+  const childrenRef = useRef<HTMLElement>(null);
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [isActive, setIsActive] = useState<boolean>(false);
   let timeout = 0;
@@ -73,26 +73,26 @@ export const Tooltip = ({
   return <div className={classNames('tooltip-container', {
     'omit-text-underline': omitTextUnderline,
   })}>
-    <span
-      ref={childrenRef}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {!isIconTooltip
-        ? <span
-          className="text-to-highlight"
-          onClick={() => setIsActive(!isActive)}
-        >
+    {!isIconTooltip
+      ? <span
+        ref={childrenRef}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className="text-to-highlight"
+        onClick={() => setIsActive(!isActive)}
+      >
           {children}
         </span>
-        : <button
-          onClick={() => setIsActive(!isActive)}
-          className={classNames('tooltip-button', { 'is-active': isActive })}
-        >
-          {customIcon || <Icon name="CircledQuestion" />}
-        </button>
-      }
-    </span>
+      : <button
+        ref={childrenRef as RefObject<HTMLButtonElement>}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onClick={() => setIsActive(!isActive)}
+        className={classNames('tooltip-button', { 'is-active': isActive })}
+      >
+        {customIcon || <Icon name="CircledQuestion" />}
+      </button>
+    }
     {shouldDisplay && (
       isFancyTooltip
         ? (
