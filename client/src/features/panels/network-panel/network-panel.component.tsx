@@ -3,6 +3,7 @@ import { Icon, Panel, Tooltip } from '@shared';
 import { closePanel, useNetworkStore } from '@zustand';
 import './network-panel.styles.scss';
 import classNames from 'classnames';
+import { CommonFeaturePanelProps } from '@types';
 
 interface RequestProps {
   id: string;
@@ -48,34 +49,38 @@ const Request = ({ url, method, response, errorMessage }: RequestProps) => {
   </>;
 };
 
-interface NetworkPanelProps {
-  panelId: string;
+interface NetworkPanelProps extends CommonFeaturePanelProps {
 }
 
-export const NetworkPanel = ({ panelId }: NetworkPanelProps) => {
+export const NetworkPanel = ({ panelId, panelIndex }: NetworkPanelProps) => {
   const { requests } = useNetworkStore();
 
-  return (<Panel panelTitle={
-    <>
-      NETWORK
-      {' '}
-      <Tooltip
-        isFancyTooltip
-        isIconTooltip
-        tooltipText={<>
-          Network panel <strong>displays all requests</strong> made by an application.<br />
-          This may be useful when trying latest features as these often break,<br />
-          but panel would keep response error messages displayed for easier<br />
-          debugging.
-        </>}
-        tooltipImgName="network-panel-tooltip"
-      />
-    </>
-  } className="network-panel" panelButtons={
-    <button className="inline-button">
-      <Icon name="Close" onClick={() => closePanel(panelId)} />
-    </button>
-  }>
+  return (<Panel
+    panelTitle={
+      <>
+        NETWORK
+        {' '}
+        <Tooltip
+          isFancyTooltip
+          isIconTooltip
+          tooltipText={<>
+            Network panel <strong>displays all requests</strong> made by an application.<br />
+            This may be useful when trying latest features as these often break,<br />
+            but panel would keep response error messages displayed for easier<br />
+            debugging.
+          </>}
+          tooltipImgName="network-panel-tooltip"
+        />
+      </>
+    }
+    className="network-panel"
+    panelButtons={
+      <button className="inline-button" onClick={() => closePanel(panelId)} >
+        <Icon name="Close"/>
+      </button>
+    }
+    draggableProps={{ index: panelIndex, draggableIdAndKey: panelId }}
+  >
     {requests.map(request => <Request key={request.id} {...request} />)}
   </Panel>);
 };

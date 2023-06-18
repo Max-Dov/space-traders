@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react';
 import { Icon, Panel, Placeholder } from '@shared';
 import { closePanel, getAllFactions, useFactionsStore } from '@zustand';
-import { Faction } from '@types';
+import { CommonFeaturePanelProps, Faction } from '@types';
 import './factions-panel.styles.scss';
 import classNames from 'classnames';
 
-interface FactionsPanelProps {
-  panelId: string;
+interface FactionsPanelProps extends CommonFeaturePanelProps {
 }
 
-export const FactionsPanel = ({ panelId }: FactionsPanelProps) => {
+export const FactionsPanel = ({ panelId, panelIndex }: FactionsPanelProps) => {
   const { factions } = useFactionsStore();
 
   useEffect(() => {
@@ -31,6 +30,7 @@ export const FactionsPanel = ({ panelId }: FactionsPanelProps) => {
         </button>
       </div>
     }
+    draggableProps={{ index: panelIndex, draggableIdAndKey: panelId }}
   >
     {factions.map(faction => <FactionSection key={faction.symbol} faction={faction} />)}
     {factions.length === 0 && <Placeholder>No data available.</Placeholder>}

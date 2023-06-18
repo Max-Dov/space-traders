@@ -1,6 +1,6 @@
 import React, { JSX } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
-import { Droppable, Draggable } from '@shared';
+import { Droppable } from '@shared';
 import './app-layout.styles.scss';
 import {
   AgentIdentityPanel,
@@ -21,7 +21,7 @@ const displayPanels = (panels: Array<Panel>) =>
   .map(displayPanel);
 
 const reduceToExistingPanels = (existingPanels: Array<Panel>, panel: Panel) => {
-  const Component = FEATURE_ID_TO_COMPONENT[panel.componentId] as ComponentWithPanelId | undefined;
+  const Component = FEATURE_ID_TO_COMPONENT[panel.componentId] as PanelComponent | undefined;
   if (Component) {
     existingPanels.push(panel);
   }
@@ -29,10 +29,8 @@ const reduceToExistingPanels = (existingPanels: Array<Panel>, panel: Panel) => {
 };
 
 const displayPanel = (panel: Panel, index: number) => {
-  const Component = FEATURE_ID_TO_COMPONENT[panel.componentId] as ComponentWithPanelId;
-  return <Draggable draggableId={panel.panelId} index={index} key={panel.panelId} className="draggable-panel">
-    <Component panelId={panel.panelId} />
-  </Draggable>;
+  const Component = FEATURE_ID_TO_COMPONENT[panel.componentId] as PanelComponent;
+  return <Component panelId={panel.panelId} panelIndex={index} key={index} />;
 };
 
 /**
@@ -60,7 +58,10 @@ export const AppLayout = () => {
   </div>;
 };
 
-type ComponentWithPanelId = ({ panelId }: { panelId: string }) => JSX.Element
+type PanelComponent = (props: {
+  panelId: string
+  panelIndex: number
+}) => JSX.Element
 
 /**
  * Facing weird bugs if placing these constants under @constants.
