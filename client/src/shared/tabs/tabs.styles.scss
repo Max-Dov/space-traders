@@ -1,0 +1,51 @@
+@import 'commonStyles/constants';
+@import 'commonStyles/components';
+
+.tabs {
+  .headers {
+    padding: 0 0.35rem;
+
+    .header-wrapper {
+      display: inline-block;
+      position: relative;
+      margin: 0 -0.35rem;
+      filter: drop-shadow(0 0 0.75rem black);
+      z-index: 1;
+
+      .header-button {
+        padding: 0.5em 1.2em;
+        box-shadow: none;
+        clip-path: polygon(0.7em 0%, calc(100% - 0.7em) 0%, 100% 100%, 0% 100%);
+        border: none;
+        transition: none;
+        background-color: darken($action-color, 30%);
+
+        &:hover {
+          background-color: darken($action-color, 20%);
+        }
+
+        &:active {
+          background-color: darken($action-color, 15%);
+        }
+      }
+
+      &.active-tab {
+        z-index: 2;
+
+        .header-button {
+          background-color: darken($accent-color-important, 25%);
+
+          &:active {
+            background-color: darken($accent-color-important, 20%);
+          }
+        }
+      }
+
+    }
+  }
+
+  .tab-content {
+    padding: 0.5rem;
+    border: 2px solid $layout-color;
+  }
+}

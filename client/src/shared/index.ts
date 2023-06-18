@@ -6,3 +6,4 @@ export * from './tooltip/tooltip.component';
 export * from './droppable/droppable.component';
 export * from './draggable/draggable.component';
 export * from './placeholder/placeholder.component';
+export * from './tabs/tabs.component';

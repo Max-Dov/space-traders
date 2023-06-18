@@ -22,7 +22,6 @@
   &:hover {
     border: 1px solid lighten($layout-color, 20%);
     box-shadow: 0.25em 0.25em lighten($layout-color, 5%);
-    background-color: lighten($layout-color, 1%);
 
     .header {
       background-color: lighten($layout-color, 20%);
