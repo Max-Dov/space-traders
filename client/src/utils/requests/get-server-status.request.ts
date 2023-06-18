@@ -6,4 +6,5 @@ export const getServerStatus = (): Promise<ServerStatus | null> =>
   makeApiRequest({
     method: 'GET',
     url: ApiUrls.BASE_API_URL,
+    omitAuthToken: true,
   });

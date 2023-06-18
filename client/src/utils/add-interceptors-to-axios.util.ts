@@ -1,12 +1,18 @@
 import axios, { InternalAxiosRequestConfig } from 'axios';
 import { useAgentsTokensStore } from '@zustand';
+import { ApiRequestParams } from '@types';
+
+interface CustomInternalAxiosRequestConfig extends InternalAxiosRequestConfig {
+  omitAuthToken: ApiRequestParams['omitAuthToken'];
+}
 
 /**
  * Adds API authorization token to request headers if possible.
  */
-const authorizeRequest = (config: InternalAxiosRequestConfig) => {
+const authorizeRequest = (config: CustomInternalAxiosRequestConfig) => {
   const agentToken = useAgentsTokensStore.getState().agentToken;
-  if (agentToken !== null) {
+  const omitAuthToken = config.omitAuthToken;
+  if (!omitAuthToken && agentToken !== null) {
     config.headers.set('Authorization', `Bearer ${agentToken}`);
   }
 };
@@ -41,7 +47,7 @@ const addUrlParams = (config: InternalAxiosRequestConfig) => {
  */
 export const addInterceptorsToAxios = () => {
   axios.interceptors.request.use((config) => {
-    authorizeRequest(config);
+    authorizeRequest(config as CustomInternalAxiosRequestConfig);
     addUrlParams(config);
     return config;
   }, (error) => {

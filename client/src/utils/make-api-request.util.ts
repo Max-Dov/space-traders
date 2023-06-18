@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import { useNetworkStore } from '@zustand';
 import { ApiRequestParams } from '@types';
 
@@ -11,6 +11,7 @@ export const makeApiRequest = async <ResponseType = unknown>({
   data,
   listParams,
   urlParams,
+  omitAuthToken,
 }: ApiRequestParams): Promise<ResponseType | null> => {
   const requestLog = logToNetworkPanel(method, url);
   try {
@@ -19,7 +20,8 @@ export const makeApiRequest = async <ResponseType = unknown>({
       url,
       data,
       params: { ...listParams, ...urlParams },
-    });
+      omitAuthToken,
+    } as AxiosRequestConfig);
     const responseCode = response.status;
     useNetworkStore.getState().updateRequest({ ...requestLog, response: responseCode });
     return response.data;
