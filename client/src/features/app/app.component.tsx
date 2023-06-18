@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { AppLayout } from './app-layout.component';
-import { cleanStoresOnServerRestart, useServerStatusStore } from '@zustand';
+import { cleanStoresOnServerRestart, refreshServerStatus, useServerStatusStore } from '@zustand';
 
 export const App = () => {
   const { serverStatus } = useServerStatusStore();
@@ -8,6 +8,10 @@ export const App = () => {
   useEffect(() => {
     cleanStoresOnServerRestart();
   }, [serverStatus]);
+
+  useEffect(() => {
+    refreshServerStatus();
+  }, []);
 
   return <div className="app">
     <AppLayout />

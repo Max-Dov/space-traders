@@ -14,4 +14,8 @@ export interface ApiRequestParams {
   urlParams?: {
     [key in string]: string | number;
   };
+  /**
+   * If true, then auth token would not be included in request headers.
+   */
+  omitAuthToken?: boolean;
 }
