@@ -5,12 +5,12 @@ import { useIsServerUp, formatDate } from '@utils';
 import { Panel, Icon, Tooltip, Placeholder } from '@shared';
 import './server-status-panel.styles.scss';
 import { TimelineProgressBar } from './timeline-progress-bar';
+import { CommonFeaturePanelProps } from '@types';
 
-interface ServerStatusPanelProps {
-  panelId: string;
+interface ServerStatusPanelProps extends CommonFeaturePanelProps {
 }
 
-export const ServerStatusPanel = ({ panelId }: ServerStatusPanelProps) => {
+export const ServerStatusPanel = ({ panelId, panelIndex }: ServerStatusPanelProps) => {
   const { serverStatus } = useServerStatusStore();
   const isServerUp = useIsServerUp();
   const resetOld = serverStatus && formatDate(serverStatus.resetDate, 'DOW, DD MMM');
@@ -44,6 +44,7 @@ export const ServerStatusPanel = ({ panelId }: ServerStatusPanelProps) => {
         </button>
       </div>
     }
+    draggableProps={{ index: panelIndex, draggableIdAndKey: panelId }}
   >
     {serverStatus !== null
       ? (<>

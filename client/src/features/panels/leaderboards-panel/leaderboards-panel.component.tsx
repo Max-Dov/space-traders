@@ -1,15 +1,14 @@
 import React from 'react';
 import { Currency, Icon, Panel, Placeholder } from '@shared';
 import { closePanel, refreshServerStatus, useServerStatusStore } from '@zustand';
-import { Agent } from '@types';
+import { Agent, CommonFeaturePanelProps } from '@types';
 import './leaderboards-panel.styles.scss';
 import { formatNumber } from '@utils';
 
-interface LeaderboardsPanelProps {
-  panelId: string;
+interface LeaderboardsPanelProps extends CommonFeaturePanelProps {
 }
 
-export const LeaderboardsPanel = ({ panelId }: LeaderboardsPanelProps) => {
+export const LeaderboardsPanel = ({ panelId, panelIndex }: LeaderboardsPanelProps) => {
   const { serverStatus } = useServerStatusStore();
 
   return (
@@ -26,6 +25,7 @@ export const LeaderboardsPanel = ({ panelId }: LeaderboardsPanelProps) => {
           </button>
         </div>
       }
+      draggableProps={{ index: panelIndex, draggableIdAndKey: panelId }}
     >{
       serverStatus === null
         ? (

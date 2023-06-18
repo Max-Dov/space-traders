@@ -29,6 +29,7 @@ export const Tabs = ({
           className={classNames('header-wrapper', {
             'active-tab': index === currentTab,
           })}
+          key={index}
         >
           <button
             key={index}

@@ -1,15 +1,15 @@
 import React from 'react';
+import classNames from 'classnames';
 import { Currency, Icon, Panel, Placeholder } from '@shared';
 import { useMyAgentDetailsStore, getMyAgentDetails, closePanel } from '@zustand';
 import { useAuthorizedEffect } from '@utils';
+import { CommonFeaturePanelProps } from '@types';
 import './agent-details-panel.styles.scss';
-import classNames from 'classnames';
 
-interface AgentDetailsPanelProps {
-  panelId: string;
+interface AgentDetailsPanelProps extends CommonFeaturePanelProps {
 }
 
-export const AgentDetailsPanel = ({ panelId }: AgentDetailsPanelProps) => {
+export const AgentDetailsPanel = ({ panelId, panelIndex }: AgentDetailsPanelProps) => {
   const { agentDetails } = useMyAgentDetailsStore();
 
   useAuthorizedEffect(() => {
@@ -32,6 +32,7 @@ export const AgentDetailsPanel = ({ panelId }: AgentDetailsPanelProps) => {
           </button>
         </div>
       }
+      draggableProps={{ index: panelIndex, draggableIdAndKey: panelId }}
     >
       {agentDetails ? (
         <>

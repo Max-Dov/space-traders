@@ -10,16 +10,15 @@ import {
   useMyAgentDetailsStore,
 } from '@zustand';
 import { Factions } from '@constants';
-import { CreateAgent } from '@types';
+import { CommonFeaturePanelProps, CreateAgent } from '@types';
 import { useAuthorizedEffect } from '@utils';
 import { NewAgentIdentity } from './new-agent-identity.component';
 import './agent-identity-panel.styles.scss';
 
-interface AgentIdentityPanelProps {
-  panelId: string;
+interface AgentIdentityPanelProps extends CommonFeaturePanelProps {
 }
 
-export const AgentIdentityPanel = ({ panelId }: AgentIdentityPanelProps) => {
+export const AgentIdentityPanel = ({ panelId, panelIndex }: AgentIdentityPanelProps) => {
   const [existingToken, setExistingToken] = useState<string | null>(null);
   const { savedAgentTokens } = useAgentsTokensStore();
   const { agentDetails } = useMyAgentDetailsStore();
@@ -65,6 +64,7 @@ export const AgentIdentityPanel = ({ panelId }: AgentIdentityPanelProps) => {
         </button>
       </div>
     }
+    draggableProps={{ index: panelIndex, draggableIdAndKey: panelId }}
   >
     {savedAgentTokens.length > 0 && <TokenSelector />}
     <p className="helper-text">

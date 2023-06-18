@@ -2,15 +2,14 @@ import React from 'react';
 import classNames from 'classnames';
 import { Currency, Icon, Panel, Placeholder } from '@shared';
 import { acceptContract, closePanel, getAllContracts, useContractsStore } from '@zustand';
-import { Contract } from '@types';
+import { CommonFeaturePanelProps, Contract } from '@types';
 import { formatNumber, formatTimeLeft, useAuthorizedEffect } from '@utils';
 import './contracts-panel.styles.scss';
 
-interface ContractsPanelProps {
-  panelId: string;
+interface ContractsPanelProps extends CommonFeaturePanelProps {
 }
 
-export const ContractsPanel = ({ panelId }: ContractsPanelProps) => {
+export const ContractsPanel = ({ panelId, panelIndex }: ContractsPanelProps) => {
   const { contracts } = useContractsStore();
 
   useAuthorizedEffect(() => {
@@ -36,6 +35,7 @@ export const ContractsPanel = ({ panelId }: ContractsPanelProps) => {
       </div>
     }
     className="contracts-panel"
+    draggableProps={{ index: panelIndex, draggableIdAndKey: panelId }}
   >
     {contracts.map(contract => <ContractInfo contract={contract} key={contract.id} />)}
     {contracts.length === 0 && <Placeholder>Currently there are no contracts available.</Placeholder>}
