@@ -4,7 +4,14 @@
   display: inline-block;
   position: relative;
 
-  button {
+  .tooltip-button {
+    background: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    border: none;
+    vertical-align: bottom;
+
     color: $font-color;
     transition: color $transition-normal ease-in-out;
 
@@ -17,15 +24,6 @@
     }
   }
 
-  button.tooltip-button {
-    background: none;
-    padding: 0;
-    margin: 0;
-    box-shadow: none;
-    border: none;
-    vertical-align: bottom;
-  }
-
   .text-to-highlight {
     border-bottom: 2px dashed rgba($font-color, 0.8);
     color: $accent-color-important;
@@ -36,21 +34,62 @@
     }
   }
 
+  &.omit-text-underline .text-to-highlight {
+    border-bottom: none;
+  }
+
   .tooltip-button, .text-to-highlight {
     cursor: pointer;
   }
-}
 
-.tooltip-text {
-  font-size: 0.9rem;
-  position: absolute;
-  transform: translateY(calc(-100% - 0.2em)) translateX(-50%);
-  background-color: rgba(black, 0.8);
-  font-weight: 400;
-  top: 0;
-  white-space: nowrap;
-  padding: 0.3em 0.5em;
-  line-height: 1.6em;
-  color: $font-color;
-  z-index: 1;
+
+  .tooltip {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    transform: translateY(calc(-100% - 0.2em));
+
+    background-color: rgba(black, 0.8);
+    border: 1px solid $accent-color-important;
+
+    animation: $transition-normal fadeIn ease;
+
+    .tooltip-text, &.tooltip-text {
+      font-size: 1rem;
+      line-height: 1.6rem;
+      font-weight: 400;
+      white-space: nowrap;
+      color: $font-color;
+      font-family: $font-family-paragraph;
+
+      padding: 0.5rem;
+    }
+
+    &.simple-tooltip {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+
+    &.fancy-tooltip {
+      .image-with-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 0.5rem;
+      }
+
+      .tooltip-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 1.2rem;
+        padding: 0.5rem;
+        background-color: rgba($accent-color-important, 0.3);
+        height: 100%;
+        font-family: $font-family-header;
+        font-weight: 400;
+      }
+    }
+  }
 }

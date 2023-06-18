@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Icon, Panel } from '@shared';
+import { Icon, Panel, Tooltip } from '@shared';
 import { closePanel, useNetworkStore } from '@zustand';
 import './network-panel.styles.scss';
 import classNames from 'classnames';
@@ -55,7 +55,23 @@ interface NetworkPanelProps {
 export const NetworkPanel = ({ panelId }: NetworkPanelProps) => {
   const { requests } = useNetworkStore();
 
-  return (<Panel panelTitle="NETWORK" className="network-panel" panelButtons={
+  return (<Panel panelTitle={
+    <>
+      NETWORK
+      {' '}
+      <Tooltip
+        isFancyTooltip
+        isIconTooltip
+        tooltipText={<>
+          Network panel <strong>displays all requests</strong> made by an application.<br />
+          This may be useful when trying latest features as these often break,<br />
+          but panel would keep response error messages displayed for easier<br />
+          debugging.
+        </>}
+        tooltipImgName="network-panel-tooltip"
+      />
+    </>
+  } className="network-panel" panelButtons={
     <button className="inline-button">
       <Icon name="Close" onClick={() => closePanel(panelId)} />
     </button>
