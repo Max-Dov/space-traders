@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Icon, Input, Panel } from '@shared';
+import { Icon, Input, Panel, Tabs } from '@shared';
 import {
   applyAgentToken, closePanel,
   createAgentIdentity,
@@ -19,8 +19,7 @@ interface AgentIdentityPanelProps {
   panelId: string;
 }
 
-export const AgentIdentityPanel = ({panelId}: AgentIdentityPanelProps) => {
-  const [identityVariant, setIdentityVariant] = useState<'existing' | 'new' | 'random'>('new');
+export const AgentIdentityPanel = ({ panelId }: AgentIdentityPanelProps) => {
   const [existingToken, setExistingToken] = useState<string | null>(null);
   const { savedAgentTokens } = useAgentsTokensStore();
   const { agentDetails } = useMyAgentDetailsStore();
@@ -72,36 +71,22 @@ export const AgentIdentityPanel = ({panelId}: AgentIdentityPanelProps) => {
       <strong>Create new</strong> Agent or <strong>Enter existing</strong> Agent token or <strong>Generate
       random</strong> identity.
     </p>
-    <div className="identity-variant-bar">
-      <Input
-        name="identity"
-        id="new-identity"
-        type="radio"
-        onClick={() => setIdentityVariant('new')}
-        value={identityVariant}
-        label="New Identity"
-        checked={identityVariant === 'new'}
-      />
-      <Input
-        name="identity"
-        id="random-identity"
-        type="radio"
-        onClick={() => setIdentityVariant('random')}
-        value={identityVariant}
-        label="Random Identity"
-      />
-      <Input
-        name="identity"
-        id="existing-identity"
-        type="radio"
-        onClick={() => setIdentityVariant('existing')}
-        value={identityVariant}
-        label="Existing Identity"
-      />
-    </div>
-    {identityVariant === 'new' && (<NewAgentIdentity />)}
-    {identityVariant === 'existing' && (
-      <>
+    <Tabs tabs={[{
+      header: 'New Identity',
+      content: <NewAgentIdentity />,
+    }, {
+      header: 'Random Identity',
+      content: <>
+        <h3 className="header-font">Generate Random Identity</h3>
+        <p>
+          Don't like filling forms?
+          Press button below to create <strong>semi-random name and faction</strong>.
+        </p>
+        <button onClick={createRandomIdentity}>Randomize Me!</button>
+      </>,
+    }, {
+      header: 'Existing Identity',
+      content: <>
         <h3 className="header-font">Existing Token Import</h3>
         <Input
           id="token-input"
@@ -111,18 +96,8 @@ export const AgentIdentityPanel = ({panelId}: AgentIdentityPanelProps) => {
           style={{ marginBottom: '1em' }}
         />
         <button onClick={applyNewToken} disabled={!existingToken}>Apply Token</button>
-      </>
-    )}
-    {identityVariant === 'random' && (
-      <>
-        <h3 className="header-font">Generate Random Identity</h3>
-        <p>
-          Don't like filling forms?
-          Press button below to create <strong>semi-random name and faction</strong>.
-        </p>
-        <button onClick={createRandomIdentity}>Randomize Me!</button>
-      </>
-    )}
+      </>,
+    }]} />
   </Panel>;
 };
 
