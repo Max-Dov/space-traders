@@ -17,6 +17,7 @@ import Backspace from '@svgs/backspace.svg';
 import Package from '@svgs/package.svg';
 import Import from '@svgs/import.svg';
 import Export from '@svgs/export.svg';
+import ArrowElbowDownRight from '@svgs/arrow-elbow-down-right.svg';
 
 interface IconProps extends HTMLAttributes<HTMLDivElement> {
   name: keyof typeof ICONS;
@@ -53,4 +54,5 @@ const ICONS = {
   Package: <Package />,
   Import: <Import />,
   Export: <Export />,
+  ArrowElbowDownRight: <ArrowElbowDownRight />,
 } as const;

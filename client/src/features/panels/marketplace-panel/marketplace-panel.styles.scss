@@ -57,29 +57,86 @@
         font-family: $font-family-header;
         font-size: 1.1rem;
         font-weight: bolder;
-        padding: 0.25em 0.5em;
+        padding: 0.25rem 0.5rem;
       }
     }
 
     tbody {
       tr {
+        transition: background-color $transition-normal;
+
         &:nth-child(odd) {
           background-color: rgba($layout-color, 0.2);
         }
 
         &:hover {
-          background-color: rgba($layout-color, 0.4);
+          background-color: rgba($layout-color, 0.6);
         }
 
-        td:nth-child(1) {
+        &:active {
+          background-color: rgba($layout-color, 0.8);
+        }
+
+        td div.good-name-with-icon {
           display: flex;
           align-items: center;
           gap: 0.5rem;
         }
+
+        &.is-expanded {
+          background-color: rgba($layout-color, 1);
+        }
+
+        &.trade-row {
+          background-color: rgba($layout-color, 0.6);
+          box-shadow: 0 0 0.2rem inset black;
+
+          td {
+            padding: 0;
+          }
+
+          div.action {
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            .arrow-icon {
+              font-size: 1.4rem;
+              margin-left: 0.7rem;
+              color: $accent-color-important;
+            }
+
+            .action-word {
+              color: $accent-color-important;
+              font-weight: bold;
+            }
+
+            .trade-amount-input-wrapper {
+              display: flex;
+              gap: 0.5rem;
+              align-items: center;
+
+              .trade-amount-input {
+                width: 5rem;
+                border: none;
+                border-bottom: $action-color 2px solid;
+                background: none;
+                box-shadow: none;
+              }
+            }
+
+            .action-button {
+              display: flex;
+              gap: 0.3em;
+              align-items: center;
+            }
+          }
+        }
       }
 
       td {
-        padding: 0.25rem;
+        padding: 0.25rem 0.5rem;
 
         img {
           height: 2rem;
