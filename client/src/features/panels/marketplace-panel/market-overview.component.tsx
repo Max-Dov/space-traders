@@ -1,6 +1,14 @@
 import React from 'react';
-import { Market } from '@types';
-import { Icon, Tooltip } from '@shared';
+import { Market, Supply } from '@types';
+import { Currency, Icon, Tooltip } from '@shared';
+import { formatNumber } from '@utils';
+
+const TRADE_VOLUME_TO_LABEL = {
+  [Supply.SCARCE]: 'Scarce',
+  [Supply.LIMITED]: 'Limited',
+  [Supply.MODERATE]: 'Moderate',
+  [Supply.ABUNDANT]: 'Abundant',
+}
 
 interface MarketOverviewProps {
   market: Market;
@@ -46,12 +54,16 @@ interface MarketTableProps {
 
 const MarketTable = ({ market }: MarketTableProps) => {
   const { tradeGoods } = market;
+  const tradeGoodsSymbolToName = market.imports.concat(market.exports).reduce((acc, product) => {
+    acc[product.symbol] = product.name;
+    return acc;
+  }, {} as {[key in any]: string});
   return <table className="market-table">
     <thead>
     <tr>
       <th>Product</th>
       <th>
-        Volume / Supply
+        Vol. / Supply
         {' '}
         <Tooltip tooltipText="Once supply of item changes, trade volume changes." isIconTooltip />
       </th>
@@ -66,9 +78,18 @@ const MarketTable = ({ market }: MarketTableProps) => {
           <td>
             <img src={`/ammonia_ice.webp`} alt={tradeGood.symbol.toLowerCase()} />
             {/*<img src={`/${tradeGood.symbol.toLowerCase()}.webp`} alt={tradeGood.symbol.toLowerCase()} />*/}
-            {tradeGood.symbol.toLowerCase()}
+            {tradeGoodsSymbolToName[tradeGood.symbol] || tradeGood.symbol.toLowerCase()}
           </td>
-        </tr>
+          <td>
+            {formatNumber(tradeGood.tradeVolume)} ({TRADE_VOLUME_TO_LABEL[tradeGood.supply]})
+          </td>
+          <td>
+            <Currency amount={tradeGood.purchasePrice} />
+          </td>
+          <td>
+            <Currency amount={tradeGood.sellPrice} />
+          </td>
+        </tr>;
       })
     }
     </tbody>
