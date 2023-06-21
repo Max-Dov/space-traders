@@ -22,3 +22,4 @@ export * from './actions/agent-identity/remove-agent-token.action';
 export * from './actions/get-ships.action';
 export * from './actions/get-market.action';
 export * from './actions/close-panel.action';
+export * from './actions/buy-cargo.action';

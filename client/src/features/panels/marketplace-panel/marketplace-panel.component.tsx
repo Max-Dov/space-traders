@@ -59,7 +59,7 @@ export const MarketplacePanel = ({ panelIndex, panelId }: MarketplacePanelProps)
         </Placeholder>
         : <Tabs tabs={[{
           header: 'Overview',
-          content: <MarketOverview market={markets[selectedMarket]} />,
+          content: <MarketOverview market={markets[selectedMarket]} shipSymbol={ships[0].symbol}/>,
         }, {
           header: 'Transactions',
           content: <Placeholder>Not Implemented Yet.</Placeholder>,

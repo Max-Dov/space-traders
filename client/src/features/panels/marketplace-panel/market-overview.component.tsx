@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Market, Supply } from '@types';
 import { Currency, Icon, Input, Tooltip } from '@shared';
 import { formatNumber } from '@utils';
+import { buyCargo } from '@zustand';
 import classNames from 'classnames';
 
 const TRADE_VOLUME_TO_LABEL = {
@@ -13,9 +14,10 @@ const TRADE_VOLUME_TO_LABEL = {
 
 interface MarketOverviewProps {
   market: Market;
+  shipSymbol: string;
 }
 
-export const MarketOverview = ({ market }: MarketOverviewProps) => {
+export const MarketOverview = ({ market, shipSymbol }: MarketOverviewProps) => {
   const { imports, exports } = market;
 
   return (
@@ -50,16 +52,17 @@ export const MarketOverview = ({ market }: MarketOverviewProps) => {
             </Tooltip>)}
         </div>
       </div>
-      <MarketTable market={market} />
+      <MarketTable market={market} shipSymbol={shipSymbol}/>
     </section>
   );
 };
 
 interface MarketTableProps {
   market: Market;
+  shipSymbol: string;
 }
 
-const MarketTable = ({ market }: MarketTableProps) => {
+const MarketTable = ({ market, shipSymbol }: MarketTableProps) => {
   const { tradeGoods } = market;
   const tradeGoodsSymbolToName = market.imports.concat(market.exports).reduce((acc, product) => {
     acc[product.symbol] = product.name;
@@ -85,6 +88,7 @@ const MarketTable = ({ market }: MarketTableProps) => {
           key={tradeGood.symbol}
           tradeGood={tradeGood}
           tradeGoodName={tradeGoodsSymbolToName[tradeGood.symbol]}
+          shipSymbol={shipSymbol}
         />,
       )
     }
@@ -95,9 +99,10 @@ const MarketTable = ({ market }: MarketTableProps) => {
 interface TradeGoodRowProps {
   tradeGood: Market['tradeGoods'][number];
   tradeGoodName?: string;
+  shipSymbol: string;
 }
 
-const TradeGoodRow = ({ tradeGood, tradeGoodName }: TradeGoodRowProps) => {
+const TradeGoodRow = ({ tradeGood, tradeGoodName, shipSymbol }: TradeGoodRowProps) => {
   const [isRowExpanded, setIsRowExpanded] = useState(false);
   const [buyAmount, setBuyAmount] = useState<number>(1);
   const [sellAmount, setSellAmount] = useState<number>(1);
@@ -142,7 +147,7 @@ const TradeGoodRow = ({ tradeGood, tradeGoodName }: TradeGoodRowProps) => {
                       Amount:
                       <Input id="amount" className="trade-amount-input" value={String(buyAmount)}
                              onChange={(amount) => setBuyAmount(Number(amount))} />
-                      <button className="action-button">
+                      <button className="action-button" onClick={() => buyCargo(shipSymbol, tradeGood.symbol, buyAmount)}>
                           Buy {buyAmount}<Icon name="Package" />
                         {' for '}
                           <Currency amount={tradeGood.purchasePrice * buyAmount} />
