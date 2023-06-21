@@ -28,7 +28,7 @@
   }
 }
 
-button, input {
+button, [aria-label="button"], input {
   margin: 0;
   font-size: 1em;
   padding: 0.4em 0.5em;
@@ -47,7 +47,7 @@ button, input {
   }
 }
 
-button {
+button, [aria-label="button"] {
   font-family: $font-family-header;
   &.inline-button {
     height: 1em;

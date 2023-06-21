@@ -12,8 +12,13 @@ interface MarketStore {
   markets: {
     [key in WaypointSymbol]: StoreMarket
   };
+  /**
+   * Currently opened market.
+   */
+  selectedMarket: WaypointSymbol | null;
 }
 
-export const useMarketsStore = create<MarketStore>()(persist(() => ({
+export const useMarketsStore = create<MarketStore>()(persist((_set) => ({
   markets: {},
+  selectedMarket: null,
 }), { name: 'markets-store', version: 1 }));

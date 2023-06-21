@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import './select.styles.scss';
 import { Icon } from '@shared/icon/icon.component';
 
@@ -8,44 +8,33 @@ interface Option {
 }
 
 interface SelectProps {
+  option: Option['key'] | null;
   options: Array<Option>;
   onOptionSelect: (optionKey: string | null) => void;
   placeholder: ReactNode;
-  defaultOptionIndex?: number;
 }
 
-export const Select = ({ options, onOptionSelect, defaultOptionIndex, placeholder }: SelectProps) => {
+export const Select = ({ options, onOptionSelect, option, placeholder }: SelectProps) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
-  const [selectedOption, setSelectedOption] = useState<Option | null>(
-    defaultOptionIndex
-      ? options[defaultOptionIndex]
-      : null,
-  );
-
-  useEffect(() => {
-    if (defaultOptionIndex) {
-      onOptionSelect(options[defaultOptionIndex].key);
-    }
-  }, []);
+  const selectedOption = options.find(existingOption => existingOption.key === option);
 
   return <div className="select-container">
     <button className="select-button" onClick={() => setIsExpanded(!isExpanded)}>
       {selectedOption
         ? <div>{selectedOption.label}</div>
         : <div className="placeholder">{placeholder}</div>}
-      {selectedOption !== null && <button className="inline-button clean-input" onClick={(e) => {
-        e.stopPropagation();
-        setSelectedOption(null);
-        onOptionSelect(null);
-      }}>
-          <Icon name="Backspace" />
-      </button>}
+      {selectedOption !== null &&
+          <div aria-label="button" className="inline-button clean-input" onClick={(e) => {
+            e.stopPropagation();
+            onOptionSelect(null);
+          }}>
+              <Icon name="Backspace" />
+          </div>}
       <Icon name="CaretDown" />
     </button>
     {isExpanded && <div className="options">
       {options.map(option => <button className="option" key={option.key} onClick={() => {
         onOptionSelect(option.key);
-        setSelectedOption(option);
         setIsExpanded(false);
       }}>
         {option.label}

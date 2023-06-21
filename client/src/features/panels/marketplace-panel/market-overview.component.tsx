@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Market, Supply } from '@types';
 import { Currency, Icon, Input, Tooltip } from '@shared';
 import { formatNumber } from '@utils';
-import { buyCargo } from '@zustand';
+import { buyCargo, useShipsStore } from '@zustand';
 import classNames from 'classnames';
 
 const TRADE_VOLUME_TO_LABEL = {
@@ -14,11 +14,11 @@ const TRADE_VOLUME_TO_LABEL = {
 
 interface MarketOverviewProps {
   market: Market;
-  shipSymbol: string;
 }
 
-export const MarketOverview = ({ market, shipSymbol }: MarketOverviewProps) => {
+export const MarketOverview = ({ market }: MarketOverviewProps) => {
   const { imports, exports } = market;
+  const shipSymbol = useShipsStore().ships?.[0]?.symbol;
 
   return (
     <section className="market-overview">

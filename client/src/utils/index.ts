@@ -18,3 +18,4 @@ export * from './make-api-request.util';
 export * from './fetch-full-list.util';
 export * from './format-number.util';
 export * from './format-time-left.util';
+export * from './get-system-from-waypoint.util';

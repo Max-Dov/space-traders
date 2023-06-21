@@ -23,3 +23,5 @@ export * from './actions/get-ships.action';
 export * from './actions/get-market.action';
 export * from './actions/close-panel.action';
 export * from './actions/buy-cargo.action';
+export * from './actions/refresh-markets.action';
+export * from './actions/set-selected-market.action';

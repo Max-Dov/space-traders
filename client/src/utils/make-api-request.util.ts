@@ -39,9 +39,15 @@ export const makeApiRequest = async <ResponseType = unknown>({
   }
 };
 
+/**
+ * Can't figure better request ID generator atm.
+ */
+let requestId = 0;
+const getRequestId = () => requestId++;
+
 const logToNetworkPanel = (method: string, url: string) => {
   const shortenedUrl = url?.length === 30 ? '/server-status' : url?.slice(30);
-  const id = `${shortenedUrl}@${new Date().getTime()}`;
+  const id = `request@${new Date().getTime()}/${getRequestId()}`;
   const newRequestLog = {
     id,
     method: method as string,

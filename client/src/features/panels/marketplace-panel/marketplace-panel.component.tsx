@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { getShips, getMarket, useMarketsStore, useShipsStore, closePanel } from '@zustand';
+import React from 'react';
+import { useMarketsStore, closePanel, refreshMarkets, setSelectedMarket } from '@zustand';
 import { Tooltip, Panel, Tabs, Placeholder, Icon, Select } from '@shared';
 import { formatDate, useAuthorizedEffect } from '@utils';
 import { CommonFeaturePanelProps } from '@types';
@@ -10,21 +10,14 @@ interface MarketplacePanelProps extends CommonFeaturePanelProps {
 }
 
 export const MarketplacePanel = ({ panelIndex, panelId }: MarketplacePanelProps) => {
-  const { ships } = useShipsStore();
-  const { markets } = useMarketsStore();
-  const [selectedMarket, setSelectedMarket] = useState<string | null>(null); // waypointSymbol
+  const { markets, selectedMarket } = useMarketsStore();
   const selectableMarkets = Object.keys(markets);
 
   useAuthorizedEffect(() => {
-    if (ships.length === 0) {
-      getShips();
-    } else {
-      // TODO cleanup
-      const whateverShip = ships[0];
-      const { waypointSymbol, systemSymbol } = whateverShip.nav;
-      getMarket(systemSymbol, waypointSymbol);
+    if (selectableMarkets.length === 0) {
+      refreshMarkets();
     }
-  }, [ships]);
+  }, []);
 
   return (
     <Panel
@@ -33,23 +26,27 @@ export const MarketplacePanel = ({ panelIndex, panelId }: MarketplacePanelProps)
           MARKETPLACE
           <Icon name="CaretRight" />
           <Select
-            options={selectableMarkets.map(market => ({ label: market, key: market }))}
+            option={selectedMarket}
             onOptionSelect={setSelectedMarket} placeholder="Select Market"
-            defaultOptionIndex={0}
+            options={selectableMarkets.map(market => ({ label: market, key: market }))}
           />
-          {selectedMarket && <Tooltip tooltipText="Updated at timestamp. (day.month, hours:minutes)." omitTextUnderline>
-            <span className="updated-at">
-              {formatDate(markets[selectedMarket].updatedAt, 'DD.MO, HH:mm')}
-            </span>
-          </Tooltip>}
+          {selectedMarket &&
+              <Tooltip tooltipText="Last time market was updated." tooltipDelay="short" omitTextUnderline>
+                <span className="updated-at">
+                  {formatDate(markets[selectedMarket].updatedAt, 'HH:mm, DD.MO')}
+                </span>
+              </Tooltip>}
         </div>
       }
       className="marketplace-panel"
-      panelButtons={<>
+      panelButtons={<div className="flex-row">
+        <button className="inline-button" onClick={refreshMarkets}>
+          <Icon name="Reload" />
+        </button>
         <button className="inline-button" onClick={() => closePanel(panelId)}>
           <Icon name="Close" />
         </button>
-      </>}
+      </div>}
       draggableProps={{ draggableIdAndKey: panelId, index: panelIndex }}
     >
       {selectedMarket === null
@@ -59,11 +56,11 @@ export const MarketplacePanel = ({ panelIndex, panelId }: MarketplacePanelProps)
         </Placeholder>
         : <Tabs tabs={[{
           header: 'Overview',
-          content: <MarketOverview market={markets[selectedMarket]} shipSymbol={ships[0].symbol}/>,
+          content: <MarketOverview market={markets[selectedMarket]} />,
         }, {
           header: 'Transactions',
           content: <Placeholder>Not Implemented Yet.</Placeholder>,
-        }]} omitContentWrap/>}
+        }]} omitContentWrap />}
     </Panel>
   );
 };
