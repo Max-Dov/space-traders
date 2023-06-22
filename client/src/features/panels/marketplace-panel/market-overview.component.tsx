@@ -72,7 +72,7 @@ const MarketTable = ({ market, shipSymbol }: MarketTableProps) => {
     <thead>
     <tr>
       <th>Product</th>
-      <th>
+      <th className="no-wrap">
         Vol. / Supply
         {' '}
         <Tooltip tooltipText="Once supply of item changes, trade volume changes." isIconTooltip />
@@ -120,7 +120,7 @@ const TradeGoodRow = ({ tradeGood, tradeGoodName, shipSymbol }: TradeGoodRowProp
           {tradeGoodName || tradeGood.symbol.toLowerCase()}
         </div>
       </td>
-      <td>
+      <td className="no-wrap">
         {formatNumber(tradeGood.tradeVolume)} ({TRADE_VOLUME_TO_LABEL[tradeGood.supply]})
       </td>
       <td>
@@ -135,11 +135,11 @@ const TradeGoodRow = ({ tradeGood, tradeGoodName, shipSymbol }: TradeGoodRowProp
             <td colSpan={4}>
                 <div className="action">
                     <Icon name="ArrowElbowDownRight" className="arrow-icon" />
-                    <span>
+                    <span className="no-wrap">
                       <span className="action-word">Buy</span>
                       {' '}{tradeGoodName}{'. '}
                     </span>
-                    <span>
+                    <span className="no-wrap">
                       1<Tooltip isIconTooltip customIcon={<Icon name="Package" />} tooltipText="Unit" />
                       {' = '}<Currency amount={tradeGood.purchasePrice} />{'. '}
                     </span>

@@ -32,7 +32,7 @@ export const MarketplacePanel = ({ panelIndex, panelId }: MarketplacePanelProps)
           />
           {selectedMarket &&
               <Tooltip tooltipText="Last time market was updated." tooltipDelay="short" omitTextUnderline>
-                <span className="updated-at">
+                <span className="updated-at no-wrap">
                   {formatDate(markets[selectedMarket].updatedAt, 'HH:mm, DD.MO')}
                 </span>
               </Tooltip>}
