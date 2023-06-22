@@ -107,6 +107,15 @@ const TradeGoodRow = ({ tradeGood, tradeGoodName, shipSymbol }: TradeGoodRowProp
   const [buyAmount, setBuyAmount] = useState<number>(1);
   const [sellAmount, setSellAmount] = useState<number>(1);
 
+  const buyCargoHandler = () => {
+    buyCargo(shipSymbol, tradeGood.symbol, buyAmount);
+    setBuyAmount(1);
+  };
+
+  const sellCargoHandler = () => {
+    setSellAmount(1);
+  };
+
   return <>
     <tr
       className={classNames({ 'is-expanded': isRowExpanded })}
@@ -147,7 +156,7 @@ const TradeGoodRow = ({ tradeGood, tradeGoodName, shipSymbol }: TradeGoodRowProp
                       Amount:
                       <Input id="amount" className="trade-amount-input" value={String(buyAmount)}
                              onChange={(amount) => setBuyAmount(Number(amount))} />
-                      <button className="action-button" onClick={() => buyCargo(shipSymbol, tradeGood.symbol, buyAmount)}>
+                      <button className="action-button" onClick={buyCargoHandler}>
                           Buy {buyAmount}<Icon name="Package" />
                         {' for '}
                           <Currency amount={tradeGood.purchasePrice * buyAmount} />
@@ -172,7 +181,7 @@ const TradeGoodRow = ({ tradeGood, tradeGoodName, shipSymbol }: TradeGoodRowProp
                       Amount:
                       <Input id="amount" className="trade-amount-input" value={String(sellAmount)}
                              onChange={(amount) => setSellAmount(Number(amount))} />
-                      <button className="action-button">
+                      <button className="action-button" onClick={sellCargoHandler}>
                           <span>Sell {sellAmount}</span>
                           <Icon name="Package" />
                           {' for '}
