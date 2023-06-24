@@ -12,7 +12,7 @@ const config: webpack.Configuration = {
   mode: 'development',
   stats: 'errors-warnings',
   infrastructureLogging: { level: 'warn' },
-  entry: './src/index.tsx',
+  entry: './src/main.tsx',
   target: 'web',
   devtool: 'inline-source-map',
   resolve: {

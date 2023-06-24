@@ -9,7 +9,7 @@ interface Response {
 export const getShips = async () => {
   const response = await makeApiRequest<Response>({
     method: 'GET',
-    url: ApiUrls.GET_SHIPS,
+    url: ApiUrls.MY_SHIPS,
   });
   return response === null ? null : response.data;
 };
