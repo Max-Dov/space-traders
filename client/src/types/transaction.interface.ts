@@ -1,14 +1,19 @@
-import { Market, ProductCategory } from '@types';
+export enum TransactionType {
+  PURCHASE = 'PURCHASE',
+  SELL = 'SELL',
+}
 
+/**
+ * Detailed receipt on buy/sell market action.
+ * Comes from API.
+ */
 export interface Transaction {
-  agent: {
-    credits: number;
-  }
-  cargo: {
-    inventory: Array<{
-      symbol: ProductCategory;
-      name: string;
-    }>;
-  };
-  transaction: Market['transactions'][0];
-};
+  waypointSymbol: string;
+  shipSymbol: string;
+  tradeSymbol: string;
+  type: TransactionType;
+  units: number;
+  pricePerUnit: number;
+  totalPrice: number;
+  timestamp: string;
+}

@@ -15,5 +15,5 @@ export const AGENTS_TOKENS_STORE_VERSION = 1;
 export const PANELS_STORE_VERSION = 4;
 export const SERVER_STATUS_STORE = 1;
 export const MARKETS_STORE_VERSION = 2;
-export const TRANSACTIONS_STORE_VERSION = 1;
+export const TRANSACTIONS_STORE_VERSION = 2;
 export const SHIPS_STORE_VERSION = 1;

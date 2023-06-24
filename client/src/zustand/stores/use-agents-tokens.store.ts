@@ -9,7 +9,7 @@ interface AgentIdentityStore {
   agentToken: string | null;
   /**
    * Agent tokens previously passed to an app.
-   * Represented as array of [agentToken, agentSymbol] elements.
+   * Represented as an array of [agentToken, agentSymbol] elements.
    */
   savedAgentTokens: Array<[string, string]>;
   saveAgentToken: (agentTokenAndSymbol: [string, string]) => void;

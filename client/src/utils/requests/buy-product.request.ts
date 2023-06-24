@@ -1,15 +1,15 @@
 import { makeApiRequest } from '@utils';
 import { ApiUrls } from '@constants';
-import { Ship, Transaction } from '@types';
+import { Ship, MarketTransaction } from '@types';
 
 interface Response {
-  data: Transaction;
+  data: MarketTransaction;
 }
 
-export const buyCargo = async (shipSymbol: Ship['symbol'], symbol: string, units: number) => {
+export const buyProduct = async (shipSymbol: Ship['symbol'], symbol: string, units: number) => {
   const response = await makeApiRequest<Response>({
     method: 'POST',
-    url: ApiUrls.BUY_CARGO,
+    url: ApiUrls.BUY_PRODUCT,
     urlParams: { shipSymbol },
     data: { symbol, units }
   });

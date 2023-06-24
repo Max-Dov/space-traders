@@ -8,6 +8,10 @@
     border-collapse: collapse;
     white-space: nowrap;
 
+    .numeric-field {
+      text-align: right;
+    }
+
     thead {
       background-color: rgba($layout-color, 0.5);
 
@@ -31,10 +35,6 @@
 
       td {
         padding: 0.25rem 0.5rem;
-
-        &.numeric-field {
-          text-align: right;
-        }
 
         &.buy-transaction {
           color: $accent-color-danger;
