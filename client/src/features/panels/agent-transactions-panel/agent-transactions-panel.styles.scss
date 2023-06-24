@@ -1,37 +1,49 @@
 @import "commonStyles/constants";
 
 .agent-transactions-panel {
-  height: 25rem;
-  overflow-y: scroll;
-  .my-transactions-table {
+  max-height: 25rem;
+
+  table.transactions-table {
     width: 100%;
     border-collapse: collapse;
     white-space: nowrap;
+
     thead {
       background-color: rgba($layout-color, 0.5);
+
       th {
         padding: 0.25rem 0.5rem;
         font-family: $font-family-header;
         font-size: 1.1rem;
         font-weight: bolder;
+        text-align: left;
       }
     }
+
     tbody {
       tr {
-        text-align: center;
+        text-align: left;
+
         &:nth-child(odd) {
           background-color: rgba($layout-color, 0.2);
         }
       }
+
       td {
         padding: 0.25rem 0.5rem;
+
+        &.numeric-field {
+          text-align: right;
+        }
+
+        &.buy-transaction {
+          color: $accent-color-danger;
+        }
+
+        &.sell-transaction {
+          color: $accent-color-good-stuff;
+        }
       }
-    }
-    .name {
-      text-align: left;
-    }
-    .aline-right {
-      text-align: right;
     }
   }
 }

@@ -1,4 +1,4 @@
-import { Currency, Icon, Panel, Placeholder } from '@shared';
+import { Currency, Icon, Panel, Placeholder, Tooltip } from '@shared';
 import { CommonFeaturePanelProps } from '@types';
 import { formatDate, formatNumber } from '@utils';
 import {
@@ -8,8 +8,10 @@ import {
 } from '@zustand';
 import React from 'react';
 import './agent-transactions-panel.styles.scss';
+import classNames from 'classnames';
 
-interface MyTransactionsPanelProps extends CommonFeaturePanelProps {}
+interface MyTransactionsPanelProps extends CommonFeaturePanelProps {
+}
 
 export const AgentTransactionsPanel = ({
   panelIndex,
@@ -23,7 +25,7 @@ export const AgentTransactionsPanel = ({
   if (agentDetails && transactions[agentDetails.symbol]) {
     tradeGoodsSymbolToName = transactions[
       agentDetails.symbol
-    ][0].cargo.inventory.reduce((acc, product) => {
+      ][0].cargo.inventory.reduce((acc, product) => {
       acc[product.symbol] = product.name;
       return acc;
     }, {} as { [key in any]: string });
@@ -45,41 +47,53 @@ export const AgentTransactionsPanel = ({
       {agentDetails &&
       agentDetails.symbol &&
       transactions[agentDetails.symbol] ? (
-        <table className="my-transactions-table">
+        <table className="transactions-table">
           <thead>
-            <tr>
-              <th className="name">Product</th>
-              <th className="aline-right">Amount</th>
-              <th className="aline-right">Wallet Total</th>
-              <th className="aline-right">Total</th>
-              <th>Waypoint</th>
-              <th>Timestamp</th>
-            </tr>
+          <tr>
+            <th className="name">Product</th>
+            <th>Amount</th>
+            <th className="no-wrap">
+              Wallet Change
+              {' '}
+              <Tooltip isIconTooltip tooltipText={
+                <>
+                  Red credits stand for buying products<br />
+                  Green markers stand for gaining credits.
+                </>
+              } />
+            </th>
+            <th>Wallet Total</th>
+            <th>Waypoint</th>
+            <th>Timestamp</th>
+          </tr>
           </thead>
           <tbody>
-            {transactions[agentDetails.symbol].map((transaction, i) => (
-              <tr key={i}>
-                <td className="name">
-                  {tradeGoodsSymbolToName[transaction.transaction.tradeSymbol]}
-                </td>
-                <td className="aline-right">{formatNumber(transaction.transaction.units)}</td>
-                <td className="aline-right" style={{color: transaction.transaction.type === 'PURCHASE' ? '#ED264E' : '#26ED4A'}}>
-                  <Currency amount={transaction.transaction.totalPrice} />
-                </td>
-                <td className="aline-right"><Currency amount={transaction.agent.credits} /></td>
-                <td>{transaction.transaction.waypointSymbol}</td>
-                <td>
-                  {formatDate(
-                    transaction.transaction.timestamp,
-                    'HH:mm, DD.MO.YYYY'
-                  )}
-                </td>
-              </tr>
-            ))}
+          {transactions[agentDetails.symbol].map((transaction, i) => (
+            <tr key={i}>
+              <td className="product">
+                {tradeGoodsSymbolToName[transaction.transaction.tradeSymbol]}
+              </td>
+              <td className="numeric-field">{formatNumber(transaction.transaction.units)}</td>
+              <td className={classNames('numeric-field', {
+                'buy-transaction': transaction.transaction.type === 'PURCHASE',
+                'sell-transaction': transaction.transaction.type === 'SELL',
+              })}>
+                <Currency amount={transaction.transaction.totalPrice} />
+              </td>
+              <td className="numeric-field"><Currency amount={transaction.agent.credits} /></td>
+              <td>{transaction.transaction.waypointSymbol}</td>
+              <td>
+                {formatDate(
+                  transaction.transaction.timestamp,
+                  'HH:mm:SS, DD MMM',
+                )}
+              </td>
+            </tr>
+          ))}
           </tbody>
         </table>
       ) : (
-        <Placeholder>No data available.</Placeholder>
+        <Placeholder>Agent market transactions would be shown there. At the moment there's none!</Placeholder>
       )}
     </Panel>
   );
