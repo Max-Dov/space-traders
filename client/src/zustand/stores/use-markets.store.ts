@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { Market, Ship } from '@types';
 import { persist } from 'zustand/middleware';
+import { MARKETS_STORE_VERSION } from '@constants';
 
 type WaypointSymbol = Ship['nav']['waypointSymbol'];
 
@@ -21,4 +22,4 @@ interface MarketStore {
 export const useMarketsStore = create<MarketStore>()(persist((_set) => ({
   markets: {},
   selectedMarket: null,
-}), { name: 'markets-store', version: 1 }));
+}), { name: 'markets-store', version: MARKETS_STORE_VERSION }));
