@@ -57,8 +57,8 @@ export const AgentTransactionsPanel = ({
               {' '}
               <Tooltip isIconTooltip tooltipText={
                 <>
-                  Red credits stand for buying products<br />
-                  Green markers stand for gaining credits.
+                  Red credits stand for buying products,<br />
+                  Green credits stand for selling products.
                 </>
               } />
             </th>
