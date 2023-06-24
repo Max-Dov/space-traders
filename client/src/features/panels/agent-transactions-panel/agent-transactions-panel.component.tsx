@@ -4,7 +4,7 @@ import { formatDate, formatNumber } from '@utils';
 import {
   closePanel,
   useMyAgentDetailsStore,
-  useMyTransactionsStore,
+  useAgentsTransactionsStore,
 } from '@zustand';
 import React from 'react';
 import './agent-transactions-panel.styles.scss';
@@ -17,7 +17,7 @@ export const AgentTransactionsPanel = ({
   panelIndex,
   panelId,
 }: MyTransactionsPanelProps) => {
-  const { transactions } = useMyTransactionsStore();
+  const { transactions } = useAgentsTransactionsStore();
   const { agentDetails } = useMyAgentDetailsStore();
 
   let tradeGoodsSymbolToName = {} as { [key in any]: string };

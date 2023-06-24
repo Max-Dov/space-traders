@@ -2,7 +2,7 @@ import {
   useAgentsTokensStore,
   useContractsStore,
   useFactionsStore,
-  useMarketsStore,
+  useMarketsStore, useAgentsTransactionsStore,
   useServerStatusStore,
 } from '@zustand';
 
@@ -21,6 +21,7 @@ export const cleanStoresOnServerRestart = () => {
       useContractsStore.setState({ contracts: [] });
       useServerStatusStore.setState({ serverStatus: null });
       useMarketsStore.setState({ markets: {}, selectedMarket: null });
+      useAgentsTransactionsStore.setState({ transactions: {} });
       const newLastResetDate = serverStatus.serverResets.next;
       useServerStatusStore.setState({ lastResetDate: newLastResetDate });
     }

@@ -1,5 +1,5 @@
 import { buyCargo as buyCargoRequest } from '@utils';
-import { getMyAgentDetails, useMyTransactionsStore } from '@zustand';
+import { getMyAgentDetails, useAgentsTransactionsStore } from '@zustand';
 import { Ship, Agent } from '@types';
 
 export const buyCargo = async (
@@ -13,12 +13,12 @@ export const buyCargo = async (
     //To do update ship store
     getMyAgentDetails();
 
-    const prevTransactions = useMyTransactionsStore.getState().transactions[agentSymbol] ?? [];
+    const prevTransactions = useAgentsTransactionsStore.getState().transactions[agentSymbol] ?? [];
 
-    useMyTransactionsStore.setState({
-      ...useMyTransactionsStore.getState(),
+    useAgentsTransactionsStore.setState({
+      ...useAgentsTransactionsStore.getState(),
       transactions: {
-        ...useMyTransactionsStore.getState().transactions,
+        ...useAgentsTransactionsStore.getState().transactions,
         [agentSymbol]: [transaction, ...prevTransactions]
       },
     });

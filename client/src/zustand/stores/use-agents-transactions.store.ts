@@ -5,13 +5,12 @@ import { TRANSACTIONS_STORE_VERSION } from '@constants';
 
 type AgentSymbol = Agent['symbol'];
 
-interface MyTransactionsStore {
+interface AgentsTransactionsStore {
   transactions: {
     [key in AgentSymbol]: Transaction[];
   }
-  
 }
 
-export const useMyTransactionsStore = create<MyTransactionsStore>()(persist((_set) => ({
+export const useAgentsTransactionsStore = create<AgentsTransactionsStore>()(persist((_set) => ({
   transactions: {},
 }), { name: 'transactions-store', version: TRANSACTIONS_STORE_VERSION }));
