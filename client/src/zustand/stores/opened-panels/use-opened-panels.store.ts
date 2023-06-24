@@ -122,6 +122,7 @@ const COMPONENT_ID_TO_DEFAULT_PLACEMENT: {
   [PanelComponentsIds.AGENT_ID]: 'main-section',
   [PanelComponentsIds.FACTIONS]: 'main-section',
   [PanelComponentsIds.MARKETPLACE]: 'main-section',
+  [PanelComponentsIds.AGENT_TRANSACTIONS]: 'main-section',
   // Side panels below
   [PanelComponentsIds.NETWORK]: 'side-section',
   [PanelComponentsIds.SERVER_STATUS]: 'side-section',

@@ -35,5 +35,8 @@ export const WindowsBar = () => {
     <FeatureButton featureId={PanelComponentsIds.MARKETPLACE}>
       Marketplace
     </FeatureButton>
+    <FeatureButton featureId={PanelComponentsIds.AGENT_TRANSACTIONS}>
+      Agent Transactions
+    </FeatureButton>
   </div>;
 };

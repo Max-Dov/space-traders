@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Market, Supply } from '@types';
 import { Currency, Icon, Input, Tooltip } from '@shared';
 import { formatNumber } from '@utils';
-import { buyCargo, useShipsStore } from '@zustand';
+import { buyCargo, useMyAgentDetailsStore, useShipsStore } from '@zustand';
 import classNames from 'classnames';
 
 const TRADE_VOLUME_TO_LABEL = {
@@ -19,6 +19,7 @@ interface MarketOverviewProps {
 export const MarketOverview = ({ market }: MarketOverviewProps) => {
   const { imports, exports } = market;
   const shipSymbol = useShipsStore().ships?.[0]?.symbol;
+  const agentSymbol = useMyAgentDetailsStore().agentDetails?.symbol;
 
   return (
     <section className="market-overview">
@@ -52,7 +53,7 @@ export const MarketOverview = ({ market }: MarketOverviewProps) => {
             </Tooltip>)}
         </div>
       </div>
-      <MarketTable market={market} shipSymbol={shipSymbol}/>
+      <MarketTable market={market} shipSymbol={shipSymbol} agentSymbol={agentSymbol}/>
     </section>
   );
 };
@@ -60,9 +61,10 @@ export const MarketOverview = ({ market }: MarketOverviewProps) => {
 interface MarketTableProps {
   market: Market;
   shipSymbol: string;
+  agentSymbol: string | undefined;
 }
 
-const MarketTable = ({ market, shipSymbol }: MarketTableProps) => {
+const MarketTable = ({ market, shipSymbol, agentSymbol }: MarketTableProps) => {
   const { tradeGoods } = market;
   const tradeGoodsSymbolToName = market.imports.concat(market.exports).reduce((acc, product) => {
     acc[product.symbol] = product.name;
@@ -89,6 +91,7 @@ const MarketTable = ({ market, shipSymbol }: MarketTableProps) => {
           tradeGood={tradeGood}
           tradeGoodName={tradeGoodsSymbolToName[tradeGood.symbol]}
           shipSymbol={shipSymbol}
+          agentSymbol={agentSymbol}
         />,
       )
     }
@@ -100,15 +103,18 @@ interface TradeGoodRowProps {
   tradeGood: Market['tradeGoods'][number];
   tradeGoodName?: string;
   shipSymbol: string;
+  agentSymbol: string | undefined;
 }
 
-const TradeGoodRow = ({ tradeGood, tradeGoodName, shipSymbol }: TradeGoodRowProps) => {
+const TradeGoodRow = ({ tradeGood, tradeGoodName, shipSymbol, agentSymbol }: TradeGoodRowProps) => {
   const [isRowExpanded, setIsRowExpanded] = useState(false);
   const [buyAmount, setBuyAmount] = useState<number>(1);
   const [sellAmount, setSellAmount] = useState<number>(1);
 
   const buyCargoHandler = () => {
-    buyCargo(shipSymbol, tradeGood.symbol, buyAmount);
+    if (agentSymbol) {
+      buyCargo(shipSymbol, tradeGood.symbol, buyAmount, agentSymbol);
+    }
     setBuyAmount(1);
   };
 
