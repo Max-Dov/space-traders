@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { AGENTS_TOKENS_STORE_VERSION } from '@constants';
 
 interface AgentIdentityStore {
   /**
@@ -39,5 +40,5 @@ export const useAgentsTokensStore = create<AgentIdentityStore>()(persist(
       }
     },
   }),
-  { name: 'agent-token-store' },
+  { name: 'agent-token-store', version: AGENTS_TOKENS_STORE_VERSION },
 ));

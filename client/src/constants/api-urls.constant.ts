@@ -10,4 +10,7 @@ export class ApiUrls {
   static readonly MY_CONTRACTS = `${ApiUrls.BASE_API_URL}/my/contracts`;
   static readonly GET_CONTRACT = `${ApiUrls.MY_CONTRACTS}/:contractId`;
   static readonly ACCEPT_CONTRACT = `${ApiUrls.MY_CONTRACTS}/:contractId/accept`;
+  static readonly GET_SHIPS = `${ApiUrls.BASE_API_URL}/my/ships`;
+  static readonly GET_MARKET = `${ApiUrls.BASE_API_URL}/systems/:systemSymbol/waypoints/:waypointSymbol/market`;
+  static readonly BUY_CARGO = `${ApiUrls.GET_SHIPS}/:shipSymbol/purchase`;
 }

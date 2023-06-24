@@ -68,6 +68,9 @@ strong {
     background-color: rgba($layout-color, 0.1);
     width: 1rem;
   }
+  &::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
   &::-webkit-scrollbar-thumb {
     background-color: rgba($action-color, 0.4);
     &:hover {
@@ -81,4 +84,8 @@ strong {
 
 svg {
   display: inline-block;
+}
+
+.no-wrap {
+  white-space: nowrap;
 }

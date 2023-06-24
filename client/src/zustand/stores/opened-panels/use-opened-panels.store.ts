@@ -1,7 +1,7 @@
 import { OnDragEndResponder } from 'react-beautiful-dnd';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { PanelComponentsIds } from '@constants';
+import { PanelComponentsIds, PANELS_STORE_VERSION } from '@constants';
 import { Panel, PanelPlacement } from './panel.interface';
 import { PanelSections } from '@zustand/stores/opened-panels/panel-sections.enum';
 
@@ -106,7 +106,7 @@ export const useOpenedPanelsStore = create<OpenedPanelsStore>()(persist((set, ge
       }
     }
   },
-}), { name: 'opened-panels-store', version: 4 }));
+}), { name: 'opened-panels-store', version: PANELS_STORE_VERSION }));
 
 /**
  * Default placement for feature panels.
@@ -121,6 +121,8 @@ const COMPONENT_ID_TO_DEFAULT_PLACEMENT: {
 } = {
   [PanelComponentsIds.AGENT_ID]: 'main-section',
   [PanelComponentsIds.FACTIONS]: 'main-section',
+  [PanelComponentsIds.MARKETPLACE]: 'main-section',
+  [PanelComponentsIds.AGENT_TRANSACTIONS]: 'main-section',
   // Side panels below
   [PanelComponentsIds.NETWORK]: 'side-section',
   [PanelComponentsIds.SERVER_STATUS]: 'side-section',

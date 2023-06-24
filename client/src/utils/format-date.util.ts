@@ -16,13 +16,14 @@ const prependZeroIfNeeded = (number: number): string => (number < 10 ? `0${numbe
  * MS (milliseconds),
  * DOW (day of week)
  */
-export const formatDate = (date: Date | string, format: string) => {
+export const formatDate = (date: Date | string | number, format: string) => {
   const properDate = new Date(date);
   return format
   .replace('YYYY', String(properDate.getFullYear()))
   .replace('MMM', MONTHS[properDate.getMonth()])
   .replace('DD', String(properDate.getDate()))
   .replace('DOW', DAYS_OF_WEEK[properDate.getDay()])
+  .replace('MO', prependZeroIfNeeded(properDate.getMonth()))
   .replace('HH', prependZeroIfNeeded(properDate.getHours()))
   .replace('mm', prependZeroIfNeeded(properDate.getMinutes()))
   .replace('SS', prependZeroIfNeeded(properDate.getSeconds()))

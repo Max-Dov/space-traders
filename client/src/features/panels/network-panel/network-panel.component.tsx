@@ -25,16 +25,18 @@ const Request = ({ url, method, response, errorMessage }: RequestProps) => {
 
   return <>
     <div className="request">
-      <b className="method">{method.toUpperCase()} </b>
-      <i className="url">{url} </i>
-      {!responseExists && <b className="no-response-placeholder">...</b>}
-      <b className={classNames('response', {
-        'bad-response': responseExists && isResponseBad,
-        'good-response': responseExists && isResponseGood,
-      })}>
-        {response}
-        {' '}
-      </b>
+      <span className="no-wrap">
+        <b className="method">{method.toUpperCase()} </b>
+        <i className="url">{url} </i>
+          {!responseExists && <b className="no-response-placeholder">...</b>}
+          <b className={classNames('response', {
+            'bad-response': responseExists && isResponseBad,
+            'good-response': responseExists && isResponseGood,
+          })}>
+          {response}
+            {' '}
+        </b>
+      </span>
       {isResponseBad &&
           <button onClick={() => setShouldShowError(!shouldShowError)}>
             {shouldShowError ? 'hide error' : 'show error'}
@@ -75,8 +77,8 @@ export const NetworkPanel = ({ panelId, panelIndex }: NetworkPanelProps) => {
     }
     className="network-panel"
     panelButtons={
-      <button className="inline-button" onClick={() => closePanel(panelId)} >
-        <Icon name="Close"/>
+      <button className="inline-button" onClick={() => closePanel(panelId)}>
+        <Icon name="Close" />
       </button>
     }
     draggableProps={{ index: panelIndex, draggableIdAndKey: panelId }}

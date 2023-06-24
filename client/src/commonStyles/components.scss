@@ -6,29 +6,29 @@
  */
 
 @mixin buttonColoring($button-base-color, $button-interaction-color) {
-  background-color: rgba($button-base-color, 0.5);
+  background-color: darken($button-base-color, 25%);
   border: 1px solid $button-base-color;
   box-shadow: 0.25em 0.25em rgba($button-base-color, 0.25);
 
   &:disabled {
-    background-color: rgba($button-base-color, 0.2);
+    background-color: darken($button-base-color, 20%);
     border: 1px solid $button-base-color;
     box-shadow: 0.25em 0.25em rgba($button-base-color, 0.25);
   }
 
   &:hover, &:focus {
-    background-color: rgba($button-interaction-color, 0.6);
+    background-color: darken($button-interaction-color, 30%);
     border: 1px solid $button-interaction-color;
     box-shadow: 0.25em 0.25em rgba($button-interaction-color, 0.5);
   }
 
   &:active {
-    background-color: rgba($button-interaction-color, 0.75);
+    background-color: darken($button-interaction-color, 20%);
     border: 1px solid $button-interaction-color;
   }
 }
 
-button, input {
+button, [aria-label="button"], input {
   margin: 0;
   font-size: 1em;
   padding: 0.4em 0.5em;
@@ -36,6 +36,7 @@ button, input {
   font-family: inherit;
   line-height: 100%;
   box-sizing: border-box;
+  white-space: nowrap;
 
   transition: background-color $transition-normal ease-in-out, border $transition-normal ease-in-out, box-shadow $transition-normal ease-in-out;
 
@@ -46,7 +47,7 @@ button, input {
   }
 }
 
-button {
+button, [aria-label="button"] {
   font-family: $font-family-header;
   &.inline-button {
     height: 1em;

@@ -1,0 +1,154 @@
+@import "commonStyles/constants";
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+
+  .updated-at {
+    font-family: $font-family-paragraph;
+    font-style: italic;
+    font-weight: 200;
+    color: rgba($font-color, 0.5);
+  }
+}
+
+.marketplace-panel {
+  .import-export-row {
+    display: flex;
+    align-items: center;
+    margin: 0.5rem 0;
+    border: 2px dashed $layout-color;
+
+    .label {
+      font-size: 1.4rem;
+      padding: 0.5em;
+    }
+
+    .import-export-icons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+      padding: 0.5em 0.5em 0.5em 0;
+
+      img {
+        height: 2rem;
+        width: 2rem;
+        border: 3px solid $layout-color;
+        transition: $transition-normal;
+
+        &:hover {
+          border-color: lighten($layout-color, 20%);
+        }
+      }
+    }
+  }
+
+  .market-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    thead {
+      background-color: rgba($layout-color, 0.5);
+
+      th {
+        text-align: left;
+        font-family: $font-family-header;
+        font-size: 1.1rem;
+        font-weight: bolder;
+        padding: 0.25rem 0.5rem;
+      }
+    }
+
+    tbody {
+      tr {
+        transition: background-color $transition-normal;
+
+        &:nth-child(odd) {
+          background-color: rgba($layout-color, 0.2);
+        }
+
+        &:hover {
+          background-color: rgba($layout-color, 0.6);
+        }
+
+        &:active {
+          background-color: rgba($layout-color, 0.8);
+        }
+
+        td div.good-name-with-icon {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        &.is-expanded {
+          background-color: rgba($layout-color, 1);
+        }
+
+        &.trade-row {
+          background-color: rgba($layout-color, 0.6);
+          box-shadow: 0 0 0.2rem inset black;
+
+          td {
+            padding: 0;
+          }
+
+          div.action {
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            .arrow-icon {
+              font-size: 1.4rem;
+              margin-left: 0.7rem;
+              color: $accent-color-important;
+            }
+
+            .action-word {
+              color: $accent-color-important;
+              font-weight: bold;
+            }
+
+            .trade-amount-input-wrapper {
+              display: flex;
+              gap: 0.5rem;
+              align-items: center;
+
+              .trade-amount-input {
+                width: 5rem;
+                border: none;
+                border-bottom: $action-color 2px solid;
+                background: none;
+                box-shadow: none;
+              }
+            }
+
+            .action-button {
+              display: flex;
+              gap: 0.3em;
+              align-items: center;
+            }
+          }
+        }
+      }
+
+      td {
+        padding: 0.25rem 0.5rem;
+
+        img {
+          height: 2rem;
+          width: 2rem;
+          border: 3px solid $layout-color;
+          transition: $transition-normal;
+
+          &:hover {
+            border-color: lighten($layout-color, 20%);
+          }
+        }
+      }
+    }
+  }
+}

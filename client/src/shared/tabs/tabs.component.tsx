@@ -13,11 +13,16 @@ interface TabsProps {
    * Tab index.
    */
   defaultTabIndex?: number;
+  /**
+   * If true, then no padding and border around content would be done.
+   */
+  omitContentWrap?: boolean;
 }
 
 export const Tabs = ({
   tabs,
   defaultTabIndex,
+  omitContentWrap,
 }: TabsProps) => {
   const [currentTab, setCurrentTab] = useState<number>(defaultTabIndex || 0);
   const headers = tabs.map(tab => tab.header);
@@ -41,7 +46,7 @@ export const Tabs = ({
         </div>;
       })}
     </div>
-    <div className="tab-content">
+    <div className={classNames({ 'tab-content': !omitContentWrap })}>
       {tabs[currentTab].content}
     </div>
   </div>;

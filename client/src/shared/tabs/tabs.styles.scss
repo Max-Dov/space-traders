@@ -4,6 +4,7 @@
 .tabs {
   .headers {
     padding: 0 0.35rem;
+    margin-bottom: 0.5rem;
 
     .header-wrapper {
       display: inline-block;
@@ -45,6 +46,7 @@
   }
 
   .tab-content {
+    margin-top: -0.5rem; // tired, so it will be like that
     padding: 0.5rem;
     border: 2px solid $layout-color;
   }

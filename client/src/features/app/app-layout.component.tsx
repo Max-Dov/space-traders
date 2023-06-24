@@ -11,6 +11,8 @@ import {
   WindowsBar,
   LeaderboardsPanel,
   AgentDetailsPanel,
+  MarketplacePanel,
+  AgentTransactionsPanel
 } from '@features';
 import { Panel, PanelSections, useOpenedPanelsStore } from '@zustand';
 import { PanelComponentsIds } from '@constants';
@@ -76,4 +78,6 @@ export const FEATURE_ID_TO_COMPONENT = {
   [PanelComponentsIds.CONTRACTS]: ContractsPanel,
   [PanelComponentsIds.LEADERBOARDS]: LeaderboardsPanel,
   [PanelComponentsIds.AGENT_DETAILS]: AgentDetailsPanel,
+  [PanelComponentsIds.MARKETPLACE]: MarketplacePanel,
+  [PanelComponentsIds.AGENT_TRANSACTIONS]: AgentTransactionsPanel,
 };

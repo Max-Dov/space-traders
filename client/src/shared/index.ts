@@ -7,3 +7,4 @@ export * from './droppable/droppable.component';
 export * from './draggable/draggable.component';
 export * from './placeholder/placeholder.component';
 export * from './tabs/tabs.component';
+export * from './select/select.component';

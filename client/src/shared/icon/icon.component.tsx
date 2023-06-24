@@ -11,6 +11,13 @@ import Close from '@svgs/close.icon.svg';
 import Move from '@svgs/move.icon.svg';
 import Reload from '@svgs/reload.icon.svg';
 import Settings from '@svgs/settings.icon.svg';
+import CaretRight from '@svgs/caret-right.svg';
+import CaretDown from '@svgs/caret-down.svg';
+import Backspace from '@svgs/backspace.svg';
+import Package from '@svgs/package.svg';
+import Import from '@svgs/import.svg';
+import Export from '@svgs/export.svg';
+import ArrowElbowDownRight from '@svgs/arrow-elbow-down-right.svg';
 
 interface IconProps extends HTMLAttributes<HTMLDivElement> {
   name: keyof typeof ICONS;
@@ -41,4 +48,11 @@ const ICONS = {
   Move: <Move />,
   Reload: <Reload />,
   Settings: <Settings />,
+  CaretRight: <CaretRight />,
+  CaretDown: <CaretDown />,
+  Backspace: <Backspace />,
+  Package: <Package />,
+  Import: <Import />,
+  Export: <Export />,
+  ArrowElbowDownRight: <ArrowElbowDownRight />,
 } as const;
