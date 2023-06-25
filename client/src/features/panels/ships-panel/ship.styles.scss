@@ -11,4 +11,8 @@ section.ship {
     border: 3px solid $layout-color;
 
   }
+
+  .role {
+    text-transform: capitalize;
+  }
 }

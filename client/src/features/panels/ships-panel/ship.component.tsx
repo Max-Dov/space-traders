@@ -19,7 +19,7 @@ export const Ship = ({ ship }: ShipProps) => {
         <div className="name">{registration.name}</div>
         <div className="flex-row">
           <span className="role">{registration.role.toLowerCase()}</span>
-          <span className="frame">{frame.name}</span>
+          <span className="frame">{frame.name.split(' ')[1]}</span>
         </div>
       </div>
     </div>

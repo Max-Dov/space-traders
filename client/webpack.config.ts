@@ -85,6 +85,7 @@ const config: webpack.Configuration = {
         { from: path.join('public', 'assets', 'images') },
         { from: path.join('public', 'assets', 'images', 'factions') },
         { from: path.join('public', 'assets', 'images', 'trade-goods') },
+        { from: path.join('public', 'assets', 'images', 'ships') },
         { from: path.join('public', 'assets', 'svg') },
       ],
     }),
