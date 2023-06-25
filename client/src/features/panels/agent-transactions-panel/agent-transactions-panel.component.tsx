@@ -19,7 +19,7 @@ const useAgentTransactions = () => {
 
   useEffect(() => {
     if (agentToken !== null) {
-      setAgentTransactions(transactions[agentToken]);
+      setAgentTransactions(transactions[agentToken] || []);
     }
   }, [transactions, agentToken]);
 
