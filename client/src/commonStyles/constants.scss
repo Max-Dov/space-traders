@@ -52,7 +52,7 @@ $font-color: #E8ECED;
 
 $transition-normal: 100ms;
 
-$faction-symbol-to-color: (
+$faction-symbol-to-color-map: (
         "cosmic": $cosmic-color,
         "void": $void-color,
         "galactic": $galactic-color,
@@ -73,12 +73,3 @@ $faction-symbol-to-color: (
         "ethereal": $ethereal-color,
         "lords": $lords-color,
 );
-
-$market-section-to-color: (
-        "raw_materials": #C2AF8C,
-        "components": #C28C8C,
-        "ship_modules": #BA8CC2,
-        "weaponry": #C28C8C,
-        "industry_and_science": #8C95C2,
-        "civilian_supplies": #A5C28C,
-)
