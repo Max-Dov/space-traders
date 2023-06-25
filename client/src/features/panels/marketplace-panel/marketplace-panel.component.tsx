@@ -3,8 +3,9 @@ import { useMarketsStore, closePanel, refreshMarkets, setSelectedMarket } from '
 import { Tooltip, Panel, Tabs, Placeholder, Icon, Select } from '@shared';
 import { formatDate, useAuthorizedEffect } from '@utils';
 import { CommonFeaturePanelProps } from '@types';
-import './marketplace-panel.styles.scss';
 import { MarketOverview } from './market-overview.component';
+import { MarketRecentTransactions } from './market-recent-transactions.component';
+import './marketplace-panel.styles.scss';
 
 interface MarketplacePanelProps extends CommonFeaturePanelProps {
 }
@@ -59,7 +60,7 @@ export const MarketplacePanel = ({ panelIndex, panelId }: MarketplacePanelProps)
           content: <MarketOverview market={markets[selectedMarket]} />,
         }, {
           header: 'Transactions',
-          content: <Placeholder>Not Implemented Yet.</Placeholder>,
+          content: <MarketRecentTransactions market={markets[selectedMarket]}/>,
         }]} omitContentWrap />}
     </Panel>
   );
