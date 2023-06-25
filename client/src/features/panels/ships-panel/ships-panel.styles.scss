@@ -1,0 +1,16 @@
+.ships-panel {
+  height: 20em;
+  overflow-y: scroll;
+
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+
+  @media (max-width: 80rem) {
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 80rem) {
+    grid-template-columns: 1fr 1fr;
+  }
+}

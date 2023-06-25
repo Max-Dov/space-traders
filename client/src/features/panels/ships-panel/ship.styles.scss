@@ -1,0 +1,14 @@
+@import "commonStyles/constants";
+
+section.ship {
+  border: 2px dashed $layout-color;
+  height: fit-content;
+  padding: 0.5rem;
+
+  .frame-image {
+    height: 64px;
+    width: 64px;
+    border: 3px solid $layout-color;
+
+  }
+}
