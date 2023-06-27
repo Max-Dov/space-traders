@@ -5,6 +5,18 @@ import './network-panel.styles.scss';
 import classNames from 'classnames';
 import { CommonFeaturePanelProps } from '@types';
 
+const cropLongUrl = (url: string) => {
+  let arr = url.split('/');
+
+  if (arr.length > 4) {
+    const temp: string[] = arr.slice(-3);
+    const newUrl = '.../' + temp.join('/');
+    return newUrl;
+  } else {
+    return url;
+  }
+};
+
 interface RequestProps {
   id: string;
   url: string;
@@ -23,13 +35,25 @@ const Request = ({ url, method, response, errorMessage }: RequestProps) => {
     isResponseBad = response === 'no internet' || response >= 400;
   }
 
+  const croppedUrl = cropLongUrl(url);
+
   return <>
     <div className="request">
       <span className="no-wrap">
         <b className="method">{method.toUpperCase()} </b>
-        <i className="url">{url} </i>
-          {!responseExists && <b className="no-response-placeholder">...</b>}
-          <b className={classNames('response', {
+        <i className="url">
+          {url !== croppedUrl ? (
+            <Tooltip omitTextUnderline tooltipText={url}>
+              {croppedUrl}
+            </Tooltip>
+          ) : (
+            url
+          )}
+        </i>
+        {' '}
+        {!responseExists && <b className='no-response-placeholder'>...</b>}
+        <b
+          className={classNames('response', {
             'bad-response': responseExists && isResponseBad,
             'good-response': responseExists && isResponseGood,
           })}>
