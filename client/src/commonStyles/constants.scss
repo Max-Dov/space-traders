@@ -38,6 +38,15 @@ $corsairs-color: #E43F22;
 $obsidian-color: #4DADDA;
 $aegis-color: #FB9E4F;
 $united-color: #C2CF71;
+$solitary-color: #FBFCBF;
+$cobalt-color: #51998D;
+$omega-color: #F5711F;
+$echo-color: #E3C434;
+$cult-color: #DF6C88;
+$ancients-color: #B99B83;
+$shadow-color: #92CE80;
+$ethereal-color: #18746B;
+$lords-color: #A8F9D7;
 
 $font-color: #E8ECED;
 
@@ -54,4 +63,13 @@ $faction-symbol-to-map: (
         "obsidian": $obsidian-color,
         "aegis": $aegis-color,
         "united": $united-color,
+        "solitary": $solitary-color,
+        "cobalt": $cobalt-color,
+        "omega": $omega-color,
+        "echo": $echo-color,
+        "cult": $cult-color,
+        "ancients": $ancients-color,
+        "shadow": $shadow-color,
+        "ethereal": $ethereal-color,
+        "lords": $lords-color,
 );
