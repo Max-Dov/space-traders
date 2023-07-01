@@ -29,7 +29,7 @@ export const useTooltipHorizontalPosition = (
         tooltipElement.style.left = `0.5em`;
       }
     }
-  }, [tooltipElement, bodyWidth, ...deps]);
+  }, [tooltipElement, ...deps]);
 };
 
 export const useTooltipVerticalPosition = (
@@ -53,11 +53,17 @@ export const useTooltipVerticalPosition = (
         tooltipElement.style.top = `calc(${top + scrollTop}px - 0.5em)`;
       }
     }
-  }, [tooltipElement, scrollTop, ...deps]);
+  }, [tooltipElement, ...deps]);
 };
 
+/**
+ * Returns `true` after set timeout in ms.
+ * Re-renders twice so useRef hooks can catch up after timeout ended.
+ */
 export const useTimeout = (ms: number, deps: any[]): boolean => {
   const [hasPassed, setHasPassed] = useState(false);
+
+  useFixUseRefsCatchUp(hasPassed);
 
   useEffect(() => {
     setHasPassed(false);
@@ -69,3 +75,17 @@ export const useTimeout = (ms: number, deps: any[]): boolean => {
 
   return hasPassed;
 };
+
+/**
+ * If using useRefs in code, then after timeout they would not catch up (component dependent on timeout would be
+ * rendered, but useRefs are still null). That brings inconvenience.
+ *
+ * Note: if you want to repro problem for investigation purposes, comment out that hook usage in useTimeout
+ * and try hovering over delayed tooltip. E.g. market last time updated time tooltip.
+ */
+const useFixUseRefsCatchUp = (delayPassed: boolean) => {
+  const [_delayPassed, setDelayPassed] = useState(false);
+  useEffect(() => {
+    setDelayPassed(delayPassed)
+  }, [delayPassed])
+}

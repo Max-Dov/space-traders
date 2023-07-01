@@ -1,9 +1,9 @@
-import React, {HTMLAttributes, ReactNode, RefObject, useEffect, useRef, useState} from 'react';
+import React, { HTMLAttributes, ReactNode, RefObject, useRef, useState } from 'react';
 import classNames from 'classnames';
 import './tooltip.styles.scss';
-import {Icon} from '@shared/icon/icon.component';
-import {useTimeout, useTooltipHorizontalPosition, useTooltipVerticalPosition} from './tooltip.utils';
-import {Portal} from './portal';
+import { Icon } from '@shared/icon/icon.component';
+import { useTimeout, useTooltipHorizontalPosition, useTooltipVerticalPosition } from './tooltip.utils';
+import { TooltipPortal } from './tooltip-portal.component';
 
 type TooltipDelay = 'short' | 'long';
 
@@ -74,7 +74,6 @@ export const Tooltip = ({
    */
   const shouldDisplay = (isActive && !doNothingOnClick) || (isHovered && (!tooltipDelay || delayPassed));
 
-  console.log({shouldDisplay, current: tooltipRef.current})
   useTooltipHorizontalPosition(tooltipRef, childrenRef, [shouldDisplay]);
   useTooltipVerticalPosition(tooltipRef, childrenRef, [shouldDisplay]);
 
@@ -100,15 +99,15 @@ export const Tooltip = ({
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           onClick={() => setIsActive(!isActive)}
-          className={classNames('tooltip-button', {'is-active': isActive})}
+          className={classNames('tooltip-button', { 'is-active': isActive })}
         >
           {customIcon || <Icon name="CircledQuestion"/>}
         </button>
       )}
-      {shouldDisplay &&
-        <Portal wrapperElementId="tooltip-root">
-          {isFancyTooltip ? (
-            <div ref={tooltipRef} className="tooltip fancy-tooltip">
+      <TooltipPortal>
+        {shouldDisplay && (
+          isFancyTooltip ? (
+            <div ref={tooltipRef} className="portaled-tooltip fancy-tooltip">
               <div className="tooltip-header">
                 <div>
                   <Icon name="Advice"/> Tooltip
@@ -125,7 +124,7 @@ export const Tooltip = ({
               </div>
             </div>
           ) : (
-            <div className="tooltip tooltip-text simple-tooltip" ref={tooltipRef}>
+            <div className="portaled-tooltip tooltip-text simple-tooltip" ref={tooltipRef}>
               {tooltipText}
               {isActive && (
                 <button className="inline-button" onClick={() => setIsActive(false)}>
@@ -133,9 +132,9 @@ export const Tooltip = ({
                 </button>
               )}
             </div>
-          )}
-        </Portal>
-      }
+          )
+        )}
+      </TooltipPortal>
     </div>
   );
 };
