@@ -1,9 +1,9 @@
-import React, { HTMLAttributes, ReactNode, RefObject, useEffect, useRef, useState } from 'react';
+import React, {HTMLAttributes, ReactNode, RefObject, useEffect, useRef, useState} from 'react';
 import classNames from 'classnames';
 import './tooltip.styles.scss';
-import { Icon } from '@shared/icon/icon.component';
-import { useTimeout, useTooltipHorizontalPosition, useTooltipVerticalPosition } from './tooltip.utils';
-import { Portal } from './portal';
+import {Icon} from '@shared/icon/icon.component';
+import {useTimeout, useTooltipHorizontalPosition, useTooltipVerticalPosition} from './tooltip.utils';
+import {Portal} from './portal';
 
 type TooltipDelay = 'short' | 'long';
 
@@ -66,9 +66,15 @@ export const Tooltip = ({
   } else if (tooltipDelay === 'long') {
     timeout = 1000;
   }
-  const timeoutPassed = useTimeout(timeout, [isHovered]);
-  const shouldDisplay = (isActive && !doNothingOnClick) || (isHovered && (!tooltipDelay || timeoutPassed));
+  const delayPassed = useTimeout(timeout, [isHovered]);
+  /**
+   * Should display when:
+   * 1. isActive (clicked) and clicking is not disabled (doNothingOnClick).
+   * 2. isHovered and if there's tooltipDelay, delay should be already passed.
+   */
+  const shouldDisplay = (isActive && !doNothingOnClick) || (isHovered && (!tooltipDelay || delayPassed));
 
+  console.log({shouldDisplay, current: tooltipRef.current})
   useTooltipHorizontalPosition(tooltipRef, childrenRef, [shouldDisplay]);
   useTooltipVerticalPosition(tooltipRef, childrenRef, [shouldDisplay]);
 
@@ -94,43 +100,42 @@ export const Tooltip = ({
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           onClick={() => setIsActive(!isActive)}
-          className={classNames('tooltip-button', { 'is-active': isActive })}
+          className={classNames('tooltip-button', {'is-active': isActive})}
         >
-          {customIcon || <Icon name="CircledQuestion" />}
+          {customIcon || <Icon name="CircledQuestion"/>}
         </button>
       )}
       {shouldDisplay &&
-        (isFancyTooltip ? (
-          <Portal wrapperElementId="tooltip-root">
+        <Portal wrapperElementId="tooltip-root">
+          {isFancyTooltip ? (
             <div ref={tooltipRef} className="tooltip fancy-tooltip">
               <div className="tooltip-header">
                 <div>
-                  <Icon name="Advice" /> Tooltip
+                  <Icon name="Advice"/> Tooltip
                 </div>
                 {isActive && (
                   <button className="inline-button" onClick={() => setIsActive(false)}>
-                    <Icon name="Close" />
+                    <Icon name="Close"/>
                   </button>
                 )}
               </div>
               <div className="image-with-text">
                 <div className="tooltip-text">{tooltipText}</div>
-                {tooltipImgName && <img src={`/${tooltipImgName}.webp`} alt="tooltip-image" />}
+                {tooltipImgName && <img src={`/${tooltipImgName}.webp`} alt="tooltip-image"/>}
               </div>
             </div>
-          </Portal>
-        ) : (
-          <Portal wrapperElementId="tooltip-root">
+          ) : (
             <div className="tooltip tooltip-text simple-tooltip" ref={tooltipRef}>
               {tooltipText}
               {isActive && (
                 <button className="inline-button" onClick={() => setIsActive(false)}>
-                  <Icon name="Close" />
+                  <Icon name="Close"/>
                 </button>
               )}
             </div>
-          </Portal>
-        ))}
+          )}
+        </Portal>
+      }
     </div>
   );
 };

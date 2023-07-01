@@ -42,11 +42,10 @@
   .tooltip-button, .text-to-highlight {
     cursor: pointer;
   }
-
-
-  
 }
-.tooltip {
+
+.tooltip-portal {
+  .tooltip {
     position: absolute;
     z-index: 3;
     top: 0;
@@ -95,3 +94,4 @@
       }
     }
   }
+}
