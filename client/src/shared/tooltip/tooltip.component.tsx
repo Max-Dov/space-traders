@@ -2,9 +2,10 @@ import React, { HTMLAttributes, ReactNode, RefObject, useRef, useState } from 'r
 import classNames from 'classnames';
 import './tooltip.styles.scss';
 import { Icon } from '@shared/icon/icon.component';
-import { useTimeout, useTooltipHorizontalPosition } from './tooltip.utils';
+import { useTimeout, useTooltipHorizontalPosition, useTooltipVerticalPosition } from './tooltip.utils';
+import { TooltipPortal } from './tooltip-portal.component';
 
-type TooltipDelay = 'short' | 'long'
+type TooltipDelay = 'short' | 'long';
 
 interface TooltipProps extends HTMLAttributes<HTMLDivElement> {
   tooltipText: ReactNode;
@@ -65,61 +66,75 @@ export const Tooltip = ({
   } else if (tooltipDelay === 'long') {
     timeout = 1000;
   }
-  const timeoutPassed = useTimeout(timeout, [isHovered]);
-  const shouldDisplay = (isActive && !doNothingOnClick) || isHovered && (!tooltipDelay || timeoutPassed);
+  const delayPassed = useTimeout(timeout, [isHovered]);
+  /**
+   * Should display when:
+   * 1. isActive (clicked) and clicking is not disabled (doNothingOnClick).
+   * 2. isHovered and if there's tooltipDelay, delay should be already passed.
+   */
+  const shouldDisplay = (isActive && !doNothingOnClick) || (isHovered && (!tooltipDelay || delayPassed));
 
   useTooltipHorizontalPosition(tooltipRef, childrenRef, [shouldDisplay]);
+  useTooltipVerticalPosition(tooltipRef, childrenRef, [shouldDisplay]);
 
-  return <div className={classNames('tooltip-container', {
-    'omit-text-underline': omitTextUnderline,
-  })}>
-    {!isIconTooltip
-      ? <span
-        ref={childrenRef}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        className="text-to-highlight"
-        onClick={() => setIsActive(!isActive)}
-      >
+  return (
+    <div
+      className={classNames('tooltip-container', {
+        'omit-text-underline': omitTextUnderline,
+      })}
+    >
+      {!isIconTooltip ? (
+        <span
+          ref={childrenRef}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          className="text-to-highlight"
+          onClick={() => setIsActive(!isActive)}
+        >
           {children}
         </span>
-      : <button
-        ref={childrenRef as RefObject<HTMLButtonElement>}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        onClick={() => setIsActive(!isActive)}
-        className={classNames('tooltip-button', { 'is-active': isActive })}
-      >
-        {customIcon || <Icon name="CircledQuestion" />}
-      </button>
-    }
-    {shouldDisplay && (
-      isFancyTooltip
-        ? (
-          <div ref={tooltipRef} className="tooltip fancy-tooltip">
-            <div className="tooltip-header">
-              <div>
-                <Icon name="Advice" />
-                {' '}
-                Tooltip
+      ) : (
+        <button
+          ref={childrenRef as RefObject<HTMLButtonElement>}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          onClick={() => setIsActive(!isActive)}
+          className={classNames('tooltip-button', { 'is-active': isActive })}
+        >
+          {customIcon || <Icon name="CircledQuestion"/>}
+        </button>
+      )}
+      <TooltipPortal>
+        {shouldDisplay && (
+          isFancyTooltip ? (
+            <div ref={tooltipRef} className="portaled-tooltip fancy-tooltip">
+              <div className="tooltip-header">
+                <div>
+                  <Icon name="Advice"/> Tooltip
+                </div>
+                {isActive && (
+                  <button className="inline-button" onClick={() => setIsActive(false)}>
+                    <Icon name="Close"/>
+                  </button>
+                )}
               </div>
-              {isActive && <button className="inline-button" onClick={() => setIsActive(false)}>
-                  <Icon name="Close" />
-              </button>}
-            </div>
-            <div className="image-with-text">
-              <div className="tooltip-text">
-                {tooltipText}
+              <div className="image-with-text">
+                <div className="tooltip-text">{tooltipText}</div>
+                {tooltipImgName && <img src={`/${tooltipImgName}.webp`} alt="tooltip-image"/>}
               </div>
-              {tooltipImgName && <img src={`/${tooltipImgName}.webp`} alt="tooltip-image" />}
             </div>
-          </div>
-        ) : <div className="tooltip tooltip-text simple-tooltip" ref={tooltipRef}>
-          {tooltipText}
-          {isActive && <button className="inline-button" onClick={() => setIsActive(false)}>
-              <Icon name="Close" />
-          </button>}
-        </div>
-    )}
-  </div>;
+          ) : (
+            <div className="portaled-tooltip tooltip-text simple-tooltip" ref={tooltipRef}>
+              {tooltipText}
+              {isActive && (
+                <button className="inline-button" onClick={() => setIsActive(false)}>
+                  <Icon name="Close"/>
+                </button>
+              )}
+            </div>
+          )
+        )}
+      </TooltipPortal>
+    </div>
+  );
 };

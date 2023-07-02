@@ -42,55 +42,54 @@
   .tooltip-button, .text-to-highlight {
     cursor: pointer;
   }
+}
 
+.portaled-tooltip {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  transform: translateY(calc(-100% - 0.2em));
 
-  .tooltip {
-    position: absolute;
-    z-index: 3;
-    top: 0;
-    transform: translateY(calc(-100% - 0.2em));
+  background-color: rgba(black, 0.8);
+  border: 1px solid $accent-color-important;
 
-    background-color: rgba(black, 0.8);
-    border: 1px solid $accent-color-important;
+  animation: $transition-normal fadeIn ease;
 
-    animation: $transition-normal fadeIn ease;
+  .tooltip-text, &.tooltip-text {
+    font-size: 1rem;
+    line-height: 1.6rem;
+    font-weight: 400;
+    white-space: nowrap;
+    color: $font-color;
+    font-family: $font-family-paragraph;
 
-    .tooltip-text, &.tooltip-text {
-      font-size: 1rem;
-      line-height: 1.6rem;
-      font-weight: 400;
-      white-space: nowrap;
-      color: $font-color;
-      font-family: $font-family-paragraph;
+    padding: 0.5rem;
+  }
 
-      padding: 0.5rem;
+  &.simple-tooltip {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+
+  &.fancy-tooltip {
+    .image-with-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 0.5rem;
     }
 
-    &.simple-tooltip {
+    .tooltip-header {
       display: flex;
       align-items: center;
-      gap: 0.5em;
-    }
-
-    &.fancy-tooltip {
-      .image-with-text {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-bottom: 0.5rem;
-      }
-
-      .tooltip-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        font-size: 1.2rem;
-        padding: 0.5rem;
-        background-color: rgba($accent-color-important, 0.3);
-        height: 100%;
-        font-family: $font-family-header;
-        font-weight: 400;
-      }
+      justify-content: space-between;
+      font-size: 1.2rem;
+      padding: 0.5rem;
+      background-color: rgba($accent-color-important, 0.3);
+      height: 100%;
+      font-family: $font-family-header;
+      font-weight: 400;
     }
   }
 }
