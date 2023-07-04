@@ -14,6 +14,8 @@ export * from './hooks/use-is-authorized.hook';
 export * from './hooks/use-authorized-effect.hook';
 export * from './hooks/use-pagination.hook';
 export * from './hooks/use-filter-array.hook';
+export * from './hooks/use-table-filtering.hook';
+export * from './hooks/use-table-sorting.hook';
 export * from './hooks/use-is-element-narrow.util';
 
 export * from './format-date.util';

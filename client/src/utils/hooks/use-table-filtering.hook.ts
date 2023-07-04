@@ -20,14 +20,14 @@ export const useTableFiltering = <RecordType>({
   const [filterColumn, setFilterColumn] = useState<string | null>(null);
   const getFilterValue = columns.find(column => column.id === filterColumn)?.getFilterValue || null;
 
-  const filteredArray = useFilterArray({
+  const filteredRecords = useFilterArray({
     records,
     transformRecordToFilterValue: getFilterValue,
     stringFilter,
   });
 
   return {
-    filteredArray,
+    filteredRecords,
     setStringFilter,
     setFilterColumn,
   };

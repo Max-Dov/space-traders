@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
-import { usePagination } from '@utils';
+import { usePagination, useTableFiltering, useTableSorting } from '@utils';
 import React from 'react';
-import { useTableFiltering } from '@utils/hooks/use-table-filtering.hook';
 
 export interface TableColumn<RecordType> {
   /**
@@ -27,7 +26,7 @@ export interface TableColumn<RecordType> {
 interface TableProps<RecordType> {
   /**
    * Config for table would be accessed via zustand by that ID.
-   * Also can be used as CSS selector.
+   * Also, can be used as CSS selector.
    */
   id: string;
   records: Array<RecordType>;
@@ -48,20 +47,21 @@ export const Table = <RecordType = unknown>({
   columns,
 }: TableProps<RecordType>) => {
   const {
-    filteredArray,
+    filteredRecords,
     setFilterColumn,
     setStringFilter,
-  } = useTableFiltering({
-    records,
-    columns,
-  });
+  } = useTableFiltering({ records, columns });
+  const {
+    sortedRecords,
+    setSortColumn
+  } = useTableSorting({ records: filteredRecords, columns });
   const {
     paginatedRecords,
     page,
     setPage,
     totalPages,
   } = usePagination<RecordType>({
-    records: filteredArray,
+    records: sortedRecords,
     recordsPerPage,
     startingPage: 0,
   });
