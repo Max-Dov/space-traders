@@ -8,3 +8,4 @@ export * from './draggable/draggable.component';
 export * from './placeholder/placeholder.component';
 export * from './tabs/tabs.component';
 export * from './select/select.component';
+export * from './table/table.component';

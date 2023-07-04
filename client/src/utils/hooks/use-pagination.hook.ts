@@ -6,6 +6,10 @@ interface UsePaginationProps<RecordType> {
   recordsPerPage: number;
 }
 
+/**
+ * Pagination hook for an array. Accepts records and options and returns paginated array.
+ * Returns `setPage` to control & update paginated list.
+ */
 export const usePagination = <RecordType = unknown>({
   startingPage,
   records,
