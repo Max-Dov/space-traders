@@ -33,14 +33,8 @@
       padding: 0.5em 0.5em 0.5em 0;
 
       img {
-        height: 2rem;
-        width: 2rem;
-        border: 3px solid $layout-color;
-        transition: $transition-normal;
-
-        &:hover {
-          border-color: lighten($layout-color, 20%);
-        }
+        height: 5rem;
+        width: 5rem;
       }
     }
   }
@@ -141,12 +135,6 @@
         img {
           height: 2rem;
           width: 2rem;
-          border: 3px solid $layout-color;
-          transition: $transition-normal;
-
-          &:hover {
-            border-color: lighten($layout-color, 20%);
-          }
         }
       }
     }

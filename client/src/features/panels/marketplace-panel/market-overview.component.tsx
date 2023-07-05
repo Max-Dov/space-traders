@@ -24,35 +24,33 @@ export const MarketOverview = ({ market }: MarketOverviewProps) => {
     <section className="market-overview">
       <div className="import-export-row">
         <div className="label">
-          <Tooltip tooltipText="Exports" isIconTooltip customIcon={<Icon name="Export" />} />
+          <Tooltip tooltipText="Exports" isIconTooltip customIcon={<Icon name="Export"/>}/>
         </div>
         <div className="import-export-icons">
           {exports.map(good =>
             <Tooltip tooltipText={<div>
-              <h3>{good.name}</h3>
-              <p>{good.description}</p>
+              <strong>{good.name}</strong>
+              <div>{good.description}</div>
             </div>} key={good.symbol} omitTextUnderline>
-              <img src={`/ammonia_ice.webp`} alt={good.symbol.toLowerCase()} />
-              {/*<img src={`/${good.symbol.toLowerCase()}.webp`} alt={good.symbol.toLowerCase()} />*/}
+              <img src={`/${good.symbol.toLowerCase()}.webp`} alt={good.symbol.toLowerCase()} className="clickable"/>
             </Tooltip>)}
         </div>
       </div>
       <div className="import-export-row">
         <div className="label">
-          <Tooltip tooltipText="Imports" isIconTooltip customIcon={<Icon name="Import" />} />
+          <Tooltip tooltipText="Imports" isIconTooltip customIcon={<Icon name="Import"/>}/>
         </div>
         <div className="import-export-icons">
           {imports.map(good =>
             <Tooltip tooltipText={<div>
-              <h3>{good.name}</h3>
-              <p>{good.description}</p>
+              <strong>{good.name}</strong>
+              <div>{good.description}</div>
             </div>} key={good.symbol} omitTextUnderline>
-              <img src={`/ammonia_ice.webp`} alt={good.symbol.toLowerCase()} />
-              {/*<img src={`/${good.symbol.toLowerCase()}.webp`} alt={good.symbol.toLowerCase()} />*/}
+              <img src={`/${good.symbol.toLowerCase()}.webp`} alt={good.symbol.toLowerCase()} className="clickable"/>
             </Tooltip>)}
         </div>
       </div>
-      <MarketTable market={market} shipSymbol={shipSymbol} />
+      <MarketTable market={market} shipSymbol={shipSymbol}/>
     </section>
   );
 };
@@ -75,7 +73,7 @@ const MarketTable = ({ market, shipSymbol }: MarketTableProps) => {
       <th className="no-wrap">
         Vol. / Supply
         {' '}
-        <Tooltip tooltipText="Once supply of item changes, trade volume changes." isIconTooltip />
+        <Tooltip tooltipText="Once supply of item changes, trade volume changes." isIconTooltip/>
       </th>
       <th>Buy At</th>
       <th>Sell At</th>
@@ -125,8 +123,7 @@ const TradeGoodRow = ({ tradeGood, tradeGoodName, shipSymbol }: TradeGoodRowProp
     >
       <td>
         <div className="good-name-with-icon">
-          <img src={`/ammonia_ice.webp`} alt={tradeGood.symbol.toLowerCase()} />
-          {/*<img src={`/${tradeGood.symbol.toLowerCase()}.webp`} alt={tradeGood.symbol.toLowerCase()} />*/}
+          <img src={`/${tradeGood.symbol.toLowerCase()}.webp`} alt={tradeGood.symbol.toLowerCase()}/>
           {tradeGoodName || tradeGood.symbol.toLowerCase()}
         </div>
       </td>
@@ -134,33 +131,33 @@ const TradeGoodRow = ({ tradeGood, tradeGoodName, shipSymbol }: TradeGoodRowProp
         {formatNumber(tradeGood.tradeVolume)} ({TRADE_VOLUME_TO_LABEL[tradeGood.supply]})
       </td>
       <td>
-        <Currency amount={tradeGood.purchasePrice} />
+        <Currency amount={tradeGood.purchasePrice}/>
       </td>
       <td>
-        <Currency amount={tradeGood.sellPrice} />
+        <Currency amount={tradeGood.sellPrice}/>
       </td>
     </tr>
     {isRowExpanded && <>
         <tr className="trade-row">
             <td colSpan={4}>
                 <div className="action">
-                    <Icon name="ArrowElbowDownRight" className="arrow-icon" />
+                    <Icon name="ArrowElbowDownRight" className="arrow-icon"/>
                     <span className="no-wrap">
                       <span className="action-word">Buy</span>
                       {' '}{tradeGoodName}{'. '}
                     </span>
                     <span className="no-wrap">
-                      1<Tooltip isIconTooltip customIcon={<Icon name="Package" />} tooltipText="Unit" />
-                      {' = '}<Currency amount={tradeGood.purchasePrice} />{'. '}
+                      1<Tooltip isIconTooltip customIcon={<Icon name="Package"/>} tooltipText="Unit"/>
+                      {' = '}<Currency amount={tradeGood.purchasePrice}/>{'. '}
                     </span>
                     <span className="trade-amount-input-wrapper">
                       Amount:
                       <Input id="amount" className="trade-amount-input" value={String(buyAmount)}
-                             onChange={(amount) => setBuyAmount(Number(amount))} />
+                             onChange={(amount) => setBuyAmount(Number(amount))}/>
                       <button className="action-button" onClick={buyProduct}>
-                          Buy {buyAmount}<Icon name="Package" />
+                          Buy {buyAmount}<Icon name="Package"/>
                         {' for '}
-                          <Currency amount={tradeGood.purchasePrice * buyAmount} />
+                          <Currency amount={tradeGood.purchasePrice * buyAmount}/>
                       </button>
                     </span>
                 </div>
@@ -169,24 +166,24 @@ const TradeGoodRow = ({ tradeGood, tradeGoodName, shipSymbol }: TradeGoodRowProp
         <tr className="trade-row">
             <td colSpan={4}>
                 <div className="action">
-                    <Icon name="ArrowElbowDownRight" className="arrow-icon" />
+                    <Icon name="ArrowElbowDownRight" className="arrow-icon"/>
                     <span>
                       <span className="action-word">Sell</span>
                       {' '}{tradeGoodName}{'. '}
                     </span>
                     <span>
-                      1<Tooltip isIconTooltip customIcon={<Icon name="Package" />} tooltipText="Unit" />
-                      {' = '}<Currency amount={tradeGood.sellPrice} />{'. '}
+                      1<Tooltip isIconTooltip customIcon={<Icon name="Package"/>} tooltipText="Unit"/>
+                      {' = '}<Currency amount={tradeGood.sellPrice}/>{'. '}
                     </span>
                     <span className="trade-amount-input-wrapper">
                       Amount:
                       <Input id="amount" className="trade-amount-input" value={String(sellAmount)}
-                             onChange={(amount) => setSellAmount(Number(amount))} />
+                             onChange={(amount) => setSellAmount(Number(amount))}/>
                       <button className="action-button" onClick={sellProduct}>
                           <span>Sell {sellAmount}</span>
-                          <Icon name="Package" />
+                          <Icon name="Package"/>
                         {' for '}
-                          <Currency amount={tradeGood.sellPrice * sellAmount} />
+                          <Currency amount={tradeGood.sellPrice * sellAmount}/>
                       </button>
                     </span>
                 </div>
