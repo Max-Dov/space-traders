@@ -99,3 +99,18 @@ input[type="radio"] {
     opacity: 1;
   }
 }
+
+img {
+  height: 5rem;
+  width: 5rem;
+  border: 3px solid $layout-color;
+  transition: $transition-normal;
+
+  &:hover {
+    border-color: lighten($layout-color, 20%);
+  }
+
+  &.clickable:active {
+    border-color: $accent-color-important;
+  }
+}
