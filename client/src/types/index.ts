@@ -10,4 +10,3 @@ export * from './market.interface';
 export * from './common-feature-panel-props.interface';
 export * from './market-transaction.interface';
 export * from './transaction.interface';
-export * from './trade-good-tags.interface';
