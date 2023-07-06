@@ -73,3 +73,22 @@ $faction-symbol-to-map: (
         "ethereal": $ethereal-color,
         "lords": $lords-color,
 );
+
+$good-tag-to-map: (
+        "ores": $cosmic-color,
+        "metalls": $void-color,
+        "modules": $galactic-color,
+        "engines": $dominion-color,
+        "reactors": $quantum-color,
+        "bio": $astro-color,
+        "precious materials": $corsairs-color,
+        "minerals and resources": $obsidian-color,
+        "manufactured goods": $aegis-color,
+        "consumables": $united-color,
+        "luxury and fashion": $solitary-color,
+        "scientific and research equipment": $cobalt-color,
+        "space technology": $omega-color,
+        "military and defense": $echo-color,
+        "exploration and survey equipment": $cult-color,
+        "cultural and historical items": $ancients-color,
+)
