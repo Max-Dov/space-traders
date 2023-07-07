@@ -52,7 +52,7 @@ $font-color: #E8ECED;
 
 $transition-normal: 100ms;
 
-$faction-symbol-to-map: (
+$faction-symbol-to-color: (
         "cosmic": $cosmic-color,
         "void": $void-color,
         "galactic": $galactic-color,
@@ -74,21 +74,11 @@ $faction-symbol-to-map: (
         "lords": $lords-color,
 );
 
-$good-tag-to-map: (
-        "ores": $cosmic-color,
-        "metalls": $void-color,
-        "modules": $galactic-color,
-        "engines": $dominion-color,
-        "reactors": $quantum-color,
-        "bio": $astro-color,
-        "precious materials": $corsairs-color,
-        "minerals and resources": $obsidian-color,
-        "manufactured goods": $aegis-color,
-        "consumables": $united-color,
-        "luxury and fashion": $solitary-color,
-        "scientific and research equipment": $cobalt-color,
-        "space technology": $omega-color,
-        "military and defense": $echo-color,
-        "exploration and survey equipment": $cult-color,
-        "cultural and historical items": $ancients-color,
+$market-section-to-color: (
+        "raw_materials": #C2AF8C,
+        "components": #C28C8C,
+        "ship_modules": #BA8CC2,
+        "weaponry": #C28C8C,
+        "industry_and_science": #8C95C2,
+        "civilian_supplies": #A5C28C,
 )

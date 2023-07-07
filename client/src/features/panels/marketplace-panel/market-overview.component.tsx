@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import { Market, Supply } from '@types';
 import { Currency, Icon, Input, Tooltip } from '@shared';
 import { formatNumber } from '@utils';
 import { buyProduct as buyProductAction, useShipsStore } from '@zustand';
-import { GOOD_SYMBOL_TO_TAG } from '@constants';
+import { MarketSection, TradeGoodsSymbols } from '@constants';
 import classNames from 'classnames';
+import { generateMarketSections } from './generate-market-sections.util';
 
 const TRADE_VOLUME_TO_LABEL = {
   [Supply.SCARCE]: 'Scarce',
@@ -13,48 +14,13 @@ const TRADE_VOLUME_TO_LABEL = {
   [Supply.ABUNDANT]: 'Abundant',
 };
 
-const getSingleGoodsAndGroupedGoods = (array: Market['imports'] | Market['exports']) => {
-  const filteredDataByCategory = GOOD_SYMBOL_TO_TAG.map((obj) =>
-    Object.keys(obj).filter((el) => {
-      for (let i = 0; i < array.length; i++) {
-        if (el === array[i].symbol) {
-          return true;
-        }
-      }
-    })
-  );
-
-  const singleGoods = filteredDataByCategory
-    .filter((el) => el.length === 1)
-    .flat()
-    .map((el) => {
-      for (let i = 0; i < array.length; i++) {
-        if (array[i].symbol === el) {
-          return array[i];
-        }
-      }
-    });
-
-  const groupedGoods = filteredDataByCategory
-    .filter((el) => el.length > 1)
-    .flat()
-    .map((el) => {
-      for (let i = 0; i < array.length; i++) {
-        if (array[i].symbol === el) {
-          return array[i];
-        }
-      }
-    });
-
-  return { singleGoods, groupedGoods };
-};
-
-const getGoodTag = (symbol: string) => {
-  const goodTag = GOOD_SYMBOL_TO_TAG
-    .filter((obj) => Object.keys(obj).some((el) => el === symbol))[0][symbol]
-    .toLowerCase();
-
-  return goodTag;
+const MARKET_SECTION_TO_LABEL = {
+  [MarketSection.WEAPONRY]: 'Weaponry',
+  [MarketSection.COMPONENTS]: 'Components',
+  [MarketSection.INDUSTRY_AND_SCIENCE]: 'Industry and Science',
+  [MarketSection.RAW_MATERIALS]: 'Raw Materials',
+  [MarketSection.SHIP_MODULES]: 'Ship Modules',
+  [MarketSection.CIVILIAN_SUPPLIES]: 'Civilian Supplies',
 };
 
 interface MarketOverviewProps {
@@ -65,8 +31,43 @@ export const MarketOverview = ({ market }: MarketOverviewProps) => {
   const { imports, exports } = market;
   const shipSymbol = useShipsStore().ships?.[0]?.symbol;
 
-  const { singleGoods: singleImportGoods, groupedGoods: groupedImportGoods } = getSingleGoodsAndGroupedGoods(imports);
-  const { singleGoods: singleExportGoods, groupedGoods: groupedExportGoods } = getSingleGoodsAndGroupedGoods(exports);
+  const renderTradeGoodTooltip = (
+    tradeGoodSymbol: TradeGoodsSymbols,
+    marketSection: MarketSection,
+    shouldHighlight: boolean
+  ): ReactNode => {
+    const tradeGood =
+      imports.find(tradeGood => tradeGood.symbol === tradeGoodSymbol)
+      || exports.find(tradeGood => tradeGood.symbol === tradeGoodSymbol);
+    if (!tradeGood) return null;
+    const lowerCaseSymbol = tradeGood.symbol.toLowerCase();
+    const lowerMarketSection = marketSection.toLowerCase();
+    return <Tooltip
+      key={tradeGood.symbol} omitTextUnderline
+      tooltipText={
+        <div className="trade-good-tooltip">
+          <strong>{tradeGood.name}</strong>
+          {' '}
+          <i className={lowerMarketSection}>({MARKET_SECTION_TO_LABEL[marketSection]})</i>
+          <div>{tradeGood.description}</div>
+        </div>
+      }
+    >
+      <img src={`/${lowerCaseSymbol}.webp`} alt={lowerCaseSymbol}
+           className={classNames('clickable', { [lowerMarketSection]: shouldHighlight })} />
+    </Tooltip>;
+  };
+
+  const renderSectionTooltips = (marketSection: MarketSection, sectionTradeGoodsSet: Set<TradeGoodsSymbols>) => {
+    const shouldHighlight = sectionTradeGoodsSet.size > 1;
+    return [...sectionTradeGoodsSet.keys()]
+      .map(tradeGoodSymbol => renderTradeGoodTooltip(tradeGoodSymbol, marketSection, shouldHighlight));
+  };
+
+  const renderMarketTooltips = (marketSections: ReturnType<typeof generateMarketSections>) =>
+    Object.entries(marketSections).map(([marketSection, sectionTradeGoodsSet]) =>
+      renderSectionTooltips(marketSection as MarketSection, sectionTradeGoodsSet)
+    );
 
   return (
     <section className="market-overview">
@@ -75,52 +76,8 @@ export const MarketOverview = ({ market }: MarketOverviewProps) => {
           <Tooltip tooltipText="Exports" isIconTooltip customIcon={<Icon name="Export" />} />
         </div>
         <div className="import-export-icons">
-          {groupedExportGoods.map(
-            (good) =>
-              good && (
-                <Tooltip
-                  tooltipText={
-                    <div className="tooltip-container">
-                      <strong>
-                        {good.name} 
-                        {' '}
-                        <i data-tag={getGoodTag(good.symbol)}>({getGoodTag(good.symbol)})</i>
-                      </strong>
-                      <div>{good.description}</div>
-                    </div>
-                  }
-                  key={good.symbol}
-                  omitTextUnderline
-                >
-                  <img
-                    src={`/${good.symbol.toLowerCase()}.webp`}
-                    alt={good.symbol.toLowerCase()}
-                    className="clickable"
-                    data-tag={getGoodTag(good.symbol)}
-                  />
-                </Tooltip>
-              )
-          )}
-          {singleExportGoods.map(
-            (good) =>
-              good && (
-                <Tooltip
-                  tooltipText={
-                    <div>
-                      <strong>{good.name}</strong>
-                      <div>{good.description}</div>
-                    </div>
-                  }
-                  key={good.symbol}
-                  omitTextUnderline
-                >
-                  <img
-                    src={`/${good.symbol.toLowerCase()}.webp`}
-                    alt={good.symbol.toLowerCase()}
-                    className="clickable"
-                  />
-                </Tooltip>
-              )
+          {renderMarketTooltips(
+            generateMarketSections(exports.map(tradeGood => tradeGood.symbol))
           )}
         </div>
       </div>
@@ -129,52 +86,8 @@ export const MarketOverview = ({ market }: MarketOverviewProps) => {
           <Tooltip tooltipText="Imports" isIconTooltip customIcon={<Icon name="Import" />} />
         </div>
         <div className="import-export-icons">
-          {groupedImportGoods.map(
-            (good) =>
-              good && (
-                <Tooltip
-                  tooltipText={
-                    <div className="tooltip-container">
-                      <strong>
-                        {good.name} 
-                        {' '}
-                        <i data-tag={getGoodTag(good.symbol)}>({getGoodTag(good.symbol)})</i>
-                      </strong>
-                      <div>{good.description}</div>
-                    </div>
-                  }
-                  key={good.symbol}
-                  omitTextUnderline
-                >
-                  <img
-                    src={`/${good.symbol.toLowerCase()}.webp`}
-                    alt={good.symbol.toLowerCase()}
-                    className="clickable"
-                    data-tag={getGoodTag(good.symbol)}
-                  />
-                </Tooltip>
-              )
-          )}
-          {singleImportGoods.map(
-            (good) =>
-              good && (
-                <Tooltip
-                  tooltipText={
-                    <div>
-                      <strong>{good.name}</strong>
-                      <div>{good.description}</div>
-                    </div>
-                  }
-                  key={good.symbol}
-                  omitTextUnderline
-                >
-                  <img
-                    src={`/${good.symbol.toLowerCase()}.webp`}
-                    alt={good.symbol.toLowerCase()}
-                    className="clickable"
-                  />
-                </Tooltip>
-              )
+          {renderMarketTooltips(
+            generateMarketSections(imports.map(tradeGood => tradeGood.symbol))
           )}
         </div>
       </div>

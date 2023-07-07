@@ -1,4 +1,5 @@
 import { Transaction } from '@types';
+import { TradeGoodsSymbols } from '@constants';
 
 /**
  * Market model coming from API.
@@ -6,23 +7,23 @@ import { Transaction } from '@types';
 export interface Market {
   symbol: string;
   exports: Array<{
-    symbol: string;
+    symbol: TradeGoodsSymbols;
     name: string;
     description: string;
   }>,
   imports: Array<{
-    symbol: string;
+    symbol: TradeGoodsSymbols;
     name: string;
     description: string;
   }>,
   exchange: Array<{
-    symbol: string;
+    symbol: TradeGoodsSymbols;
     name: string;
     description: string;
   }>,
   transactions: Array<Transaction>,
   tradeGoods: Array<{
-    symbol: string;
+    symbol: TradeGoodsSymbols;
     tradeVolume: number;
     supply: Supply;
     purchasePrice: number;

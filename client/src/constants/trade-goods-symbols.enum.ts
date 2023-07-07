@@ -1,7 +1,7 @@
 /**
  * Symbols for trade goods coming from API.
  */
-export enum TradeGoodSymbols {
+export enum TradeGoodsSymbols {
   PRECIOUS_STONES = 'PRECIOUS_STONES',
   QUARTZ_SAND = 'QUARTZ_SAND',
   SILICON_CRYSTALS = 'SILICON_CRYSTALS',
