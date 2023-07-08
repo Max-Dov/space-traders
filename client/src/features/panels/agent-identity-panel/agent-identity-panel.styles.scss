@@ -21,7 +21,7 @@
     gap: 2em;
   }
 
-  @each $faction-symbol, $faction-color in $faction-symbol-to-map {
+  @each $faction-symbol, $faction-color in $faction-symbol-to-color {
     .selected-faction.#{$faction-symbol} {
       color: $faction-color;
       font-weight: $font-bold;

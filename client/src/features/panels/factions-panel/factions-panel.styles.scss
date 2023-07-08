@@ -24,7 +24,7 @@
   background-position: center;
   background-size: cover;
 
-  @each $faction-symbol, $faction-color in $faction-symbol-to-map {
+  @each $faction-symbol, $faction-color in $faction-symbol-to-color {
     &.#{$faction-symbol} {
       .name, .symbol-and-hq {
         color: $faction-color;
