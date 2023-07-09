@@ -74,6 +74,15 @@ $faction-symbol-to-color-map: (
         "lords": $lords-color,
 );
 
+$market-section-to-color-map: (
+        "raw_materials": #C2AF8C,
+        "components": #C28C8C,
+        "ship_modules": #BA8CC2,
+        "weaponry": #C28C8C,
+        "industry_and_science": #8C95C2,
+        "civilian_supplies": #A5C28C,
+)
+
 //$ship-frames: "frame_probe", "frame_drone", "frame_interceptor", "frame_racer", "frame_fighter", "frame_frigate",
 //"frame_shuttle", "frame_explorer", "frame_miner", "frame_light_freighter", "frame_heavy_freighter", "frame_transport",
 //"frame_destroyer", "frame_cruiser", "frame_carrier";

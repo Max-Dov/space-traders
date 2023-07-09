@@ -33,7 +33,7 @@
       padding: 0.5em 0.5em 0.5em 0;
 
       img {
-        @each $market-section, $section-color in $market-section-to-color {
+        @each $market-section, $section-color in $market-section-to-color-map {
           &.#{$market-section} {
             height: 5rem;
             width: 5rem;
@@ -195,7 +195,7 @@
 }
 
 .trade-good-tooltip i {
-  @each $market-section, $section-color in $market-section-to-color {
+  @each $market-section, $section-color in $market-section-to-color-map {
     &.#{$market-section} {
       color: $section-color;
     }
