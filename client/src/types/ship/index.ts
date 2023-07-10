@@ -6,3 +6,5 @@ export * from './ship-nav.interface';
 export * from './ship-registration.interface';
 export * from './ship-frame.interface';
 export * from './ship-installation-requirements.interface';
+export * from './ship-fuel.interface';
+export * from './ship-cargo.interface';

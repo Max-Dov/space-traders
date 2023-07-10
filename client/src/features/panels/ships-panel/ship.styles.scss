@@ -6,11 +6,43 @@ section.ship {
   padding: 0.5rem;
 
   .frame-image {
-    height: 64px;
-    width: 64px;
+    height: 4rem;
+    width: 4rem;
+  }
+
+  .ship-name {
+    font-family: $font-family-display-1;
+  }
+
+  .role, .frame, .ship-location {
+    font-family: $font-family-header;
+  }
+
+  .ship-name, .role, .frame, .ship-location {
+    white-space: nowrap;
   }
 
   .role {
     text-transform: capitalize;
+  }
+
+  .ship-stats {
+    margin-top: 0.25em;
+  }
+
+  .info-bit {
+    margin: 0.25em 0.25em 0 0;
+    display: block;
+    border: 2px solid $layout-color;
+    .info-bit-header {
+      background-color: $layout-color;
+      display: inline-block;
+      height: 100%;
+      padding: 0.25em;
+    }
+    .info-bit-content {
+      display: inline-block;
+      padding: 0.25em;
+    }
   }
 }

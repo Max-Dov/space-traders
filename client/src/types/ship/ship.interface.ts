@@ -1,6 +1,8 @@
-import { ShipCrew, ShipFrame, ShipNav, ShipRegistration } from '@types';
+import { ShipCargo, ShipCrew, ShipFrame, ShipFuel, ShipNav, ShipRegistration } from '@types';
 
-
+/**
+ * Ship model coming from API.
+ */
 export interface Ship {
   /**
    * The globally unique identifier of the ship in the following format: [AGENT_SYMBOL]_[HEX_ID]
@@ -10,4 +12,6 @@ export interface Ship {
   crew: ShipCrew;
   registration: ShipRegistration;
   frame: ShipFrame;
+  fuel: ShipFuel;
+  cargo: ShipCargo;
 }
