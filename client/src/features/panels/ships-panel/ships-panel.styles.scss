@@ -1,5 +1,6 @@
 .ships-panel {
-  height: 20em;
+  min-height: 20em;
+  max-height: 30em;
   overflow-y: scroll;
 
   display: grid;
