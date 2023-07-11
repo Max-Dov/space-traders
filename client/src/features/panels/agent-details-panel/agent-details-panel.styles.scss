@@ -23,7 +23,7 @@
       font-family: $font-family-display-1;
     }
     .faction {
-      @each $faction-symbol, $faction-color in $faction-symbol-to-color {
+      @each $faction-symbol, $faction-color in $faction-symbol-to-color-map {
         &.#{$faction-symbol} {
           color: $faction-color;
         }

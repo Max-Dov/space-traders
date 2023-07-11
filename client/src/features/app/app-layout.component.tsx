@@ -16,6 +16,7 @@ import {
 } from '@features';
 import { Panel, PanelSections, useOpenedPanelsStore } from '@zustand';
 import { PanelComponentsIds } from '@constants';
+import { ShipsPanel } from '@features/panels/ships-panel/ships-panel.component';
 
 const displayPanels = (panels: Array<Panel>) =>
   panels
@@ -80,4 +81,5 @@ export const FEATURE_ID_TO_COMPONENT = {
   [PanelComponentsIds.AGENT_DETAILS]: AgentDetailsPanel,
   [PanelComponentsIds.MARKETPLACE]: MarketplacePanel,
   [PanelComponentsIds.AGENT_TRANSACTIONS]: AgentTransactionsPanel,
+  [PanelComponentsIds.SHIPS]: ShipsPanel,
 };

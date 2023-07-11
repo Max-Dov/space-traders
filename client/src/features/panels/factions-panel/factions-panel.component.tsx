@@ -1,15 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Icon, Panel, Placeholder } from '@shared';
 import { closePanel, getAllFactions, useFactionsStore } from '@zustand';
 import { CommonFeaturePanelProps, Faction } from '@types';
 import './factions-panel.styles.scss';
 import classNames from 'classnames';
+import { useIsElementNarrow } from '@utils';
 
 interface FactionsPanelProps extends CommonFeaturePanelProps {
 }
 
 export const FactionsPanel = ({ panelId, panelIndex }: FactionsPanelProps) => {
   const { factions } = useFactionsStore();
+  const panelRef = useRef<HTMLElement>(null);
+  const isPanelNarrow = useIsElementNarrow(panelRef, 700);
 
   useEffect(() => {
     if (factions.length === 0) {
@@ -18,7 +21,8 @@ export const FactionsPanel = ({ panelId, panelIndex }: FactionsPanelProps) => {
   }, [factions]);
 
   return <Panel
-    className="factions-container"
+    className={classNames('factions-container', { 'narrow-panel': isPanelNarrow })}
+    contentContainerRef={panelRef}
     panelTitle="FACTIONS"
     panelButtons={
       <div className="flex-row">

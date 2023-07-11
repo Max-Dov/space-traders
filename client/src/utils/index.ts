@@ -12,6 +12,7 @@ export * from './hooks/use-is-server-up.hook';
 export * from './hooks/use-validate-model.hook';
 export * from './hooks/use-is-authorized.hook';
 export * from './hooks/use-authorized-effect.hook';
+export * from './hooks/use-is-element-narrow.util';
 
 export * from './format-date.util';
 export * from './add-interceptors-to-axios.util';

@@ -1,4 +1,4 @@
-import React, { ReactNode, HTMLAttributes } from 'react';
+import React, { ReactNode, HTMLAttributes, RefObject } from 'react';
 import classNames from 'classnames';
 import './panel.styles.scss';
 import { Draggable } from '@shared/draggable/draggable.component';
@@ -16,6 +16,7 @@ interface PanelProps extends HTMLAttributes<HTMLDivElement> {
     index: number;
     draggableIdAndKey: string;
   };
+  contentContainerRef?: RefObject<HTMLElement>;
 }
 
 /**
@@ -27,6 +28,7 @@ export const Panel = ({
   panelTitle,
   panelButtons,
   draggableProps,
+  contentContainerRef,
   ...wrapperProps
 }: PanelProps) => {
 
@@ -44,7 +46,7 @@ export const Panel = ({
             {panelButtons}
           </div>
         </div>
-        <section className={classNames(className, 'content')}>
+        <section className={classNames(className, 'content')} ref={contentContainerRef}>
           {children}
         </section>
       </div>
@@ -66,7 +68,7 @@ export const Panel = ({
                 {panelButtons}
               </div>
             </div>
-            <section className={classNames(className, 'content')}>
+            <section className={classNames(className, 'content')} ref={contentContainerRef}>
               {children}
             </section>
           </>}

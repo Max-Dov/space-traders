@@ -129,4 +129,5 @@ const COMPONENT_ID_TO_DEFAULT_PLACEMENT: {
   [PanelComponentsIds.CONTRACTS]: 'side-section',
   [PanelComponentsIds.LEADERBOARDS]: 'side-section',
   [PanelComponentsIds.AGENT_DETAILS]: 'side-section',
+  [PanelComponentsIds.SHIPS]: 'side-section',
 };

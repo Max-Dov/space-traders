@@ -7,6 +7,7 @@ export * from './panels/leaderboards-panel/leaderboards-panel.component';
 export * from './panels/agent-details-panel/agent-details-panel.component';
 export * from './panels/marketplace-panel/marketplace-panel.component';
 export * from './panels/agent-transactions-panel/agent-transactions-panel.component';
+export * from './panels/ships-panel/ships-panel.component';
 
 export * from './app/app.component';
 export * from './app-bar/app-bar.component';

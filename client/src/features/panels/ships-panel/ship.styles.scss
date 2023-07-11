@@ -1,0 +1,82 @@
+@import "commonStyles/constants";
+
+section.ship {
+  border: 2px dashed $layout-color;
+  height: fit-content;
+  padding: 0.5rem;
+
+  .header-info {
+    margin-bottom: 0.5rem;
+    white-space: nowrap;
+
+    .ship-name {
+      font-family: $font-family-display-1;
+    }
+
+    .role, .frame {
+      font-family: $font-family-header;
+    }
+
+    .ship-location {
+      font-family: $font-family-monospace;
+      font-size: 1.2em;
+    }
+
+    .role {
+      text-transform: capitalize;
+    }
+  }
+
+  .image-with-stats-row {
+    align-items: flex-start;
+
+    .frame-image {
+      height: 9.2rem;
+      width: 9.2rem;
+    }
+
+    .stats-column {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      .info-bit {
+        display: block;
+        border: 2px solid $layout-color;
+        white-space: nowrap;
+
+        .info-bit-header {
+          display: inline-block;
+          padding: 0.25em 0.5em;
+          height: 100%;
+
+          background-color: $layout-color;
+          text-align: right;
+          font-family: $font-family-header;
+        }
+
+        .info-bit-content {
+          display: inline-block;
+          padding: 0.2em 0.5em;
+
+          .dimmed {
+            color: rgba($font-color, 0.5);
+          }
+        }
+      }
+
+      .fuel-cargo-crew-row {
+        .info-bit {
+          flex: 1;
+          .info-bit-header {
+            display: block;
+            text-align: left;
+          }
+          .info-bit-content {
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+}

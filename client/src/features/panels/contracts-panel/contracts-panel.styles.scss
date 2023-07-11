@@ -29,7 +29,7 @@
     }
 
     .faction {
-      @each $faction-symbol, $faction-color in $faction-symbol-to-color {
+      @each $faction-symbol, $faction-color in $faction-symbol-to-color-map {
         &.#{$faction-symbol} {
           color: $faction-color;
           font-family: $font-family-monospace;
