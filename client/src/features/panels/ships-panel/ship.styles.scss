@@ -5,13 +5,9 @@ section.ship {
   height: fit-content;
   padding: 0.5rem;
 
-  .frame-image {
-    height: 9rem;
-    width: 9rem;
-  }
-
   .header-info {
     margin-bottom: 0.5rem;
+    white-space: nowrap;
 
     .ship-name {
       font-family: $font-family-display-1;
@@ -26,41 +22,61 @@ section.ship {
       font-size: 1.2em;
     }
 
-    .ship-name, .role, .frame, .ship-location {
-      white-space: nowrap;
-    }
-
     .role {
       text-transform: capitalize;
     }
   }
 
-  .info-bit {
-    //margin: 0.25em 0.25em 0 0;
-    display: block;
-    border: 2px solid $layout-color;
+  .image-with-stats-row {
+    align-items: flex-start;
 
-    .info-bit-header {
-      display: inline-block;
-      padding: 0.25em 0.5em;
-      height: 100%;
-      width: 4em;
-
-      &.column-header {
-        width: 100%;
-      }
-
-      background-color: $layout-color;
-      text-align: right;
-      font-family: $font-family-header;
+    .frame-image {
+      height: 9.2rem;
+      width: 9.2rem;
     }
 
-    .info-bit-content {
-      display: inline-block;
-      padding: 0.25em;
+    .stats-column {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
 
-      .dimmed {
-        color: rgba($font-color, 0.5);
+      .info-bit {
+        //margin: 0.25em 0.25em 0 0;
+        display: block;
+        border: 2px solid $layout-color;
+        white-space: nowrap;
+
+        .info-bit-header {
+          display: inline-block;
+          padding: 0.25em 0.5em;
+          height: 100%;
+
+          background-color: $layout-color;
+          text-align: right;
+          font-family: $font-family-header;
+        }
+
+        .info-bit-content {
+          display: inline-block;
+          padding: 0.25em 0.5em;
+
+          .dimmed {
+            color: rgba($font-color, 0.5);
+          }
+        }
+      }
+
+      .fuel-cargo-crew-row {
+        .info-bit {
+          flex: 1;
+          .info-bit-header {
+            display: block;
+            text-align: left;
+          }
+          .info-bit-content {
+            white-space: nowrap;
+          }
+        }
       }
     }
   }

@@ -25,19 +25,18 @@ export const Ship = ({ ship }: ShipProps) => {
     {/** Header with ship name, class, location */}
     <div className="flex-row header-info">
       <span className="ship-name">{registration.name}</span>
-      {' '}
-      <span className="role">({registration.role.toLowerCase()}</span>
-      {' '}
-      <span className="frame">{frame.name.split(' ')[1]})</span>
-      {' '}
+      <span>
+        <span className="role">({registration.role.toLowerCase()}</span>
+        {' '}
+        <span className="frame">{frame.name.split(' ')[1]})</span>
+      </span>
       <Icon name="ArrowRight" />
-      {' '}
       <span className="ship-location">{nav.waypointSymbol}</span>
     </div>
 
-    <div className="flex-row">
+    <div className="flex-row image-with-stats-row">
       <img className="frame-image" alt={frame.name} src={`/${frame.symbol.toLowerCase()}.webp`} />
-      <div>
+      <div className="stats-column">
 
         <div className="info-bit">
           <div className="info-bit-header">
@@ -71,11 +70,11 @@ export const Ship = ({ ship }: ShipProps) => {
           </div>
         </div>
 
-        <div className="flex-row">
+        <div className="flex-row fuel-cargo-crew-row">
 
           <div className="info-bit">
-            <div className="info-bit-header column-header">
-              <Tooltip tooltipText="Fuel" isIconTooltip customIcon={<Icon name="GasCan" />} />
+            <div className="info-bit-header">
+              Fuel
             </div>
             <div className="info-bit-content">
               {fuel.current} / {fuel.capacity}
@@ -83,7 +82,7 @@ export const Ship = ({ ship }: ShipProps) => {
           </div>
 
           <div className="info-bit">
-            <div className="info-bit-header column-header">
+            <div className="info-bit-header">
               Cargo
             </div>
             <div className="info-bit-content">
@@ -92,7 +91,7 @@ export const Ship = ({ ship }: ShipProps) => {
           </div>
 
           <div className="info-bit">
-            <div className="info-bit-header column-header">
+            <div className="info-bit-header">
               Crew
             </div>
             <div className="info-bit-content">
