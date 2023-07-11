@@ -1,11 +1,11 @@
 .ships-panel {
   min-height: 20em;
   max-height: 30em;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   display: grid;
-  gap: 1rem;
-  padding: 1rem;
+  gap: 0.5rem;
+  padding: 0.5rem;
 
   grid-template-columns: 1fr 1fr;
 

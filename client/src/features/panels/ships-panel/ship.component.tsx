@@ -2,7 +2,7 @@ import React from 'react';
 import { Ship as ShipInterface } from '@types';
 import './ship.styles.scss';
 import classNames from 'classnames';
-import { Icon, Tooltip } from '@shared';
+import { Icon } from '@shared';
 
 interface ShipProps {
   ship: ShipInterface;

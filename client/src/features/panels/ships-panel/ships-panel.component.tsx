@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { CommonFeaturePanelProps } from '@types';
-import { Icon, Panel, Placeholder } from '@shared';
+import { Icon, Panel, Placeholder, Tooltip } from '@shared';
 import { closePanel, getShips, useShipsStore } from '@zustand';
 import { useAuthorizedEffect, useIsElementNarrow } from '@utils';
 import { Ship } from './ship.component';
@@ -22,7 +22,18 @@ export const ShipsPanel = ({ panelIndex, panelId }: ShipsPanelProps) => {
   }, []);
 
   return <Panel
-    panelTitle="Ships"
+    panelTitle={<>
+      Ships
+      {' '}
+      <Tooltip
+        isFancyTooltip
+        isIconTooltip
+        tooltipText={<>
+          Ships panel displays brief information about your ships. If you want to interact with a ship, then open<br/>
+          specific ship panel or fleet panel.
+        </>}
+      />
+    </>}
     draggableProps={{ index: panelIndex, draggableIdAndKey: panelId }}
     className={classNames('ships-panel', { 'narrow-panel': isPanelNarrow })}
     contentContainerRef={panelRef}
