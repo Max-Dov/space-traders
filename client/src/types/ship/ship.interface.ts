@@ -1,4 +1,4 @@
-import { ShipCargo, ShipCrew, ShipFrame, ShipFuel, ShipNav, ShipRegistration } from '@types';
+import { ShipCargo, ShipCrew, ShipEngine, ShipFrame, ShipFuel, ShipNav, ShipReactor, ShipRegistration } from '@types';
 
 /**
  * Ship model coming from API.
@@ -14,4 +14,6 @@ export interface Ship {
   frame: ShipFrame;
   fuel: ShipFuel;
   cargo: ShipCargo;
+  reactor: ShipReactor;
+  engine: ShipEngine;
 }

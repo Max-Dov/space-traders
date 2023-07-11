@@ -8,3 +8,8 @@ export * from './ship-frame.interface';
 export * from './ship-installation-requirements.interface';
 export * from './ship-fuel.interface';
 export * from './ship-cargo.interface';
+export * from './ship-reactor.interface';
+export * from './ship-engine.interface';
+export * from './ship-module.interface';
+export * from './ship-mount.interface';
+export * from './ship-cargo-item.interface';
