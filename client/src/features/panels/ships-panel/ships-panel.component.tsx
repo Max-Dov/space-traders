@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { CommonFeaturePanelProps } from '@types';
 import { Panel, Placeholder } from '@shared';
 import { getShips, useShipsStore } from '@zustand';
-import { useAuthorizedEffect } from '@utils';
+import { useAuthorizedEffect, useIsElementNarrow } from '@utils';
 import { Ship } from './ship.component';
 import './ships-panel.styles.scss';
+import classNames from 'classnames';
 
 interface ShipsPanelProps extends CommonFeaturePanelProps {
 }
 
 export const ShipsPanel = ({ panelIndex, panelId }: ShipsPanelProps) => {
   const { ships } = useShipsStore();
+  const panelRef = useRef<HTMLElement>(null);
+  const isPanelNarrow = useIsElementNarrow(panelRef, 700);
 
   useAuthorizedEffect(() => {
     if (ships.length === 0) {
@@ -21,7 +24,8 @@ export const ShipsPanel = ({ panelIndex, panelId }: ShipsPanelProps) => {
   return <Panel
     panelTitle="Ships"
     draggableProps={{ index: panelIndex, draggableIdAndKey: panelId }}
-    className="ships-panel"
+    className={classNames('ships-panel', { 'narrow-panel': isPanelNarrow })}
+    contentContainerRef={panelRef}
   >
     {ships.length > 0 && (
       <>
