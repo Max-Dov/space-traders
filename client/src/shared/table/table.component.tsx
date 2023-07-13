@@ -38,7 +38,7 @@ interface TableProps<RecordType> {
 
 /**
  * Logic wrapper for tables with minimal styling.
- * Style overrides should be done via `#table-id` selector.
+ * Style overrides should be done via `table#table-id` selector.
  */
 export const Table = <RecordType = unknown>({
   records,

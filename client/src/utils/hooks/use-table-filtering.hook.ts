@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { TableColumn } from '@shared';
-import { useFilterArray } from '@utils';
+import { filterArray } from '@utils';
 
 interface UseTableFilteringProps<RecordType> {
   records: Array<RecordType>;
@@ -20,7 +20,7 @@ export const useTableFiltering = <RecordType>({
   const [filterColumn, setFilterColumn] = useState<string | null>(null);
   const getFilterValue = columns.find(column => column.id === filterColumn)?.getFilterValue || null;
 
-  const filteredRecords = useFilterArray({
+  const filteredRecords = filterArray({
     records,
     transformRecordToFilterValue: getFilterValue,
     stringFilter,
