@@ -27,7 +27,6 @@
   .text-to-highlight {
     display: flex; // todo workaround for weird behavior when tooltipping images
     border-bottom: 2px dashed rgba($font-color, 0.8);
-    color: $accent-color-important;
     transition: border-bottom-color $transition-normal ease-in-out;
 
     &:hover {
