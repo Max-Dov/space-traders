@@ -49,33 +49,8 @@
   }
 
   .market-table {
-    width: 100%;
-    border-collapse: collapse;
-
-    thead {
-      background-color: rgba($layout-color, 0.5);
-
-      th {
-        text-align: left;
-        font-family: $font-family-header;
-        font-size: 1.1rem;
-        font-weight: bolder;
-        padding: 0.25rem 0.5rem;
-      }
-    }
-
     tbody {
       tr {
-        transition: background-color $transition-normal;
-
-        &:nth-child(odd) {
-          background-color: rgba($layout-color, 0.2);
-        }
-
-        &:hover {
-          background-color: rgba($layout-color, 0.6);
-        }
-
         &:active {
           background-color: rgba($layout-color, 0.8);
         }
@@ -136,14 +111,11 @@
             }
           }
         }
-      }
-
-      td {
-        padding: 0.25rem 0.5rem;
-
-        img {
-          height: 2rem;
-          width: 2rem;
+        td {
+          img {
+            height: 2rem;
+            width: 2rem;
+          }
         }
       }
     }

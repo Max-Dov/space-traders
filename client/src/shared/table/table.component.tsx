@@ -1,10 +1,11 @@
 import { ReactNode } from 'react';
-import { usePagination, useTableFiltering, useTableSorting } from '@utils';
 import React from 'react';
+import { usePagination, useTableFiltering, useTableSorting } from '@utils';
+import './table.styles.scss';
 
 export interface TableColumn<RecordType> {
   /**
-   * Column ID, e.g. "buy-or-sell".
+   * Column ID, e.g. "ship-name".
    */
   id: string;
   /**
@@ -12,9 +13,9 @@ export interface TableColumn<RecordType> {
    */
   getHeader: (records: Array<RecordType>) => ReactNode;
   /**
-   * Whatever goes into <td>.
+   * Whatever goes into <td>. Can be left empty if `renderRow` function is defined in `TableProps`.
    */
-  getCell: (record: RecordType) => ReactNode;
+  getCell?: (record: RecordType) => ReactNode;
   /**
    * Should return value that can be used to filter/sort by.
    * Returned value would be filtered against another string via `String.includes` method.
@@ -26,25 +27,37 @@ export interface TableColumn<RecordType> {
 interface TableProps<RecordType> {
   /**
    * Config for table would be accessed via zustand by that ID.
-   * Also, can be used as CSS selector.
    */
   id: string;
   records: Array<RecordType>;
   recordsPerPage: number;
   columns: Array<TableColumn<RecordType>>;
+  tableName: ReactNode;
+  /**
+   * Custom row renderer function.
+   */
+  renderRow?: (record: RecordType) => ReactNode;
   enableFiltering?: boolean;
   enableSorting?: boolean;
+  /**
+   * Classname that would be passed to `<table>`.
+   */
+  className?: string;
 }
 
 /**
  * Logic wrapper for tables with minimal styling.
- * Style overrides should be done via `table#table-id` selector.
  */
 export const Table = <RecordType = unknown>({
   records,
   recordsPerPage,
   id,
   columns,
+  tableName,
+  renderRow,
+  enableSorting,
+  enableFiltering,
+  className,
 }: TableProps<RecordType>) => {
   const {
     filteredRecords,
@@ -66,20 +79,36 @@ export const Table = <RecordType = unknown>({
     startingPage: 0,
   });
 
-  return <table id={id}>
-    <thead>
-    {columns.map(column => <th>{column.getHeader(records)}</th>)}
-    </thead>
-    <tbody>
-    {paginatedRecords.map((record) =>
-      <tr>
-        {columns.map(column =>
-          <td>
-            {column.getCell(record)}
-          </td>
-        )}
-      </tr>
-    )}
-    </tbody>
-  </table>;
+  return (
+    <>
+      <div className="table-controls-row">
+        <span className="table-name">
+          {tableName}
+        </span>
+      </div>
+      <table className={className}>
+        <thead>
+          {columns.map(column => column.getHeader(records))}
+        </thead>
+        <tbody>
+          {paginatedRecords.map((record) => {
+              if (renderRow) {
+                return renderRow(record);
+              }
+              return <tr>
+                {columns.map(column => {
+                    if (column.getCell) {
+                      return column.getCell(record);
+                    } else {
+                      return <td></td>;
+                    }
+                  }
+                )}
+              </tr>;
+            }
+          )}
+        </tbody>
+      </table>
+    </>
+  );
 };

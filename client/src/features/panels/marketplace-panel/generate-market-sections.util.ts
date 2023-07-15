@@ -1,7 +1,7 @@
 import { MARKET_SECTION_TO_TRADE_GOODS, MarketSection, TradeGoodsSymbols } from '@constants';
 
 /**
- * Generates market sections from provided trade goods.
+ * Generates market sections structure from provided trade goods.
  */
 export const generateMarketSections = (tradeGoodSymbols: Array<TradeGoodsSymbols>) => ({
   [MarketSection.SHIP_MODULES]: new Set(

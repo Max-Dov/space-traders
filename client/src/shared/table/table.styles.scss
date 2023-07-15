@@ -1,0 +1,9 @@
+@import 'commonStyles/constants';
+
+.table-controls-row {
+  background-color: rgba($layout-color, 0.9);
+  font-family: $font-family-header;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0.25rem 0.5rem;
+}
