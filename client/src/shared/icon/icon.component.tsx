@@ -4,6 +4,7 @@ import Money from '@svgs/money.icon.svg';
 import Spaceship from '@svgs/spaceship.icon.svg';
 import Users from '@svgs/users.icon.svg';
 import ArrowRight from '@svgs/arrow-right.icon.svg';
+import ArrowLeft from '@svgs/arrow-left.svg';
 import CircledQuestion from '@svgs/circled-question.icon.svg';
 import CircledExclamation from '@svgs/circled-exclamation.icon.svg';
 import Advice from '@svgs/advice.icon.svg';
@@ -19,6 +20,9 @@ import Import from '@svgs/import.svg';
 import Export from '@svgs/export.svg';
 import ArrowElbowDownRight from '@svgs/arrow-elbow-down-right.svg';
 import GasCan from '@svgs/gas-can.svg';
+import Book from '@svgs/book.svg';
+import ListPlus from '@svgs/list-plus.svg';
+import Funnel from '@svgs/funnel.svg';
 
 interface IconProps extends HTMLAttributes<HTMLDivElement> {
   name: keyof typeof ICONS;
@@ -42,6 +46,7 @@ const ICONS = {
   Spaceship: <Spaceship />,
   Users: <Users />,
   ArrowRight: <ArrowRight />,
+  ArrowLeft: <ArrowLeft />,
   CircledQuestion: <CircledQuestion />,
   CircledExclamation: <CircledExclamation />,
   Advice: <Advice />,
@@ -57,4 +62,7 @@ const ICONS = {
   Export: <Export />,
   ArrowElbowDownRight: <ArrowElbowDownRight />,
   GasCan: <GasCan />,
+  Book: <Book />,
+  ListPlus: <ListPlus />,
+  Funnel: <Funnel />,
 } as const;

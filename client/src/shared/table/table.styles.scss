@@ -4,6 +4,33 @@
   background-color: rgba($layout-color, 0.9);
   font-family: $font-family-header;
   font-size: 1.2rem;
-  font-weight: bold;
   padding: 0.25rem 0.5rem;
+  white-space: nowrap;
+
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+
+  .table-name {
+    font-weight: bold;
+    width: 100%;
+  }
+
+  .table-pagination, .table-records-per-page {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .page-number-input, .records-per-page-input {
+    width: 3em;
+  }
+
+  .filter-input {
+    width: 10em;
+  }
+
+  .page-number-input {
+    font-weight: lighter;
+  }
 }

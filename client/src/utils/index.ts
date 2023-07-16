@@ -13,7 +13,6 @@ export * from './hooks/use-validate-model.hook';
 export * from './hooks/use-is-authorized.hook';
 export * from './hooks/use-authorized-effect.hook';
 export * from './hooks/use-pagination.hook';
-export * from './filter-array.util';
 export * from './hooks/use-table-filtering.hook';
 export * from './hooks/use-table-sorting.hook';
 export * from './hooks/use-is-element-narrow.util';

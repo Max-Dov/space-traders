@@ -27,29 +27,31 @@ export const MarketTable = ({ market, shipSymbol }: MarketTableProps) => {
   return <Table
     id={`market-table-${market.symbol}`}
     className="market-table"
-    tableName="Market"
+    tableName="MARKET"
     records={tradeGoods}
     recordsPerPage={10}
+    enableSorting
+    enableFiltering
     columns={[{
       id: 'product',
-      getHeader: () => <th>Product</th>,
+      getHeader: () => <th key="product">Product</th>,
       getFilterValue: (tradeGood) => tradeGoodsSymbolToName[tradeGood.symbol],
       isSortable: true,
     }, {
       id: 'volume-and-supply',
-      getHeader: () => <th className="no-wrap">
+      getHeader: () => <th className="no-wrap" key="volume-and-supply">
         Vol. / Supply <Tooltip tooltipText="Once supply of item changes, trade volume changes." isIconTooltip />
       </th>,
       getFilterValue: (tradeGood) => String(tradeGood.tradeVolume),
       isSortable: true,
     }, {
       id: 'buy-at',
-      getHeader: () => <th>Buy At</th>,
+      getHeader: () => <th key="buy-at" className="numeric-field">Buy At</th>,
       getFilterValue: (tradeGood) => String(tradeGood.purchasePrice),
       isSortable: true,
     }, {
       id: 'sell-at',
-      getHeader: () => <th>Sell At</th>,
+      getHeader: () => <th key="sell-at" className="numeric-field">Sell At</th>,
       getFilterValue: (tradeGood) => String(tradeGood.sellPrice),
       isSortable: true,
     }]}
@@ -101,10 +103,10 @@ const TradeGoodRow = ({ tradeGood, tradeGoodName, shipSymbol }: TradeGoodRowProp
         <td className="no-wrap">
           {formatNumber(tradeGood.tradeVolume)} ({TRADE_VOLUME_TO_LABEL[tradeGood.supply]})
         </td>
-        <td>
+        <td className="numeric-field">
           <Currency amount={tradeGood.purchasePrice} />
         </td>
-        <td>
+        <td className="numeric-field">
           <Currency amount={tradeGood.sellPrice} />
         </td>
       </tr>
@@ -128,7 +130,7 @@ const TradeGoodRow = ({ tradeGood, tradeGoodName, shipSymbol }: TradeGoodRowProp
                   Amount:
                   <Input
                     id="amount"
-                    className="trade-amount-input"
+                    className="trade-amount-input inline-input"
                     value={String(buyAmount)}
                     onChange={(amount) => setBuyAmount(Number(amount))}
                   />
@@ -160,7 +162,7 @@ const TradeGoodRow = ({ tradeGood, tradeGoodName, shipSymbol }: TradeGoodRowProp
                   Amount:
                   <Input
                     id="amount"
-                    className="trade-amount-input"
+                    className="trade-amount-input inline-input"
                     value={String(sellAmount)}
                     onChange={(amount) => setSellAmount(Number(amount))}
                   />

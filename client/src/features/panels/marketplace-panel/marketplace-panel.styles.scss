@@ -49,6 +49,9 @@
   }
 
   .market-table {
+    .numeric-field {
+      text-align: right;
+    }
     tbody {
       tr {
         &:active {
@@ -97,10 +100,6 @@
 
               .trade-amount-input {
                 width: 5rem;
-                border: none;
-                border-bottom: $action-color 2px solid;
-                background: none;
-                box-shadow: none;
               }
             }
 

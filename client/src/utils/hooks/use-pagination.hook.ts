@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface UsePaginationProps<RecordType> {
   startingPage: number;
@@ -16,8 +16,19 @@ export const usePagination = <RecordType = unknown>({
   recordsPerPage,
 }: UsePaginationProps<RecordType>) => {
   const [page, setPage] = useState(startingPage);
+
+  /**
+   * On records per page change.
+   */
+  useEffect(() => {
+    setPage(0);
+  }, [recordsPerPage]);
+
   const totalPages = Math.ceil(records.length / recordsPerPage);
-  const paginatedRecords = records.slice(page, recordsPerPage);
+  const paginatedRecords = records.slice(
+    page * recordsPerPage,
+    page * recordsPerPage + recordsPerPage
+  );
 
   return {
     page,

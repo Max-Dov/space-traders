@@ -67,6 +67,25 @@ input {
     font-weight: $font-normal;
     color: rgba($font-color, 0.5);
   }
+
+  &.inline-input {
+    display: inline-block;
+    border: none;
+    background: none;
+    box-shadow: none;
+    padding: 0.2em;
+
+    transition: border-bottom-color $transition-normal;
+    border-bottom: $action-color 2px solid;
+
+    &:hover {
+      border-bottom: lighten($action-color, 10%) 2px solid;
+    }
+
+    &:active {
+      border-bottom: lighten($action-color, 20%) 2px solid;
+    }
+  }
 }
 
 /**
