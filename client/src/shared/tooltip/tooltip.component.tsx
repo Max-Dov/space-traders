@@ -39,7 +39,7 @@ interface TooltipProps extends HTMLAttributes<HTMLDivElement> {
    * If true, tooltip would not be toggleable when clicked.
    * Useful for button-wrapping tooltips.
    */
-  doNothingOnClick?: string;
+  doNothingOnClick?: boolean;
 }
 
 /**
@@ -126,7 +126,7 @@ export const Tooltip = ({
           ) : (
             <div className="portaled-tooltip tooltip-text simple-tooltip" ref={tooltipRef}>
               {tooltipText}
-              {isActive && (
+              {isActive && !doNothingOnClick && (
                 <button className="inline-button" onClick={() => setIsActive(false)}>
                   <Icon name="Close"/>
                 </button>

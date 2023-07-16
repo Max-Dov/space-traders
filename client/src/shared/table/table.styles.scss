@@ -1,0 +1,57 @@
+@import 'commonStyles/constants';
+
+.table-controls-row {
+  background-color: rgba($layout-color, 0.9);
+  font-family: $font-family-header;
+  font-size: 1.2rem;
+  padding: 0.25rem 0.5rem;
+  white-space: nowrap;
+
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  .table-name {
+    font-weight: bold;
+    width: 100%;
+  }
+
+  .table-pagination {
+    input {
+      text-align: right;
+      padding-right: 0;
+    }
+
+    .page-with-pages-amount {
+      display: flex;
+      align-items: baseline;
+      white-space: pre;
+    }
+  }
+
+  .table-pagination, .table-records-per-page, .table-filtering {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .page-number-input, .records-per-page-input {
+    width: 3em;
+  }
+
+  .filter-input {
+    width: 6em;
+  }
+
+  .page-number-input {
+    font-weight: lighter;
+  }
+}
+
+table {
+  thead th div.header-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+}

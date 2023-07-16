@@ -67,6 +67,26 @@ input {
     font-weight: $font-normal;
     color: rgba($font-color, 0.5);
   }
+
+  &.inline-input {
+    display: inline-block;
+    border: none;
+    background: none;
+    box-shadow: none;
+    padding: 0.2em;
+
+    transition: border-bottom-color $transition-normal;
+    border-bottom: $action-color 2px solid;
+    border-top: transparent 2px solid; // small fix to make text inside input to align to text baseline.
+
+    &:hover {
+      border-bottom: lighten($action-color, 10%) 2px solid;
+    }
+
+    &:active {
+      border-bottom: lighten($action-color, 20%) 2px solid;
+    }
+  }
 }
 
 /**
@@ -111,5 +131,40 @@ img {
 
   &.clickable:active {
     border-color: $accent-color-important;
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  thead {
+    background-color: rgba($layout-color, 0.5);
+
+    th {
+      text-align: left;
+      font-family: $font-family-header;
+      font-size: 1.1rem;
+      font-weight: bolder;
+      padding: 0.25rem 0.5rem;
+    }
+  }
+
+  tbody {
+    tr {
+      transition: background-color $transition-normal;
+
+      &:nth-child(odd) {
+        background-color: rgba($layout-color, 0.2);
+      }
+
+      &:hover {
+        background-color: rgba($layout-color, 0.6);
+      }
+
+      td {
+        padding: 0.25rem 0.5rem;
+      }
+    }
   }
 }

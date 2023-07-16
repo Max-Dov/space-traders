@@ -49,33 +49,17 @@
   }
 
   .market-table {
-    width: 100%;
-    border-collapse: collapse;
+    thead tr {
+      th:nth-child(2) {
+        width: 10em;
+      }
 
-    thead {
-      background-color: rgba($layout-color, 0.5);
-
-      th {
-        text-align: left;
-        font-family: $font-family-header;
-        font-size: 1.1rem;
-        font-weight: bolder;
-        padding: 0.25rem 0.5rem;
+      th:nth-child(3), th:nth-child(4) {
+        width: 6em;
       }
     }
-
     tbody {
       tr {
-        transition: background-color $transition-normal;
-
-        &:nth-child(odd) {
-          background-color: rgba($layout-color, 0.2);
-        }
-
-        &:hover {
-          background-color: rgba($layout-color, 0.6);
-        }
-
         &:active {
           background-color: rgba($layout-color, 0.8);
         }
@@ -122,10 +106,6 @@
 
               .trade-amount-input {
                 width: 5rem;
-                border: none;
-                border-bottom: $action-color 2px solid;
-                background: none;
-                box-shadow: none;
               }
             }
 
@@ -136,14 +116,11 @@
             }
           }
         }
-      }
-
-      td {
-        padding: 0.25rem 0.5rem;
-
-        img {
-          height: 2rem;
-          width: 2rem;
+        td {
+          img {
+            height: 2rem;
+            width: 2rem;
+          }
         }
       }
     }
