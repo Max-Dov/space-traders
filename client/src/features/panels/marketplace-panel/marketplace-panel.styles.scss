@@ -49,8 +49,14 @@
   }
 
   .market-table {
-    .numeric-field {
-      text-align: right;
+    thead tr {
+      th:nth-child(2) {
+        width: 10em;
+      }
+
+      th:nth-child(3), th:nth-child(4) {
+        width: 6em;
+      }
     }
     tbody {
       tr {

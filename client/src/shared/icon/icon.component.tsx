@@ -23,6 +23,9 @@ import GasCan from '@svgs/gas-can.svg';
 import Book from '@svgs/book.svg';
 import ListPlus from '@svgs/list-plus.svg';
 import Funnel from '@svgs/funnel.svg';
+import SortAsc from '@svgs/sort-asc.svg';
+import SortDesc from '@svgs/sort-desc.svg';
+import SortNothing from '@svgs/sort-nothing.svg';
 
 interface IconProps extends HTMLAttributes<HTMLDivElement> {
   name: keyof typeof ICONS;
@@ -65,4 +68,7 @@ const ICONS = {
   Book: <Book />,
   ListPlus: <ListPlus />,
   Funnel: <Funnel />,
+  SortAsc: <SortAsc />,
+  SortDesc: <SortDesc />,
+  SortNothing: <SortNothing />,
 } as const;
