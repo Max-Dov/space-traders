@@ -16,7 +16,7 @@ export const ContractsPanel = ({ panelId, panelIndex }: ContractsPanelProps) => 
     if (contracts.length === 0) {
       getAllContracts();
     }
-  }, [contracts]);
+  }, []);
 
   return <Panel
     panelTitle={<>
