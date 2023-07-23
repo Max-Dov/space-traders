@@ -82,7 +82,7 @@ const config: webpack.Configuration = {
     new CopyPlugin({
       patterns: [
         { from: path.join('public', 'favicon.ico') },
-        { from: path.join('public', 'assets', 'images') },
+        { from: path.join('public', 'assets', 'images', 'other') },
         { from: path.join('public', 'assets', 'images', 'factions') },
         { from: path.join('public', 'assets', 'images', 'trade-goods') },
         { from: path.join('public', 'assets', 'images', 'ships') },
