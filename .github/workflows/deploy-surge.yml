@@ -23,7 +23,7 @@ jobs:
         run: npm i
 
       - name: Build
-        run: npm run build-frontend
+        run: npm run build
 
       - name: Install Surge
         run: npm install -g surge
