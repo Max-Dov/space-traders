@@ -1,11 +1,11 @@
 {
-  "name": "space-traders-client",
-  "version": "0.0.0",
+  "name": "visor",
+  "version": "1.0.0",
   "private": true,
-  "description": "https://github.com/Max-Dov/space-traders/tree/main/client",
+  "description": "https://github.com/Max-Dov/space-traders/",
   "scripts": {
-    "build-frontend": "webpack --config webpack.config.ts",
-    "start-frontend": "webpack serve --config webpack.config.ts --open"
+    "build": "webpack --config webpack.config.ts",
+    "start": "webpack serve --config webpack.config.ts --open"
   },
   "author": "",
   "license": "MIT",
