@@ -6,29 +6,28 @@ import { TradeGoodsSymbols } from '@constants';
  */
 export interface Market {
   symbol: string;
-  exports: Array<{
-    symbol: TradeGoodsSymbols;
-    name: string;
-    description: string;
-  }>,
-  imports: Array<{
-    symbol: TradeGoodsSymbols;
-    name: string;
-    description: string;
-  }>,
-  exchange: Array<{
-    symbol: TradeGoodsSymbols;
-    name: string;
-    description: string;
-  }>,
+
+  exports: Array<BriefTradeGoodInfo>,
+  imports: Array<BriefTradeGoodInfo>,
+  exchange: Array<BriefTradeGoodInfo>,
+
   transactions: Array<Transaction>,
-  tradeGoods: Array<{
-    symbol: TradeGoodsSymbols;
-    tradeVolume: number;
-    supply: Supply;
-    purchasePrice: number;
-    sellPrice: number;
-  }>
+  tradeGoods: Array<TradeGood>
+}
+
+interface BriefTradeGoodInfo {
+  symbol: TradeGoodsSymbols;
+  name: string;
+  description: string;
+}
+
+interface TradeGood {
+  symbol: TradeGoodsSymbols;
+  tradeVolume: number;
+  activity: Activity;
+  supply: Supply;
+  purchasePrice: number;
+  sellPrice: number;
 }
 
 export enum Supply {
@@ -36,4 +35,11 @@ export enum Supply {
   LIMITED = 'LIMITED',
   MODERATE = 'MODERATE',
   ABUNDANT = 'ABUNDANT',
+}
+
+export enum Activity {
+  WEAK = 'WEAK',
+  GROWING = 'GROWING',
+  STRONG = 'STRONG',
+  RESTRICTED = 'RESTRICTED',
 }
