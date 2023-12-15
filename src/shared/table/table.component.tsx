@@ -163,7 +163,7 @@ export const Table = <RecordType = unknown>({
                   tooltipText={
                     <span>
                       <strong>Filter records</strong><br />
-                      Type something and only records containing that string will shop up.<br />
+                      Type something and only records containing that string will show up.<br />
                     </span>
                   }
                   customIcon={<Icon name="Funnel" />}

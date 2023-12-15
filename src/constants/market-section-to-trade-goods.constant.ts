@@ -21,6 +21,7 @@ export const MARKET_SECTION_TO_TRADE_GOODS: {
     TradeGoodsSymbols.FABRICS,
     TradeGoodsSymbols.ELECTRONICS,
     TradeGoodsSymbols.SHIP_PLATING,
+    TradeGoodsSymbols.SHIP_PARTS,
     TradeGoodsSymbols.MICROPROCESSORS,
     TradeGoodsSymbols.PLASTICS,
     TradeGoodsSymbols.POLYNUCLEOTIDES,
@@ -82,6 +83,8 @@ export const MARKET_SECTION_TO_TRADE_GOODS: {
     TradeGoodsSymbols.NOVEL_LIFEFORMS,
     TradeGoodsSymbols.BOTANICAL_SPECIMENS,
     TradeGoodsSymbols.CULTURAL_ARTIFACTS,
+    TradeGoodsSymbols.FAB_MATS,
+    TradeGoodsSymbols.QUANTUM_STABILIZERS,
   ]),
   [MarketSection.SHIP_MODULES]: new Set([
     TradeGoodsSymbols.REACTOR_SOLAR_I,
@@ -95,6 +98,8 @@ export const MARKET_SECTION_TO_TRADE_GOODS: {
     TradeGoodsSymbols.ENGINE_HYPER_DRIVE_I,
     TradeGoodsSymbols.MODULE_MINERAL_PROCESSOR_I,
     TradeGoodsSymbols.MODULE_CARGO_HOLD_I,
+    TradeGoodsSymbols.MODULE_CARGO_HOLD_II,
+    TradeGoodsSymbols.MODULE_CARGO_HOLD_III,
     TradeGoodsSymbols.MODULE_CREW_QUARTERS_I,
     TradeGoodsSymbols.MODULE_ENVOY_QUARTERS_I,
     TradeGoodsSymbols.MODULE_PASSENGER_CABIN_I,
@@ -125,5 +130,6 @@ export const MARKET_SECTION_TO_TRADE_GOODS: {
     TradeGoodsSymbols.MOUNT_LASER_CANNON_I,
     TradeGoodsSymbols.MOUNT_MISSILE_LAUNCHER_I,
     TradeGoodsSymbols.MOUNT_TURRET_I,
+    TradeGoodsSymbols.MODULE_GAS_PROCESSOR_I,
   ]),
 };
