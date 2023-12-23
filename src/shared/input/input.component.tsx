@@ -1,8 +1,8 @@
-import React, { HTMLAttributes, ReactNode } from 'react';
+import React, { HTMLAttributes, HTMLInputTypeAttribute, InputHTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 import './input.styles.scss';
 
-interface InputProps extends Omit<HTMLAttributes<HTMLInputElement>, 'onChange'> {
+interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   id?: string;
   value?: string | number;
   onChange?: (value: string) => void;
