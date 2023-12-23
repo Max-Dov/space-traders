@@ -44,6 +44,30 @@ const config: StorybookConfig = {
         ...aliases,
       };
     }
+    if (config?.module?.rules) {
+      // src: https://github.com/storybookjs/storybook/issues/18557#issuecomment-1443742296
+      // makes svg import work
+
+      // This modifies the existing image rule to exclude `.svg` files
+      // since we handle those with `@svgr/webpack`.
+      const imageRule = config.module.rules.find((rule) => {
+        // @ts-ignore
+        if (typeof rule !== 'string' && rule.test instanceof RegExp) {
+          // @ts-ignore
+          return rule.test.test('.svg');
+        }
+      });
+      if (typeof imageRule !== 'string') {
+        // @ts-ignore
+        imageRule.exclude = /\.svg$/;
+      }
+
+      config.module.rules.push({
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
+      });
+
+    }
 
     return config;
   }
