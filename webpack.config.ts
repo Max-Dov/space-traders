@@ -100,7 +100,7 @@ const config: webpack.Configuration = {
 config.devServer = {
   /**
    * If you are using LAN cable instead of Wi-Fi connection, you might want to switch to Wi-Fi if you want
-   * Strongson app to be accessible on other devices.
+   * Visor app to be accessible on other devices.
    */
   host: 'local-ip',
   // host: '192.168.100.10', // Wi-Fi IPV4 override in case you use both Wi-Fi + LAN.
