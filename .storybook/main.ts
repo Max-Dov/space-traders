@@ -23,6 +23,13 @@ const config: StorybookConfig = {
     '@storybook/addon-styling-webpack',
     '@storybook/preset-scss'
   ],
+  staticDirs: [
+    '../public/assets/images/other',
+    '../public/assets/images/factions',
+    '../public/assets/images/trade-goods',
+    '../public/assets/images/ships',
+    '../public/assets/svg',
+  ],
   framework: {
     name: '@storybook/react-webpack5',
     options: {
@@ -67,6 +74,22 @@ const config: StorybookConfig = {
         use: ['@svgr/webpack'],
       });
 
+      const scssRule = config.module.rules.find((rule) => {
+        // @ts-ignore
+        if (typeof rule !== 'string' && rule.test instanceof RegExp) {
+          // @ts-ignore
+          return rule.test.test('.scss');
+        }
+      });
+      if (typeof scssRule !== 'string') {
+        // @ts-ignore
+        const cssLoader = scssRule.use.find(loader => loader.loader.includes('css-loader'))
+        if (cssLoader) {
+          cssLoader.options = {
+            url: false,
+          }
+        }
+      }
     }
 
     return config;

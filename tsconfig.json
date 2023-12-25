@@ -5,7 +5,7 @@
     "strict": true,
     "module": "commonjs",
     "resolveJsonModule": true,
-    "jsx": "react-jsx",
+    "jsx": "react",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
