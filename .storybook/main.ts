@@ -29,6 +29,7 @@ const config: StorybookConfig = {
     '../public/assets/images/trade-goods',
     '../public/assets/images/ships',
     '../public/assets/svg',
+    '../public/assets/models',
   ],
   framework: {
     name: '@storybook/react-webpack5',
