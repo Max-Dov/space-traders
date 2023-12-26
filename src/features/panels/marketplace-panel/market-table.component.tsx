@@ -1,5 +1,5 @@
 import { Market } from '@types';
-import {  Table, Tooltip } from '@shared';
+import { Table, Tooltip } from '@shared';
 import React from 'react';
 import { TradeGoodRow } from './trade-good-row.component';
 

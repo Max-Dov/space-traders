@@ -1,4 +1,4 @@
-import { Market, Supply } from '@types';
+import { Activity, Market, Supply } from '@types';
 import React, { useState } from 'react';
 import { buyProduct as buyProductAction } from '@zustand';
 import classNames from 'classnames';
@@ -10,6 +10,13 @@ const TRADE_VOLUME_TO_LABEL = {
   [Supply.LIMITED]: 'Limited',
   [Supply.MODERATE]: 'Moderate',
   [Supply.ABUNDANT]: 'Abundant',
+};
+
+const TRADE_ACTIVITY_TO_LABEL = {
+  [Activity.GROWING]: 'Growing',
+  [Activity.STRONG]: 'Strong',
+  [Activity.WEAK]: 'Weak',
+  [Activity.RESTRICTED]: 'Restricted',
 };
 
 interface TradeGoodRowProps {
@@ -47,7 +54,9 @@ export const TradeGoodRow = ({ tradeGood, tradeGoodName, shipSymbol }: TradeGood
           </div>
         </td>
         <td className="no-wrap">
-          {formatNumber(tradeGood.tradeVolume)} ({TRADE_VOLUME_TO_LABEL[tradeGood.supply]})
+          {formatNumber(tradeGood.tradeVolume)}
+          {' '}
+          ({TRADE_VOLUME_TO_LABEL[tradeGood.supply]}, {TRADE_ACTIVITY_TO_LABEL[tradeGood.activity]})
         </td>
         <td className="numeric-field">
           <Currency amount={tradeGood.purchasePrice} />

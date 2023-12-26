@@ -11,3 +11,4 @@ export * from './panels/ships-panel/ships-panel.component';
 
 export * from './app/app.component';
 export * from './app-bar/app-bar.component';
+export * from './solar-system/solar-system.component';
