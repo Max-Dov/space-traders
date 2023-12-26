@@ -11,3 +11,6 @@ export * from './common-feature-panel-props.interface';
 export * from './market-transaction.interface';
 export * from './transaction.interface';
 export * from './ship';
+export * from './waypoint.interface';
+export * from './solar-system.interface';
+export * from './value-of.type';
