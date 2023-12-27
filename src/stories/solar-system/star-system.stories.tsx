@@ -24,7 +24,7 @@ export const StarSystemDefault: Story = {
   },
   render: (args) =>
     <div style={{ height: '50em', width: '50em', margin: 'auto' }}>
-      <Panel panelTitle={`${starSystem.symbol} [${starSystem.type}]`}>
+      <Panel className="star-system-panel" panelTitle={`${starSystem.symbol} [${starSystem.type}]`}>
         <StarSystem {...args} />
       </Panel>
     </div>
