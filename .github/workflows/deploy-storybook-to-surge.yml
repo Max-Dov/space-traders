@@ -29,4 +29,4 @@ jobs:
         run: npm install -g surge
 
       - name: Deploy to Surge
-        run: surge ./storybook-static --domain "https://visor.storybook.surge.sh" --token ${{secrets.SURGE_DEPLOY_FRONTEND_TOKEN}}
+        run: surge ./storybook-static --domain "https://visor-storybook.surge.sh" --token ${{secrets.SURGE_DEPLOY_FRONTEND_TOKEN}}
