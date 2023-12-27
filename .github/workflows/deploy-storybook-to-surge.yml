@@ -1,0 +1,32 @@
+name: Deploy Storybook to Surge
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: npm i
+
+      - name: Build
+        run: npm run build-storybook
+
+      - name: Install Surge
+        run: npm install -g surge
+
+      - name: Deploy to Surge
+        run: surge ./storybook-static --domain "https://visor.storybook.surge.sh" --token ${{secrets.SURGE_DEPLOY_FRONTEND_TOKEN}}
