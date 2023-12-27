@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { MapControls } from '@react-three/drei';
-import { SolarSystem as SolarSystemType, WaypointTypes } from '@types';
+import { StarSystem as StarSystemType, WaypointTypes } from '@types';
 
-interface SolarSystemProps {
-  solarSystem: SolarSystemType;
+interface StarSystemProps {
+  starSystem: StarSystemType;
 }
 
 // todo scale waypoints with zoom, keep 'em detailed when zoning out and smaller when taking closer look
@@ -13,12 +13,12 @@ interface SolarSystemProps {
 // todo add fancy bg (consider 2 bit quantization of star maps)
 // todo add zoom/dimensions control
 
-export const SolarSystem = ({ solarSystem }: SolarSystemProps) => {
+export const StarSystem = ({ starSystem }: StarSystemProps) => {
 
-  const { waypoints } = solarSystem;
+  const { waypoints } = starSystem;
   console.table(waypoints);
 
-  return <Canvas className="solar-system-canvas" camera={{ position: [0, 0, 120] }}>
+  return <Canvas camera={{ position: [0, 0, 120] }}>
 
     <MapControls />
 
@@ -37,7 +37,7 @@ export const SolarSystem = ({ solarSystem }: SolarSystemProps) => {
   </Canvas>;
 };
 
-type SolarSystemWaypoint = SolarSystemType['waypoints'][number];
+type StarSystemWaypoint = StarSystemType['waypoints'][number];
 
 const WAYPOINT_TYPE_TO_COLOR: { [key in WaypointTypes]: string } = {
   [WaypointTypes.PLANET]: '#FF322F',
@@ -57,7 +57,7 @@ const WAYPOINT_TYPE_TO_COLOR: { [key in WaypointTypes]: string } = {
 };
 
 interface WaypointProps {
-  waypoint: SolarSystemWaypoint;
+  waypoint: StarSystemWaypoint;
 }
 
 const Waypoint = ({ waypoint }: WaypointProps) => {

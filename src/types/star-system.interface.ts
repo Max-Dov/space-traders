@@ -1,13 +1,13 @@
 import { Waypoint } from '@types';
 
 /**
- * Solar System model coming from API.
+ * Star System model coming from API.
  * Reference: https://spacetraders.stoplight.io/docs/spacetraders/86a14c74e1c69-system
  */
-export interface SolarSystem {
+export interface StarSystem {
   symbol: string;
   sectorSymbol: string;
-  type: SolarSystemTypes;
+  type: StarSystemTypes;
   x: number;
   y: number;
   waypoints: Array<
@@ -18,7 +18,7 @@ export interface SolarSystem {
   }>;
 }
 
-export enum SolarSystemTypes {
+export enum StarSystemTypes {
   NEUTRON_STAR = 'NEUTRON_STAR',
   RED_STAR = 'RED_STAR',
   ORANGE_STAR = 'ORANGE_STAR',
