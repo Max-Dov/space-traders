@@ -1,12 +1,10 @@
-import { ValueOf } from '@types';
-
 /**
  * A waypoint is a location that ships can travel to such as a Planet, Moon or Space Station.
  * API model, reference: https://spacetraders.stoplight.io/docs/spacetraders/e380122173013-waypoint
  */
 export interface Waypoint {
   symbol: string;
-  type: ValueOf<WaypointTypes>;
+  type: WaypointTypes;
   systemSymbol: string;
   x: number;
   y: number;

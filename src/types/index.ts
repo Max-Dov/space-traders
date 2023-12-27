@@ -13,4 +13,3 @@ export * from './transaction.interface';
 export * from './ship';
 export * from './waypoint.interface';
 export * from './solar-system.interface';
-export * from './value-of.type';

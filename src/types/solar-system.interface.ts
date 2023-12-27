@@ -1,4 +1,4 @@
-import { ValueOf, Waypoint } from '@types';
+import { Waypoint } from '@types';
 
 /**
  * Solar System model coming from API.
@@ -7,7 +7,7 @@ import { ValueOf, Waypoint } from '@types';
 export interface SolarSystem {
   symbol: string;
   sectorSymbol: string;
-  type: ValueOf<SolarSystemTypes>;
+  type: SolarSystemTypes;
   x: number;
   y: number;
   waypoints: Array<

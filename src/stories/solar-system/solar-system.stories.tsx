@@ -2,13 +2,13 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { SolarSystem } from '@features';
 import { Panel } from '@shared';
-import { solarSystemMock } from './mocks';
+import { solarSystemMock } from '../mocks';
+import './solar-system.stories-styles.scss';
 
 const meta = {
   title: 'SolarSystem',
   component: SolarSystem,
-  parameters: {
-  },
+  parameters: {},
 } satisfies Meta<typeof SolarSystem>;
 
 export default meta;
@@ -23,7 +23,7 @@ export const SolarSystemDefault: Story = {
     ...defaultArgs,
   },
   render: (args) =>
-    <div style={{height: '50em', width: '50em', margin: 'auto'}}>
+    <div style={{ height: '50em', width: '50em', margin: 'auto' }}>
       <Panel panelTitle={`${solarSystemMock.symbol} [${solarSystemMock.type}]`}>
         <SolarSystem {...args} />
       </Panel>
