@@ -1,4 +1,4 @@
-name: Deploy to Surge
+name: Deploy Visor to Surge
 
 on:
   push:
