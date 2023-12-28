@@ -16,6 +16,7 @@ export * from './hooks/use-pagination.hook';
 export * from './hooks/use-table-filtering.hook';
 export * from './hooks/use-table-sorting.hook';
 export * from './hooks/use-is-element-narrow.util';
+export * from './hooks/use-gltf-scene-animations.hook';
 
 export * from './format-date.util';
 export * from './add-interceptors-to-axios.util';

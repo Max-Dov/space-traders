@@ -16,6 +16,7 @@ type Story = StoryObj<typeof meta>;
 
 const defaultArgs: Story['args'] = {
   starSystem: starSystem,
+  isDevMode: true,
 };
 
 export const StarSystemDefault: Story = {

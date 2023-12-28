@@ -9,3 +9,4 @@ export * from './placeholder/placeholder.component';
 export * from './tabs/tabs.component';
 export * from './select/select.component';
 export * from './table/table.component';
+export * from './gltf-model.component';
