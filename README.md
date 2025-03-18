@@ -10,13 +10,19 @@ Consider below imagery a showcase of what I've been working on:
 
 ![showcase3.png](readme_assets/showcase3.png)
 UIs (react & sass).
+
 ---
+
 ![showcase1.png](readme_assets/showcase1.png)
 Lightweight stylized skyboxes (Manual post-processing).
+
 ---
+
 ![showcase2.png](readme_assets/showcase2.png)
 Adding React components to Three.js scenes.
+
 ---
+
 ![showcase_gif.gif](readme_assets/showcase_gif.gif)
 Slick drag&drop and responsive components.
 
